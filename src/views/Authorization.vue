@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="authorization">
+    <h2>Authorization</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Authorization'
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
+.authorization {
   text-align: center;
   margin-top: 40px;
 }

@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="create-layout">
+    <h2>Create Layouts</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'CreateLayouts'
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
+.create-layout {
   text-align: center;
   margin-top: 40px;
 }

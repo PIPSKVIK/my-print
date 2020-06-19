@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="layout-list">
+    <h2>Layout List</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'LayoutList'
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
+.layout-list {
   text-align: center;
   margin-top: 40px;
 }

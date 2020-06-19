@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
+  <div class="enter">
+    <h2>Enter</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Enter'
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
+.enter {
   text-align: center;
   margin-top: 40px;
 }
