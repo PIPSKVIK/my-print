@@ -1,9 +1,9 @@
 <template>
   <button
-    type="button"
+    :type="type"
     v-bind="$attrs"
     :value="value"
-    v-on="inputListeners"
+    v-on="buttonListeners"
   >
     <slot>Button</slot>
   </button>
@@ -11,15 +11,15 @@
 
 <script>
 export default {
-  name: 'ButtonLink',
-  props: ['label', 'value'],
+  name: 'Button',
+  props: ['value', 'type'],
   computed: {
-    inputListeners () {
+    buttonListeners () {
       return Object.assign({},
         this.$listeners,
         {
-          input (event) {
-            this.$emit('input', event.target.value)
+          button (event) {
+            this.$emit('button', event.target.value, event.target.type)
           }
         }
       )
@@ -27,3 +27,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

@@ -23,12 +23,12 @@ export default {
   },
   data: () => ({
     links: [
-      { title: 'Главная', name: '/' },
-      { title: 'Вход', name: '/enter' },
-      { title: 'Выход', name: '/exit' },
-      { title: 'Авторизация', name: '/authorization' },
-      { title: 'Список макетов', name: '/layout-list' },
-      { title: 'Создать макет', name: '/creat-layout' }
+      { title: 'Главная', name: '/', exact: null },
+      { title: 'Вход', name: '/enter', exact: null },
+      { title: 'Выход', name: '/exit', exact: null },
+      { title: 'Регистрация', name: '/registration', exact: null },
+      { title: 'Список макетов', name: '/layout-list', exact: null },
+      { title: 'Создать макет', name: '/creat-layout', exact: null }
     ]
   })
 }

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import Enter from '@/views/Enter'
 import Exit from '@/views/Exit'
-import Authorization from '@/views/Authorization'
+import Registration from '@/views/Registration'
 import LayoutList from '@/views/LayoutList'
 import CreateLayout from '@/views/CreateLayout'
 
@@ -13,7 +13,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    param: 'exact'
   },
   {
     path: '/enter',
@@ -26,9 +27,9 @@ const routes = [
     component: Exit
   },
   {
-    path: '/authorization',
-    name: 'Authorization',
-    component: Authorization
+    path: '/registration',
+    name: 'Registration',
+    component: Registration
   },
   {
     path: '/layout-list',

@@ -1,18 +1,26 @@
 <template>
   <div class="enter">
-    <h2>Enter</h2>
+    <h2 class="enter-title">Enter</h2>
+    <Login></Login>
   </div>
 </template>
 
 <script>
+import Login from '../components/Auth/Login'
 export default {
-  name: 'Enter'
+  name: 'Enter',
+  components: {
+    Login
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .enter {
-  text-align: center;
   margin-top: 40px;
+}
+
+.enter-title {
+  text-align: center;
 }
 </style>

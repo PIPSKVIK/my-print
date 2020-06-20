@@ -7,6 +7,7 @@
       >
         <router-link
           :to="`${link.name}`"
+          :exact="true"
           class="btn btn-outline-primary nav-link__button"
         >
           {{ link.title }}
@@ -33,5 +34,10 @@ export default {
 <style lang="scss" scoped>
 .nav-link__list :not(:last-child) {
   margin-right: 10px;
+}
+
+.router-link-active {
+  background: rgb(6, 61, 240);
+  color: white;
 }
 </style>
