@@ -1,16 +1,14 @@
 <template>
   <input
-    :type="text"
     :value="value"
-    :placeholder="placeholder"
-    @input="$emit('input', $event.target.value, $event.target.placeholder, $event.target.text)"
+    @input="$emit('input', $event.target.value)"
   >
 </template>
 
 <script>
 export default {
   name: 'formInput',
-  props: ['value', 'text', 'placeholder']
+  props: ['value']
 }
 </script>
 

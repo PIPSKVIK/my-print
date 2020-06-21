@@ -15,6 +15,7 @@
 <script>
 import NavLink from './components/Nav/NavLink'
 import NavLogo from './components/Nav/NavLogo'
+
 export default {
   name: 'App',
   components: {

@@ -1,11 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '@/views/Home'
-import Enter from '@/views/Enter'
-import Exit from '@/views/Exit'
-import Registration from '@/views/Registration'
-import LayoutList from '@/views/LayoutList'
-import CreateLayout from '@/views/CreateLayout'
 
 Vue.use(VueRouter)
 
@@ -13,33 +7,32 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
-    param: 'exact'
+    component: () => import('../views/Home')
   },
   {
     path: '/enter',
     name: 'Enter',
-    component: Enter
+    component: () => import('../views/Enter')
   },
   {
     path: '/exit',
     name: 'Exit',
-    component: Exit
+    component: () => import('../views/Exit')
   },
   {
     path: '/registration',
     name: 'Registration',
-    component: Registration
+    component: () => import('../views/Registration')
   },
   {
     path: '/layout-list',
     name: 'LayoutList',
-    component: LayoutList
+    component: () => import('../views/LayoutList')
   },
   {
     path: '/creat-layout',
     name: 'CreateLayout',
-    component: CreateLayout
+    component: () => import('../views/CreateLayout')
   }
 ]
 

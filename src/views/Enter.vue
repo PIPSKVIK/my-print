@@ -1,7 +1,7 @@
 <template>
   <div class="enter">
     <h2 class="enter-title">Enter</h2>
-    <Login></Login>
+    <Login class="enter-login"></Login>
   </div>
 </template>
 
