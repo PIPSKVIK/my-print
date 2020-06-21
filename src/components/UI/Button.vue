@@ -1,6 +1,5 @@
 <template>
   <button
-    :type="type"
     v-bind="$attrs"
     :value="value"
     v-on="buttonListeners"
@@ -12,7 +11,7 @@
 <script>
 export default {
   name: 'Button',
-  props: ['value', 'type'],
+  props: ['value'],
   computed: {
     buttonListeners () {
       return Object.assign({},

@@ -1,6 +1,6 @@
 <template>
-  <div class="login container col-xl-5 shadow-sm">
-    <form>
+  <div class="login container col-xl-6 shadow">
+    <form @submit.prevent="onSubmit">
       <div class="login-email">
         <label for="email">Email address</label>
         <FormInput
@@ -22,7 +22,7 @@
           class="invalid-feedback"
           v-if="!$v.email.email"
         >
-          Не верный типо email
+          Не верный формат email адреса
         </div>
       </div>
       <div class="login-password">
@@ -46,19 +46,22 @@
           Обязательно для заполнения!
         </div>
       </div>
-      <Button
-      type="button"
-        class="btn btn-success login-button"
-      >
-        Вход
-      </Button>
+      <div class="login-button">
+        <Button
+          type="submit"
+          class="btn btn-success login-button"
+          :disabled="$v.$invalid"
+        >
+          Вход
+        </Button>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
 import FormInput from '../UI/FormInput'
-import Button from '../UI/Botton'
+import Button from '../UI/Button'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
   name: 'Login',
@@ -79,6 +82,12 @@ export default {
       minLength: minLength(6),
       required,
       maxLength: maxLength(15)
+    }
+  },
+  methods: {
+    onSubmit () {
+      console.log('Email', this.email)
+      console.log('Password', this.password)
     }
   }
 }

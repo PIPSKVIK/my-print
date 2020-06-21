@@ -1,16 +1,16 @@
 <template>
   <div class="enter">
     <h2 class="enter-title">Enter</h2>
-    <Login class="enter-login"></Login>
+    <FormLogin class="enter-login"></FormLogin>
   </div>
 </template>
 
 <script>
-import Login from '../components/Auth/Login'
+import FormLogin from '../components/Auth/FormLogin'
 export default {
   name: 'Enter',
   components: {
-    Login
+    FormLogin
   }
 }
 </script>
