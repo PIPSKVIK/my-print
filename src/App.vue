@@ -3,11 +3,9 @@
     <div class="container-md">
       <header class="header shadow-sm p-3 mb-5 bg-white rounded">
       <NavLogo />
-      <NavLink
-        :linksData="links"
-      />
+      <NavLink />
       </header>
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
@@ -23,14 +21,6 @@ export default {
     NavLogo
   },
   data: () => ({
-    links: [
-      { title: 'Главная', name: '/', exact: null },
-      { title: 'Вход', name: '/enter', exact: null },
-      { title: 'Выход', name: '/exit', exact: null },
-      { title: 'Регистрация', name: '/registration', exact: null },
-      { title: 'Список макетов', name: '/layout-list', exact: null },
-      { title: 'Создать макет', name: '/creat-layout', exact: null }
-    ]
   })
 }
 </script>

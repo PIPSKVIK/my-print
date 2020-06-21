@@ -2,7 +2,7 @@
   <div class="nav-link">
     <ul class="nav nav-link__list">
       <li
-        v-for="link in linksData"
+        v-for="link in LINKS"
         :key="link.title"
       >
         <router-link
@@ -18,15 +18,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'NavLink',
   comments: {
   },
-  props: {
-    linksData: {
-      type: Array,
-      default: () => []
-    }
+  computed: {
+    ...mapGetters([
+      'LINKS'
+    ])
   }
 }
 </script>

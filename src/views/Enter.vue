@@ -23,4 +23,8 @@ export default {
 .enter-title {
   text-align: center;
 }
+
+.enter-login {
+  margin-top: 40px;
+}
 </style>

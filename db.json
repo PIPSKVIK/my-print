@@ -1,0 +1,46 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "image": "1.jpg",
+      "name": "T-short",
+      "title": "Макет 1",
+      "color": "red"
+    },
+    {
+      "id": 2,
+      "image": "2.jpg",
+      "name": "T-short",
+      "title": "Макет 2",
+      "color": "red"
+    },
+    {
+      "id": 3,
+      "image": "3.jpg",
+      "name": "T-short",
+      "title": "Макет 3",
+      "color": "red"
+    },
+    {
+      "id": 4,
+      "image": "4.jpg",
+      "name": "T-short",
+      "title": "Макет 4",
+      "color": "red"
+    },
+    {
+      "id": 5,
+      "image": "5.jpg",
+      "name": "T-short",
+      "title": "Макет 5",
+      "color": "red"
+    },
+    {
+      "id": 6,
+      "image": "6.jpg",
+      "name": "T-short",
+      "title": "Макет 6",
+      "color": "red"
+    }
+  ]
+}
