@@ -6,7 +6,8 @@
 </template>
 
 <script>
-import FormLogin from '../components/Auth/FormLogin'
+// import FormLogin from '@/components/auth/FormLogin'
+import { FormLogin } from '@/components/auth'
 export default {
   name: 'Enter',
   components: {

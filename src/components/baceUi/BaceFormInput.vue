@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'formInput',
+  name: 'BaceFormInput',
   props: ['value']
 }
 </script>

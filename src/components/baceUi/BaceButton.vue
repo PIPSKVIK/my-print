@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Button',
+  name: 'BaceButton',
   props: ['value'],
   computed: {
     buttonListeners () {

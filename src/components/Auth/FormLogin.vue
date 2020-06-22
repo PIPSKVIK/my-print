@@ -3,7 +3,7 @@
     <form @submit.prevent="onSubmit">
       <div class="login-email">
         <label for="email">Email address</label>
-        <FormInput
+        <BaceFormInput
           type="email"
           id="email"
           placeholder="Email"
@@ -27,7 +27,7 @@
       </div>
       <div class="login-password">
         <label for="password">Password</label>
-        <FormInput
+        <BaceFormInput
           type="password"
           id="password"
           placeholder="Password"
@@ -47,32 +47,33 @@
         </div>
       </div>
       <div class="login-button">
-        <Button
+        <BaceButton
           type="submit"
           class="btn btn-success login-button"
           :disabled="$v.$invalid"
         >
           Вход
-        </Button>
+        </BaceButton>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import FormInput from '../UI/FormInput'
-import Button from '../UI/Button'
+import { BaceButton, BaceFormInput } from '../baceUi'
 import { required, email, minLength, maxLength } from 'vuelidate/lib/validators'
 export default {
-  name: 'Login',
+  name: 'FormLogin',
   components: {
-    FormInput,
-    Button
+    BaceFormInput,
+    BaceButton
   },
-  data: () => ({
-    email: '',
-    password: ''
-  }),
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
   validations: {
     email: {
       required,

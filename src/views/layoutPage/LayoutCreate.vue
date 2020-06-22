@@ -1,12 +1,12 @@
 <template>
   <div class="create-layout">
-    <h2>Create Layouts</h2>
+    <h2>Layouts Create</h2>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CreateLayouts'
+  name: 'LayoutsCreate'
 }
 </script>
 

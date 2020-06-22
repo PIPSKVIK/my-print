@@ -6,9 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     links: [
-      { title: 'Главная', name: '/', exact: null },
+      { title: 'Главная', name: '/', exact: true },
       { title: 'Вход', name: '/enter', exact: null },
-      { title: 'Выход', name: '/exit', exact: null },
+      {
+        title: 'Выход',
+        name: '/exit',
+        exact: null,
+        click: null
+      },
       { title: 'Регистрация', name: '/registration', exact: null },
       { title: 'Список макетов', name: '/layout-list', exact: null },
       { title: 'Создать макет', name: '/creat-layout', exact: null }
@@ -44,6 +49,7 @@ export default new Vuex.Store({
         name: 'T-short',
         title: 'Макет 4',
         color: 'tomato',
+        color2: 'tomato',
         price: '800'
       },
       {
@@ -69,10 +75,10 @@ export default new Vuex.Store({
   actions: {
   },
   getters: {
-    LINKS (state) {
+    linkFromState (state) {
       return state.links
     },
-    CARDS (state) {
+    cardFromState (state) {
       return state.cards
     }
   }

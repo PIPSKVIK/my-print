@@ -2,8 +2,8 @@
   <div id="app">
     <div class="container-md">
       <header class="header shadow-sm p-3 mb-5 bg-white rounded">
-      <NavLogo />
-      <NavLink />
+        <NavLogo />
+        <NavLink />
       </header>
       <router-view />
     </div>
@@ -11,17 +11,13 @@
 </template>
 
 <script>
-import NavLink from './components/Nav/NavLink'
-import NavLogo from './components/Nav/NavLogo'
-
+import { NavLink, NavLogo } from './components/nav'
 export default {
   name: 'App',
   components: {
     NavLink,
     NavLogo
-  },
-  data: () => ({
-  })
+  }
 }
 </script>
 

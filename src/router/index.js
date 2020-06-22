@@ -7,32 +7,32 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('../views/Home')
+    component: () => import('../views/homePage/Home')
   },
   {
     path: '/enter',
     name: 'Enter',
-    component: () => import('../views/Enter')
+    component: () => import('../views/auth/Enter')
   },
   {
     path: '/exit',
     name: 'Exit',
-    component: () => import('../views/Exit')
+    component: () => import('../views/auth/Exit')
   },
   {
     path: '/registration',
     name: 'Registration',
-    component: () => import('../views/Registration')
+    component: () => import('../views/auth/Registration')
   },
   {
     path: '/layout-list',
     name: 'LayoutList',
-    component: () => import('../views/LayoutList')
+    component: () => import('../views/layoutPage/LayoutList')
   },
   {
     path: '/creat-layout',
     name: 'CreateLayout',
-    component: () => import('../views/CreateLayout')
+    component: () => import('../views/layoutPage/LayoutCreate')
   }
 ]
 

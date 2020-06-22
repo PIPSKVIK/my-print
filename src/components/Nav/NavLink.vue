@@ -2,12 +2,12 @@
   <div class="nav-link">
     <ul class="nav nav-link__list">
       <li
-        v-for="link in LINKS"
+        v-for="link in linkFromState"
         :key="link.title"
       >
         <router-link
-          :to="`${link.name}`"
-          :exact="true"
+          :to="link.name"
+          :exact="link.exact"
           class="btn btn-outline-primary nav-link__button"
         >
           {{ link.title }}
@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'LINKS'
+      'linkFromState'
     ])
   }
 }

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import FormRegistration from '../components/Auth/FormRegistration'
+import { FormRegistration } from '@/components/auth'
 export default {
   name: 'Registration',
   components: {

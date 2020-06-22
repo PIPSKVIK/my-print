@@ -3,7 +3,7 @@
     <h1>My Print</h1>
     <div class="home-cards">
       <CardItem
-        v-for="cards in CARDS"
+        v-for="cards in cardFromState"
         :key="cards.id"
         :cardData="cards"
         class="home-cards__item"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import CardItem from '../components/Home/CardItem'
+import { CardItem } from '@/components/homePage'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'CARDS'
+      'cardFromState'
     ])
   }
 }

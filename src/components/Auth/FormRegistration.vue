@@ -3,7 +3,7 @@
     <form @submit.prevent="onRegistration">
       <div class="form-registration__email">
         <label for="email">Email address</label>
-        <FormInput
+        <BaceFormInput
           type="email"
           id="email"
           placeholder="Email"
@@ -17,7 +17,7 @@
       </div>
       <div class="form-registration__password">
         <label for="password">Password</label>
-        <FormInput
+        <BaceFormInput
           type="password"
           id="password"
           placeholder="Password"
@@ -32,7 +32,7 @@
       </div>
       <div class="form-registration__confirm-password">
         <label for="confirm-password">Confirm password</label>
-        <FormInput
+        <BaceFormInput
           type="password"
           id="confirm-password"
           placeholder="Confirm password"
@@ -44,33 +44,34 @@
         <div class="invalid-feedback" v-if="!$v.confirmPassword.sameAs">Ваш пароль не совпадает</div>
       </div>
       <div class="form-registration__button">
-        <Button
+        <BaceButton
           type="submit"
           class="btn btn-success login-button"
           :disabled="$v.$invalid"
         >
           Зарегистрироваться
-        </Button>
+        </BaceButton>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import Button from '../UI/Button'
-import FormInput from '../UI/FormInput'
+import { BaceButton, BaceFormInput } from '../baceUi'
 import { required, email, minLength, maxLength, sameAs } from 'vuelidate/lib/validators'
 export default {
   name: 'FormRegistratin',
   components: {
-    FormInput,
-    Button
+    BaceFormInput,
+    BaceButton
   },
-  data: () => ({
-    email: '',
-    password: '',
-    confirmPassword: ''
-  }),
+  data () {
+    return {
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
+  },
   validations: {
     email: {
       required,
