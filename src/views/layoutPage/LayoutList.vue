@@ -5,14 +5,17 @@
 </template>
 
 <script>
+
 export default {
   name: 'LayoutList'
 }
 </script>
 
 <style lang="scss" scoped>
-.layout-list {
-  text-align: center;
-  margin-top: 40px;
-}
+
+  .layout-list {
+    text-align: center;
+    margin-top: 40px;
+  }
+
 </style>

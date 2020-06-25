@@ -1,7 +1,12 @@
 <template>
   <button
-    v-bind="$attrs"
-    :value="value"
+    class="btn"
+    :class="[
+      themes[theme],
+      sizes[size]
+    ]"
+    :to="to"
+    :type="type"
     v-on="buttonListeners"
   >
     <slot>Button</slot>
@@ -9,24 +14,59 @@
 </template>
 
 <script>
+
 export default {
   name: 'BaceButton',
-  props: ['value'],
+  inheritAttrs: false,
+  props: {
+    type: {
+      required: true,
+      type: String,
+      default: 'button'
+    },
+    theme: {
+      required: false,
+      type: String,
+      default: 'primary'
+    },
+    size: {
+      required: false,
+      type: String,
+      default: 'normal'
+    },
+    to: {
+      type: Object,
+      required: false,
+      default () {
+        return {
+          name: 'home'
+        }
+      }
+    }
+  },
+  data () {
+    return {
+      themes: {
+        primary: 'btn-primary',
+        danger: 'btn-danger',
+        warning: 'btn-warning',
+        info: 'btn-info',
+        dark: 'btn-dark',
+        success: 'btn-success'
+      },
+      sizes: {
+        normail: '',
+        large: 'btn-lg',
+        small: 'btn-sm'
+      }
+    }
+  },
   computed: {
     buttonListeners () {
       return Object.assign({},
-        this.$listeners,
-        {
-          button (event) {
-            this.$emit('button', event.target.value, event.target.type)
-          }
-        }
+        this.$listeners
       )
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

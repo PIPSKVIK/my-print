@@ -1,3 +1,3 @@
-import CardItem from '../homePage/CardItem'
+import HomeLayout from '../homePage/HomeLayout'
 
-export { CardItem }
+export { HomeLayout }

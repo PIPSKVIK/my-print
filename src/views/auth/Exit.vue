@@ -5,14 +5,17 @@
 </template>
 
 <script>
+
 export default {
   name: 'Exit'
 }
 </script>
 
 <style lang="scss" scoped>
-.exit {
-  text-align: center;
-  margin-top: 40px;
-}
+
+  .exit {
+    text-align: center;
+    margin-top: 40px;
+  }
+
 </style>

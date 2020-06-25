@@ -9,6 +9,7 @@
 
 <script>
 import { FormRegistration } from '@/components/auth'
+
 export default {
   name: 'Registration',
   components: {
@@ -18,15 +19,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.registration-title {
-  text-align: center;
-}
 
-.registration {
-  margin-top: 40px;
-}
+  .registration-title {
+    text-align: center;
+  }
 
-.registration-form {
-  margin-top: 40px;
-}
+  .registration {
+    margin-top: 40px;
+  }
+
+  .registration-form {
+    margin-top: 40px;
+  }
+
 </style>

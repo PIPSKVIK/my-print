@@ -5,14 +5,17 @@
 </template>
 
 <script>
+
 export default {
   name: 'LayoutsCreate'
 }
 </script>
 
 <style lang="scss" scoped>
-.create-layout {
-  text-align: center;
-  margin-top: 40px;
-}
+
+  .create-layout {
+    text-align: center;
+    margin-top: 40px;
+  }
+
 </style>
