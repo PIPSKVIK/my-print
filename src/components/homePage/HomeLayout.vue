@@ -6,17 +6,17 @@
         <h5 class="card-title"> {{ cardData.title }} </h5>
         <div class="card-item__color">
           <CardItemColor
-            :cardItemColorData="cardData"
+            :cardItemColorsData="cardData.colors"
           />
         </div>
         <div class="card-item__price">
           <CardItemPrice
-            :cardItemPriceData="cardData"
+            :cardItemPricesData="cardData.price"
           />
         </div>
         <div class="card-item__size">
           <CardItemSize
-            :cardItemSizeData="cardData"
+            :cardItemSizesData="cardData.sizes"
           />
         </div>
         <BaseButton
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { CardItemColor, CardItemPrice, CardItemSize } from '@/components/layoutsCardItems'
+import { CardItemColor, CardItemPrice, CardItemSize } from '@/components/cardItems'
 import { BaseButton } from '@/components/baseUi'
 
 export default {

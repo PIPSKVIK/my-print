@@ -2,7 +2,7 @@
   <div class="card-price">
     <span>Цена:</span>
     <p
-      v-for="cardPrice in cardItemPriceData.prices"
+      v-for="cardPrice in cardItemPricesData"
       :key="cardPrice.id"
       class="card-price__item"
     > {{ cardPrice }} </p>
@@ -14,9 +14,9 @@
 export default {
   name: 'CardItemPrice',
   props: {
-    cardItemPriceData: {
+    cardItemPricesData: {
       required: true,
-      type: Object
+      type: Array
     }
   }
 }

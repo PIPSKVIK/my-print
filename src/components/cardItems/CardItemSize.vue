@@ -2,7 +2,7 @@
   <div class="card-size">
     <p
       class="card-size__item"
-      v-for="cardSize in cardItemSizeData.sizes"
+      v-for="cardSize in cardItemSizesData"
       :key="cardSize.id"
     > {{ cardSize }} </p>
   </div>
@@ -13,9 +13,9 @@
 export default {
   name: 'CardItemSize',
   props: {
-    cardItemSizeData: {
+    cardItemSizesData: {
       required: true,
-      type: Object
+      type: Array
     }
   }
 }

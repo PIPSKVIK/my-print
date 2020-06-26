@@ -2,17 +2,28 @@
   <div class="nav-link">
     <ul class="nav nav-link__list">
       <li
-      v-for="(link, index) in linkData"
+      v-for="(link) in linkData"
       :key="link.title"
       >
-        <router-link
-          :to="link.name"
-          :exact="link.exact"
-          class="btn btn-outline-primary nav-link__button"
-          @click="logout(index)"
-        >
-          {{ link.title }}
-        </router-link>
+        <template v-if="link.click">
+          <button
+            :exact="link.exact || null"
+            class="btn btn-outline-primary nav-link__button"
+            @click="link.click"
+          >
+            {{ link.title }}
+          </button>
+        </template>
+        <template v-else>
+          <router-link
+            :to="link.name"
+            :exact="link.exact || null"
+            class="btn btn-outline-primary nav-link__button"
+            @click.native="logout($event, index)"
+          >
+            {{ link.title }}
+          </router-link>
+        </template>
       </li>
     </ul>
   </div>
@@ -27,15 +38,6 @@ export default {
       type: Array,
       default () {
         return {}
-      }
-    }
-  },
-  methods: {
-    logout (index) {
-      const func = this.linkData[index].click
-
-      if (typeof func === 'function') {
-        func()
       }
     }
   }

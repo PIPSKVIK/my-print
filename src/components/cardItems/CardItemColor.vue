@@ -1,12 +1,12 @@
 <template>
   <div class="card-color">
-    <p
-      v-for="cardColor in cardItemColorData.colors"
+    <div
+      v-for="cardColor in cardItemColorsData"
       :key="cardColor.cardColor"
       :style=" {'background': cardColor} "
       class="card-color__item"
     >
-    </p>
+    </div>
   </div>
 </template>
 
@@ -15,9 +15,9 @@
 export default {
   name: 'CardItemColor',
   props: {
-    cardItemColorData: {
+    cardItemColorsData: {
       required: true,
-      type: Object
+      type: Array
     }
   }
 }

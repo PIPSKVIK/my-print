@@ -29,7 +29,7 @@ export default {
           name: 'T-short',
           title: 'Макет 1',
           colors: ['#a75b5b', '#5a5454', '#420909', '#420909'],
-          prices: [100, 200, 300, 400],
+          price: [100],
           sizes: ['M', 'L', 'S', 'M']
         },
         {
@@ -38,7 +38,7 @@ export default {
           name: 'T-short',
           title: 'Макет 2',
           colors: ['#a75b5b'],
-          prices: [100],
+          price: [200],
           sizes: ['M']
         },
         {
@@ -47,7 +47,7 @@ export default {
           name: 'T-short',
           title: 'Макет 3',
           colors: ['#a75b5b', '#420909'],
-          prices: [100, 200],
+          price: [300],
           sizes: ['M', 'L']
         },
         {
@@ -56,7 +56,7 @@ export default {
           name: 'T-short',
           title: 'Макет 4',
           colors: ['#a75b5b', '#5a5454', '#420909'],
-          prices: [100, 200, 300],
+          price: [400],
           sizes: ['M', 'L', 'S']
         },
         {
@@ -65,7 +65,7 @@ export default {
           name: 'T-short',
           title: 'Макет 5',
           colors: ['#a75b5b', '#5a5454', '#420909', '#5a5454', '#5a5454'],
-          prices: [100, 200, 300, 400, 500],
+          price: [500],
           sizes: ['M', 'L', 'S', 'M', 'L']
         },
         {
@@ -74,7 +74,7 @@ export default {
           name: 'T-short',
           title: 'Макет 6',
           colors: ['#a75b5b', '#420909'],
-          prices: [100, 200],
+          price: [600],
           sizes: ['M', 'L']
         }
       ]

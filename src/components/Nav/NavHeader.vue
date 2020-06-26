@@ -19,18 +19,15 @@ export default {
     return {
       links: [
         { title: 'Главная', name: '/', exact: true },
-        { title: 'Вход', name: '/enter', exact: null },
+        { title: 'Вход', name: '/enter' },
         {
           title: 'Выход',
           name: '/exit',
-          exact: null,
-          click () {
-            this.$router.push('/')
-          }
+          click: () => this.$router.push('/')
         },
-        { title: 'Регистрация', name: '/registration', exact: null },
-        { title: 'Список макетов', name: '/layout-list', exact: null },
-        { title: 'Создать макет', name: '/creat-layout', exact: null }
+        { title: 'Регистрация', name: '/registration' },
+        { title: 'Список макетов', name: '/layout-list' },
+        { title: 'Создать макет', name: '/creat-layout' }
       ]
     }
   }

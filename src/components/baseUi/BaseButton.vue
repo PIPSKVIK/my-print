@@ -20,7 +20,7 @@ export default {
   inheritAttrs: false,
   props: {
     type: {
-      required: true,
+      required: false,
       type: String,
       default: 'button'
     },

@@ -32,6 +32,11 @@ export default {
       type: String,
       default: 'Label'
     },
+    value: {
+      required: false,
+      type: String,
+      default: ''
+    },
     type: {
       required: true,
       type: String,
