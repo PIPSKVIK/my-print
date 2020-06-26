@@ -1,5 +1,5 @@
-import CardItemColor from '../layoutsCardItems/CardItemColor'
-import CardItemPrice from '../layoutsCardItems/CardItemPrice'
-import CardItemSize from '../layoutsCardItems/CardItemSize'
+import CardItemColor from './CardItemColor'
+import CardItemPrice from './CardItemPrice'
+import CardItemSize from './CardItemSize'
 
 export { CardItemColor, CardItemPrice, CardItemSize }

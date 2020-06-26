@@ -1,4 +1,4 @@
-import FormLogin from '../auth/FormLogin'
-import FormRegistration from '../auth/FormRegistration'
+import FormLogin from './FormLogin'
+import FormRegistration from './FormRegistration'
 
 export { FormLogin, FormRegistration }

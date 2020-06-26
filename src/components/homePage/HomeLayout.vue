@@ -19,14 +19,14 @@
             :cardItemSizeData="cardData"
           />
         </div>
-        <BaceButton
+        <BaseButton
           type="button"
           theme="info"
           size="small"
           @click="onClick"
         >
           Посмотреть
-        </BaceButton>
+        </BaseButton>
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@
 
 <script>
 import { CardItemColor, CardItemPrice, CardItemSize } from '@/components/layoutsCardItems'
-import { BaceButton } from '@/components/baceUi'
+import { BaseButton } from '@/components/baseUi'
 
 export default {
   name: 'HomeLayout',
@@ -42,7 +42,7 @@ export default {
     CardItemColor,
     CardItemPrice,
     CardItemSize,
-    BaceButton
+    BaseButton
   },
   props: {
     cardData: {

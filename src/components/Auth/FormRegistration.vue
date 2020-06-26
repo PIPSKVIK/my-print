@@ -2,7 +2,7 @@
   <div class="form-registation container col-xl-6 shadow">
     <form @submit.prevent="onRegistration">
       <div class="form-registration__email">
-        <BaceFormInput
+        <BaseFormInput
           label="Ваш Email адресс"
           type="email"
           name="email"
@@ -12,7 +12,7 @@
         />
       </div>
       <div class="form-registration__password">
-        <BaceFormInput
+        <BaseFormInput
           label="Ваш пароль"
           type="password"
           name="password"
@@ -22,7 +22,7 @@
         />
       </div>
       <div class="form-registration__confirm-password">
-        <BaceFormInput
+        <BaseFormInput
           label="Подтвердите пароль"
           type="password"
           name="confirm-password"
@@ -32,25 +32,25 @@
         />
       </div>
       <div class="form-registration__button">
-        <BaceButton
+        <BaseButton
           type="submit"
           theme="success"
         >
           Зарегистрироваться
-        </BaceButton>
+        </BaseButton>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import { BaceButton, BaceFormInput } from '../baceUi'
+import { BaseButton, BaseFormInput } from '../baseUi'
 
 export default {
   name: 'FormRegistratin',
   components: {
-    BaceFormInput,
-    BaceButton
+    BaseFormInput,
+    BaseButton
   },
   data () {
     return {

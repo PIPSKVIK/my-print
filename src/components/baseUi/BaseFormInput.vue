@@ -21,7 +21,7 @@
 <script>
 
 export default {
-  name: 'BaceFormInput',
+  name: 'BaseFormInput',
   inheritAttrs: false,
   props: {
     placeholder: {

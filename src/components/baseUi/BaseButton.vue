@@ -16,7 +16,7 @@
 <script>
 
 export default {
-  name: 'BaceButton',
+  name: 'BaseButton',
   inheritAttrs: false,
   props: {
     type: {
