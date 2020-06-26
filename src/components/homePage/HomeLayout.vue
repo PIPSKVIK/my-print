@@ -20,7 +20,6 @@
           />
         </div>
         <BaseButton
-          type="button"
           theme="info"
           size="small"
           @click="onClick"

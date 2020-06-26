@@ -7,7 +7,7 @@
     ]"
     :to="to"
     :type="type"
-    v-on="buttonListeners"
+    v-on="$listeners"
   >
     <slot>Button</slot>
   </button>
@@ -36,12 +36,7 @@ export default {
     },
     to: {
       type: Object,
-      required: false,
-      default () {
-        return {
-          name: 'home'
-        }
-      }
+      default: null
     }
   },
   data () {
@@ -59,13 +54,6 @@ export default {
         large: 'btn-lg',
         small: 'btn-sm'
       }
-    }
-  },
-  computed: {
-    buttonListeners () {
-      return Object.assign({},
-        this.$listeners
-      )
     }
   }
 }

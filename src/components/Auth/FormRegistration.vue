@@ -3,10 +3,9 @@
     <form @submit.prevent="onRegistration">
       <div class="form-registration__email">
         <BaseInput
-          label="Ваш Email адресс"
+          label="Ваш Email"
           type="email"
           name="email"
-          id="email"
           placeholder="Email"
           v-model="email"
         />
@@ -16,7 +15,6 @@
           label="Ваш пароль"
           type="password"
           name="password"
-          id="email"
           placeholder="Password"
           v-model="password"
         />
@@ -26,7 +24,6 @@
           label="Подтвердите пароль"
           type="password"
           name="confirm-password"
-          id="confirm-password"
           placeholder="Confirm password"
           v-model="confirmPassword"
         />

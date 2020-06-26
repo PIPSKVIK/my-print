@@ -9,8 +9,6 @@
       :name="name"
       :id="name"
       class="form-control"
-      @input="$emit('input'), $event.target.value"
-      :placeholder="placeholder"
     >
     <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
       {{ passwordRevealed ? 'Скрыть' : 'Показать' }} пароль
@@ -24,22 +22,7 @@ export default {
   name: 'BaseInput',
   inheritAttrs: false,
   props: {
-    placeholder: {
-      required: true,
-      type: String,
-      default: ''
-    },
-    id: {
-      required: true,
-      type: String,
-      default: ''
-    },
     name: {
-      required: false,
-      type: String,
-      default: ''
-    },
-    forInput: {
       required: false,
       type: String,
       default: ''
@@ -48,11 +31,6 @@ export default {
       required: true,
       type: String,
       default: 'Label'
-    },
-    value: {
-      required: false,
-      type: String,
-      default: ''
     },
     type: {
       required: true,

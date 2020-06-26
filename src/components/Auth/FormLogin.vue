@@ -3,10 +3,9 @@
     <form @submit.prevent="onSubmit">
       <div class="login-email">
         <BaseInput
-          label="Ваш Email адресс"
+          label="Ваш email"
           type="email"
           name="email"
-          id="email"
           placeholder="Email"
           v-model="email"
         />
@@ -16,7 +15,6 @@
           label="Ваш пароль"
           type="password"
           name="password"
-          id="password"
           placeholder="Password"
           v-model="password"
         />
