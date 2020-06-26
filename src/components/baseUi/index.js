@@ -1,4 +1,4 @@
 import BaseButton from './BaseButton'
-import BaseFormInput from './BaseFormInput'
+import BaseInput from './BaseInput'
 
-export { BaseButton, BaseFormInput }
+export { BaseButton, BaseInput }

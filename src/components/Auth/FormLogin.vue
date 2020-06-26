@@ -2,7 +2,7 @@
   <div class="login container col-xl-6 shadow">
     <form @submit.prevent="onSubmit">
       <div class="login-email">
-        <BaseFormInput
+        <BaseInput
           label="Ваш Email адресс"
           type="email"
           name="email"
@@ -12,7 +12,7 @@
         />
       </div>
       <div class="login-password">
-        <BaseFormInput
+        <BaseInput
           label="Ваш пароль"
           type="password"
           name="password"
@@ -33,12 +33,12 @@
 </template>
 
 <script>
-import { BaseButton, BaseFormInput } from '../baseUi'
+import { BaseButton, BaseInput } from '../baseUi'
 
 export default {
   name: 'FormLogin',
   components: {
-    BaseFormInput,
+    BaseInput,
     BaseButton
   },
   data () {
