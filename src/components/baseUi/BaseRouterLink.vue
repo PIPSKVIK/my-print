@@ -1,27 +1,31 @@
 <template>
-  <button
-    class="btn"
+  <router-link
+    class="btn base-link"
+    :to="to"
     :class="[
-      themes[theme],
-      sizes[size]
+    themes[theme],
+    sizes[size]
     ]"
-    :type="type"
     v-on="$listeners"
+    exact
   >
-    <slot>Button</slot>
-  </button>
+    <slot>Link</slot>
+  </router-link>
 </template>
 
 <script>
-
 export default {
-  name: 'BaseButton',
+  name: 'BaseRouterLink',
   inheritAttrs: false,
   props: {
-    type: {
+    to: {
       required: false,
-      type: String,
-      default: 'button'
+      type: Object,
+      default () {
+        return {
+          name: 'Home'
+        }
+      }
     },
     theme: {
       required: false,
@@ -53,3 +57,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+  .router-link-active {
+    background: #062486;
+    color: #ffffff;
+  }
+
+</style>

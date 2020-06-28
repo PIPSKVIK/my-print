@@ -1,35 +1,19 @@
 <template>
-  <div class="header shadow-sm p-3 mb-5 bg-white rounded">
+  <div class="header shadow-sm p-3 mb-5">
     <NavLogo />
-    <NavLinks
-      :linkData="links"
-    />
+    <NavLinks />
   </div>
 </template>
 
 <script>
-import { NavLinks, NavLogo } from '@/components/nav'
+import { NavLogo } from '@/components/nav'
+import NavLinks from '../nav/NavLinks'
+
 export default {
   name: 'NavHeader',
   components: {
     NavLogo,
     NavLinks
-  },
-  data () {
-    return {
-      links: [
-        { title: 'Главная', name: '/', exact: true },
-        { title: 'Вход', name: '/enter' },
-        {
-          title: 'Выход',
-          name: '/exit',
-          click: () => this.$router.push('/')
-        },
-        { title: 'Регистрация', name: '/registration' },
-        { title: 'Список макетов', name: '/layout-list' },
-        { title: 'Создать макет', name: '/creat-layout' }
-      ]
-    }
   }
 }
 </script>
