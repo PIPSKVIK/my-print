@@ -42,7 +42,8 @@ export default {
         warning: 'btn-warning',
         info: 'btn-info',
         dark: 'btn-dark',
-        success: 'btn-success'
+        success: 'btn-success',
+        constructor: 'btn-link-constructor'
       },
       sizes: {
         normail: '',
@@ -53,3 +54,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+  .btn-link-constructor {
+    background: #32343b;
+    padding: 15px 3px;
+    color: #ffffff;
+    width: 100%;
+    outline: none;
+  }
+
+</style>

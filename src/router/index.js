@@ -33,6 +33,11 @@ const routes = [
     path: '/creat-layout',
     name: 'CreateLayout',
     component: () => import('../views/layoutPage/LayoutCreate')
+  },
+  {
+    path: '/layout-constructor',
+    name: 'LayoutConstructor',
+    component: () => import('../views/layoutPage/LayoutConstructor')
   }
 ]
 

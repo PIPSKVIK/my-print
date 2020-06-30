@@ -1,13 +1,26 @@
 <template>
   <div class="create-layout">
-    <h2>Layouts Create</h2>
+    <Instruction />
+    <BaseRouterLink
+      theme="danger"
+      :to="{ name: 'LayoutConstructor' }"
+    >
+      Перейти в конструктор
+    </BaseRouterLink>
+    <!-- Тут будет инструкция пользования конструктором -->
   </div>
 </template>
 
 <script>
+import { Instruction } from '@/components/constructor'
+import { BaseRouterLink } from '@/components/baseUi'
 
 export default {
-  name: 'LayoutsCreate'
+  name: 'LayoutsCreate',
+  components: {
+    Instruction,
+    BaseRouterLink
+  }
 }
 </script>
 

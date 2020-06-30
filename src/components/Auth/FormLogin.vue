@@ -3,7 +3,7 @@
     <form @submit.prevent="onSubmit">
       <div class="login-email">
         <BaseInput
-          label="Ваш email"
+          label="email"
           type="email"
           name="email"
           placeholder="Email"
@@ -12,7 +12,7 @@
       </div>
       <div class="login-password">
         <BaseInput
-          label="Ваш пароль"
+          label="password"
           type="password"
           name="password"
           placeholder="Password"
