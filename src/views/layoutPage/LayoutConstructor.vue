@@ -1,12 +1,39 @@
 <template>
   <div class="layout-constructor">
     <section class="constructor-left">
-      <TypeSubjects
-        class="constructor-left__subjects"
-      />
-      <TypeColors
-        v-model="typeColor"
-      />
+      <!-- <компонент выбора типа одежды -->
+      <div class="subjects">
+        <div>
+          <img class="subject-img subject__tshirt" src="@/assets/image/constructor/tshirt-icon.png" alt="tshirt" width="40" height="40">
+          <img class="subject-img subject__sweater" src="@/assets/image/constructor/sweater-icon.png" alt="sweater" width="40" height="40">
+        </div>
+        <div>
+          <BaseRadio
+            label="Футболка"
+            value="Футболка"
+            v-model="subjectsType"
+          />
+          <BaseRadio
+            label="Кофта"
+            value="Кофта"
+            v-model="subjectsType"
+          />
+        </div>
+        <div>
+          <span> {{ subjectsType }} </span>
+        </div>
+      </div>
+      <!-- компонент выбора типа одежды> -->
+
+      <!-- <компонент выбор цыетов -->
+      <div>
+        <TypeColors
+          v-model="typeColor"
+          @saveCurrentColor="saveCurrentColor"
+        />
+        <div class="current-color" :style="{ 'background': currentColors }"></div>
+      </div>
+      <!-- <компонент выбор цыетов> -->
       <TypeSizes
         class="constructor-left__sizes"
       />
@@ -18,24 +45,49 @@
 </template>
 
 <script>
-import { TypeSubjects, TypeSizes, TypeColors } from '@/components/constructorLeftSide'
+import { TypeSizes, TypeColors } from '@/components/constructorLeftSide'
+import { BaseRadio } from '@/components/baseUi'
 
 export default {
   name: 'LayoutConstructor',
   components: {
-    TypeSubjects,
     TypeSizes,
-    TypeColors
+    TypeColors,
+    BaseRadio
   },
   data () {
     return {
-      typeColor: '#000000'
+      typeColor: '#000000',
+      subjectsType: '',
+      currentColors: ['#745874']
+    }
+  },
+  methods: {
+    saveCurrentColor () {
+      console.log(this.typeColor)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+  .current-color {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+  }
+
+// <компонент выбора типа одежды
+  .subjects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #98be72;
+    padding: 10px;
+  }
+// компонент выбора типа одежды>
 
   .layout-constructor {
     display: flex;

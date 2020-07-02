@@ -4,16 +4,20 @@
       type="color"
       v-model="changeColor"
     />
+    <BaseButton
+      @click="saveCurrentColor"
+    />
   </div>
 </template>
 
 <script>
-import { BaseInput } from '@/components/baseUi'
+import { BaseInput, BaseButton } from '@/components/baseUi'
 
 export default {
   name: 'TypeColors',
   components: {
-    BaseInput
+    BaseInput,
+    BaseButton
   },
   model: {
     props: 'color'
@@ -32,6 +36,11 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
+    }
+  },
+  methods: {
+    saveCurrentColor () {
+      this.$emit('saveCurrentColor')
     }
   }
 }
