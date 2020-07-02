@@ -29,9 +29,10 @@
       <div>
         <TypeColors
           v-model="typeColor"
+          :currentColors="currentColors"
+          @removeColor="removeColor"
           @saveCurrentColor="saveCurrentColor"
         />
-        <div class="current-color" :style="{ 'background': currentColors }"></div>
       </div>
       <!-- <компонент выбор цыетов> -->
       <TypeSizes
@@ -59,10 +60,17 @@ export default {
     return {
       typeColor: '#000000',
       subjectsType: '',
-      currentColors: ['#745874']
+      currentColors: [
+        { id: 1, color: '#474747' },
+        { id: 2, color: '#666666' },
+        { id: 3, color: '#aaaaaa' }
+      ]
     }
   },
   methods: {
+    removeColor (id) {
+      this.currentColors = this.currentColors.filter(t => t.id !== id)
+    },
     saveCurrentColor () {
       console.log(this.typeColor)
     }
@@ -71,13 +79,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  .current-color {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #000000;
-    border-radius: 50%;
-  }
 
 // <компонент выбора типа одежды
   .subjects {
