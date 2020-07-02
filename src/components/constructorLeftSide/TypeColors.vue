@@ -12,8 +12,8 @@
     </BaseButton>
     <ul class="color-list">
       <li v-for="currentColor in currentColors" :key="currentColor.currentColor">
-        <div class="current-color" :style="{ 'background': currentColor.color }"></div>
-        <button class="color-btn" @click="$emit('removeColor', currentColor.id )">&times;</button>
+        <div class="current-color" :style="{ 'background': currentColor }"></div>
+        <!-- <button class="color-btn" @click="$emit('removeColor', currentColor.id )">&times;</button> -->
       </li>
     </ul>
   </div>

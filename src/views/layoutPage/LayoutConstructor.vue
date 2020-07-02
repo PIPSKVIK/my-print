@@ -30,7 +30,6 @@
         <TypeColors
           v-model="typeColor"
           :currentColors="currentColors"
-          @removeColor="removeColor"
           @saveCurrentColor="saveCurrentColor"
         />
       </div>
@@ -60,19 +59,15 @@ export default {
     return {
       typeColor: '#000000',
       subjectsType: '',
-      currentColors: [
-        { id: 1, color: '#474747' },
-        { id: 2, color: '#666666' },
-        { id: 3, color: '#aaaaaa' }
-      ]
+      currentColors: ['#000000', '#aa55aa', '#ffffff']
     }
   },
   methods: {
-    removeColor (id) {
-      this.currentColors = this.currentColors.filter(t => t.id !== id)
-    },
+    // removeColor (id) {
+    //   this.currentColors = this.currentColors.filter(t => t.id !== id)
+    // },
     saveCurrentColor () {
-      console.log(this.typeColor)
+      this.currentColors.push(this.typeColor)
     }
   }
 }
