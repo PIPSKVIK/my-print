@@ -6,7 +6,10 @@
     />
     <BaseButton
       @click="saveCurrentColor"
-    />
+      size="small"
+    >
+    Сохранить
+    </BaseButton>
     <ul class="color-list">
       <li v-for="currentColor in currentColors" :key="currentColor.currentColor">
         <div class="current-color" :style="{ 'background': currentColor.color }"></div>
