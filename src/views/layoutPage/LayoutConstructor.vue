@@ -1,100 +1,35 @@
 <template>
   <div class="layout-constructor">
-    <h3 class="layout-constructor__title">
-      Layout Constructor
-    </h3>
-    <div class="content-wrapper">
-      <section class="constructor-left">
-        <ul class="constructor-left__nav">
-          <li class="constructor-left__item">
-            <BaseButton theme="constructor" @click="onColor">Цвет</BaseButton>
-          </li>
-          <li class="constructor-left__item">
-            <BaseButton theme="constructor" @click="onPrint">Принты</BaseButton>
-          </li>
-          <li class="constructor-left__item">
-            <BaseButton theme="constructor" @click="onText">Текст</BaseButton>
-          </li>
-          <li class="constructor-left__item">
-            <BaseButton theme="constructor" @click="onPicture">Картинки</BaseButton>
-          </li>
-          <li class="constructor-left__item">
-            <BaseButton theme="constructor" @click="onPainting">Рисование</BaseButton>
-          </li>
-        </ul>
-        <div class="constructor-left__main">
-          <SelectColors v-if="colorTrigger" class="constructor-left__main-colors" />
-          <SelectPrints v-if="printsTrigger" class="constructor-left__main-prints" />
-          <SelectTexts v-if="textsTrigger" class="constructor-left__main-texts" />
-          <SelectPictures v-if="picturesTrigger" class="constructor-left__main-pictures" />
-          <SelectPainting v-if="paintingTrigger" class="constructor-left__main-painting" />
-        </div>
-      </section>
-      <section class="constructor-main">
-        <!-- пока пусто -->
-      </section>
-    </div>
+    <section class="constructor-left">
+      <TypeSubjects
+        class="constructor-left__subjects"
+      />
+      <TypeColors
+        v-model="typeColor"
+      />
+      <TypeSizes
+        class="constructor-left__sizes"
+      />
+    </section>
+    <section class="constructor-right">
+      <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
+    </section>
   </div>
 </template>
 
 <script>
-import { BaseButton } from '@/components/baseUi'
-import { SelectColors, SelectPrints, SelectTexts, SelectPictures, SelectPainting } from '@/components/modal'
+import { TypeSubjects, TypeSizes, TypeColors } from '@/components/constructorLeftSide'
 
 export default {
   name: 'LayoutConstructor',
   components: {
-    BaseButton,
-    SelectColors,
-    SelectPrints,
-    SelectTexts,
-    SelectPictures,
-    SelectPainting
+    TypeSubjects,
+    TypeSizes,
+    TypeColors
   },
   data () {
     return {
-      colorTrigger: true,
-      printsTrigger: false,
-      textsTrigger: false,
-      picturesTrigger: false,
-      paintingTrigger: false
-    }
-  },
-  methods: {
-    onColor () {
-      this.colorTrigger = true
-      this.printsTrigger = false
-      this.textsTrigger = false
-      this.picturesTrigger = false
-      this.paintingTrigger = false
-    },
-    onPrint () {
-      this.printsTrigger = true
-      this.textsTrigger = false
-      this.picturesTrigger = false
-      this.paintingTrigger = false
-      this.colorTrigger = false
-    },
-    onText () {
-      this.textsTrigger = true
-      this.picturesTrigger = false
-      this.paintingTrigger = false
-      this.colorTrigger = false
-      this.printsTrigger = false
-    },
-    onPicture () {
-      this.printsTrigger = true
-      this.textsTrigger = false
-      this.picturesTrigger = false
-      this.paintingTrigger = false
-      this.colorTrigger = false
-    },
-    onPainting () {
-      this.paintingTrigger = true
-      this.colorTrigger = false
-      this.printsTrigger = false
-      this.textsTrigger = false
-      this.picturesTrigger = false
+      typeColor: '#000000'
     }
   }
 }
@@ -103,59 +38,19 @@ export default {
 <style lang="scss" scoped>
 
   .layout-constructor {
-    text-align: center;
-    margin: 0;
-  }
-
-  .content-wrapper {
     display: flex;
   }
 
   .constructor-left {
-    width: 600px;
-    height: 793px;
-    background: #32343b;
-    display: flex;
+    width: 30%;
+    background: #c6cccf;
+    height: 800px;
   }
 
-  .constructor-main {
-    width: 100%;
-  }
-
-  .constructor-left__nav {
-    width: 25%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 793px;
-    background: #17181b;
-  }
-
-  .constructor-left__item {
-    background: #32343b;
-    color: #ffffff;
-  }
-
-  .constructor-left__content {
-    background: #33353b;
-    width: 80%;
-  }
-
-  .constructor-left__main {
-    width: 85%;
-    position: relative;
-  }
-
-  .constructor-left__main-colors,
-  .constructor-left__main-prints,
-  .constructor-left__main-texts,
-  .constructor-left__main-pictures,
-  .constructor-left__main-painting {
-    position: absolute;
-    top: 0;
-    right: 0;
+  .constructor-right {
+    width: 70%;
+    background: #989c9e;
+    height: 800px;
   }
 
 </style>

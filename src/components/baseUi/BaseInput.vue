@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label :for="name" :label="label">
+    <label :for="name">
       {{ label }}
     </label>
     <input
@@ -9,6 +9,7 @@
       :name="name"
       :id="name"
       class="form-control"
+      @input="$emit('input', $event.target.value)"
     >
     <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
       {{ passwordRevealed ? 'Скрыть' : 'Показать' }} пароль
@@ -28,7 +29,6 @@ export default {
       default: ''
     },
     label: {
-      required: true,
       type: String,
       default: 'Label'
     },
