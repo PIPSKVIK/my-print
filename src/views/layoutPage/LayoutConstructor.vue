@@ -25,15 +25,13 @@
       </div>
 
       <!-- <<< компонент выбор цыетов -->
-      <div>
-        <TypeColors
-          v-model="typeColor"
-          :currentColors="currentColors"
-          @saveCurrentColor="saveCurrentColor"
-          @changeColorListener="changeColorListener"
-          :hideAddColorButton="hideAddColorButton"
-        />
-      </div>
+      <TypeColors
+        v-model="typeColor"
+        :currentColors="currentColors"
+        @saveCurrentColor="saveCurrentColor"
+        @changeColorListener="changeColorListener"
+        :hideAddColorButton="hideAddColorButton"
+      />
 
       <!-- <<< компонент выбора размера -->
       <TypeSizes

@@ -2,6 +2,7 @@ import BaseButton from './BaseButton'
 import BaseInput from './BaseInput'
 import BaseRouterLink from './BaseRouterLink'
 import BaseRadio from './BaseRadio'
-import BaseInputColor from './BaseInputColor'
+import BaseColor from './BaseColor'
+import BaseCheckbox from './BaseCheckbox'
 
-export { BaseButton, BaseInput, BaseRouterLink, BaseRadio, BaseInputColor }
+export { BaseButton, BaseInput, BaseRouterLink, BaseRadio, BaseColor, BaseCheckbox }

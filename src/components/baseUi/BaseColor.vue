@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'BaseInputColor',
+  name: 'BaseColor',
   inheritAttrs: false,
   props: {
     name: {
