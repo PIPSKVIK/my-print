@@ -67,7 +67,11 @@ export default {
     //   this.currentColors = this.currentColors.filter(t => t.id !== id)
     // },
     saveCurrentColor () {
-      this.currentColors.push(this.typeColor)
+      if (!this.currentColors.includes(this.typeColor)) {
+        this.currentColors.push(this.typeColor)
+      } else {
+        console.log('Такой цвет уже есть')
+      }
     }
   }
 }
