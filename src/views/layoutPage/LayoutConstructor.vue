@@ -31,6 +31,7 @@
           v-model="typeColor"
           :currentColors="currentColors"
           @saveCurrentColor="saveCurrentColor"
+          :hideAddColorButton="hideAddColorButton"
         />
       </div>
       <!-- <компонент выбор цыетов> -->
@@ -59,18 +60,17 @@ export default {
     return {
       typeColor: '#000000',
       subjectsType: '',
-      currentColors: ['#000000', '#aa55aa', '#ffffff']
+      currentColors: ['#000000', '#aa55aa', '#ffffff'],
+      hideAddColorButton: true
     }
   },
   methods: {
-    // removeColor (id) {
-    //   this.currentColors = this.currentColors.filter(t => t.id !== id)
-    // },
     saveCurrentColor () {
       if (!this.currentColors.includes(this.typeColor)) {
         this.currentColors.push(this.typeColor)
       } else {
         console.log('Такой цвет уже есть')
+        this.hideAddColorButton = false
       }
     }
   }

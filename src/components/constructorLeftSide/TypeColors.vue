@@ -1,21 +1,23 @@
 <template>
   <div class="type-color">
-    <BaseInput
-      type="color"
-      v-model="changeColor"
-    />
     <BaseButton
       @click="saveCurrentColor"
       size="small"
+      class="type-color__button"
+      v-if="hideAddColorButton"
     >
-    Сохранить
+      Добавить
     </BaseButton>
     <ul class="color-list">
-      <li v-for="currentColor in currentColors" :key="currentColor.currentColor">
+      <li v-for="(currentColor, index) in currentColors" :key="index">
         <div class="current-color" :style="{ 'background': currentColor }"></div>
-        <!-- <button class="color-btn" @click="$emit('removeColor', currentColor.id )">&times;</button> -->
       </li>
     </ul>
+    <BaseInput
+      type="color"
+      v-model="changeColor"
+      label="Выберите цвет"
+    />
   </div>
 </template>
 
@@ -38,6 +40,9 @@ export default {
     },
     currentColors: {
       type: Array
+    },
+    hideAddColorButton: {
+      type: Boolean
     }
   },
   computed: {
@@ -60,10 +65,14 @@ export default {
 
 <style lang="scss" scoped>
 
+  .type-color__button {
+    margin-bottom: 20px;
+  }
+
   .color-list {
     display: flex;
     justify-content: center;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 0;
     list-style: none;
   }
@@ -81,8 +90,8 @@ export default {
 
   .type-color {
     text-align: center;
-    padding: 20px 0;
-    background: #6c6cd4;
+    padding: 20px;
+    background: #4a4a81;
     color: #ffffff;
   }
 
