@@ -17,6 +17,7 @@
       type="color"
       v-model="changeColor"
       label="Выберите цвет"
+      @input="changeColorListener"
     />
   </div>
 </template>
@@ -58,6 +59,9 @@ export default {
   methods: {
     saveCurrentColor () {
       this.$emit('saveCurrentColor')
+    },
+    changeColorListener () {
+      this.$emit('changeColorListener')
     }
   }
 }

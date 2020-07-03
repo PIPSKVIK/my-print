@@ -1,7 +1,7 @@
 <template>
   <div class="layout-constructor">
     <section class="constructor-left">
-      <!-- <компонент выбора типа одежды -->
+      <!-- <<< компонент выбора типа одежды -->
       <div class="subjects">
         <div>
           <img class="subject-img subject__tshirt" src="@/assets/image/constructor/tshirt-icon.png" alt="tshirt" width="40" height="40">
@@ -23,22 +23,25 @@
           <span> {{ subjectsType }} </span>
         </div>
       </div>
-      <!-- компонент выбора типа одежды> -->
 
-      <!-- <компонент выбор цыетов -->
+      <!-- <<< компонент выбор цыетов -->
       <div>
         <TypeColors
           v-model="typeColor"
           :currentColors="currentColors"
           @saveCurrentColor="saveCurrentColor"
+          @changeColorListener="changeColorListener"
           :hideAddColorButton="hideAddColorButton"
         />
       </div>
-      <!-- <компонент выбор цыетов> -->
+
+      <!-- <<< компонент выбора размера -->
       <TypeSizes
         class="constructor-left__sizes"
       />
     </section>
+
+    <!-- Правая сторона экрана конструктора -->
     <section class="constructor-right">
       <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
     </section>
@@ -61,7 +64,7 @@ export default {
       typeColor: '#000000',
       subjectsType: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      hideAddColorButton: true
+      hideAddColorButton: false
     }
   },
   methods: {
@@ -70,6 +73,13 @@ export default {
         this.currentColors.push(this.typeColor)
       } else {
         console.log('Такой цвет уже есть')
+        this.hideAddColorButton = false
+      }
+    },
+    changeColorListener () {
+      if (!this.currentColors.includes(this.typeColor)) {
+        this.hideAddColorButton = true
+      } else {
         this.hideAddColorButton = false
       }
     }
