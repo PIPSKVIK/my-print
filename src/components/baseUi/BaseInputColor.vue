@@ -1,53 +1,46 @@
 <template>
-  <div>
+  <div class="input-color">
     <label :for="name">
       {{ label }}
     </label>
     <input
       v-bind="$attrs"
-      :type="passwordRevealed ? 'text' : inputType"
+      :type="type"
       :name="name"
       :id="name"
       class="form-control"
       @input="$emit('input', $event.target.value)"
+      @blur="$emit('blur', $event.target.value)"
     >
-    <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
-      {{ passwordRevealed ? 'Скрыть' : 'Показать' }} пароль
-    </a>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'BaseInput',
+  name: 'BaseInputColor',
   inheritAttrs: false,
   props: {
     name: {
       required: false,
-      type: String,
-      default: ''
+      type: String
     },
     label: {
       type: String,
-      default: 'Label'
+      default: 'label'
     },
     value: {
       required: false,
-      type: String,
-      default: ''
+      type: String
     },
     type: {
       required: true,
       type: String,
-      default: 'text'
-    }
-  },
-  data () {
-    return {
-      passwordRevealed: false,
-      inputType: this.type
+      default: 'color'
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

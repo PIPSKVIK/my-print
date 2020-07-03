@@ -13,7 +13,7 @@
         <div class="current-color" :style="{ 'background': currentColor }"></div>
       </li>
     </ul>
-    <BaseInput
+    <BaseInputColor
       type="color"
       v-model="changeColor"
       label="Выберите цвет"
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import { BaseInput, BaseButton } from '@/components/baseUi'
+import { BaseButton, BaseInputColor } from '@/components/baseUi'
 
 export default {
   name: 'TypeColors',
   components: {
-    BaseInput,
-    BaseButton
+    BaseButton,
+    BaseInputColor
   },
   model: {
     props: 'color'
