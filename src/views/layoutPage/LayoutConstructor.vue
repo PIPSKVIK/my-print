@@ -2,8 +2,12 @@
   <div class="layout-constructor">
     <section class="constructor-left">
       <!-- <<< компонент выбора типа одежды -->
-      <TypeSubjects
-      />
+      <div>
+        <TypeSubjects
+          v-model="typeSubjects"
+        />
+        <span> {{ typeSubjects }} </span>
+      </div>
       <!-- <<< компонент выбор цыетов -->
       <TypeColors
         v-model="typeColor"
@@ -25,7 +29,7 @@
 </template>
 
 <script>
-import { TypeSizes, TypeColors, TypeSubjects } from '@/components/constructorLeftSide'
+import { TypeSizes, TypeColors, TypeSubjects } from '@/components/constructorPanelWithFunctionality'
 
 export default {
   name: 'LayoutConstructor',
@@ -37,6 +41,7 @@ export default {
   data () {
     return {
       typeColor: '#000000',
+      typeSubjects: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
       hideAddColorButton: false
     }

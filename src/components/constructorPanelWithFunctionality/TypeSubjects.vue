@@ -8,15 +8,14 @@
       <BaseRadio
         label="Футболка"
         value="Футболка"
-        v-model="subjectsType"
+        v-model="changeSubjects"
       />
       <BaseRadio
         label="Кофта"
         value="Кофта"
-        v-model="subjectsType"
+        v-model="changeSubjects"
       />
     </div>
-    <span> {{ subjectsType }} </span>
   </div>
 </template>
 
@@ -28,9 +27,23 @@ export default {
   components: {
     BaseRadio
   },
-  data () {
-    return {
-      subjectsType: ''
+  model: {
+    props: 'radio'
+  },
+  props: {
+    radio: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    changeSubjects: {
+      get () {
+        return this.radio
+      },
+      set (value) {
+        this.$emit('input', value)
+      }
     }
   }
 }
