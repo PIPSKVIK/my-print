@@ -1,22 +1,16 @@
 <template>
   <div class="type-size">
     <h4>Выбрать размер</h4>
-    <label for="size-M">
-      <div class="test">M</div>
-    </label>
-    <input v-show="hideCheckbox" type="checkbox" name="size" id="size-M" value="M" v-model="sizes" :checked="checked">
-    <label for="size-S"></label>
-    <BaseCheckbox
-      v-model="sizes"
-    />
-    <ul>
-      <li
-        v-for="(size, index) in sizes"
-        :key="index"
-      >
-        {{ size }}
-      </li>
-    </ul>
+    <div>
+      <ul>
+        <li
+        v-for="item in someData" :key="item.id"
+        >
+          <BaseCheckbox :label="item.name" :item="item.name"  v-model="selectSizes" />
+        </li>
+      </ul>
+    </div>
+    <span> {{ selectSizes }} </span>
   </div>
 </template>
 
@@ -31,9 +25,21 @@ export default {
   inheritAttrs: false,
   data () {
     return {
-      sizes: [],
-      hideCheckbox: false,
-      checked: false
+      selectSizes: [],
+      someData: [
+        {
+          id: 1,
+          name: 'M'
+        },
+        {
+          id: 2,
+          name: 'S'
+        },
+        {
+          id: 3,
+          name: 'L'
+        }
+      ]
     }
   }
 }
