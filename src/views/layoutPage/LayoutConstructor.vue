@@ -20,8 +20,6 @@
           v-model="typeColor"
           :currentColors="currentColors"
           @saveCurrentColor="saveCurrentColor"
-          @changeColorListener="changeColorListener"
-          :hideAddColorButton="hideAddColorButton"
         />
       </div>
       <!-- <<< компонент выбора размера -->
@@ -55,24 +53,13 @@ export default {
     return {
       typeColor: '#000000',
       typeSubjects: '',
-      currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      hideAddColorButton: false
+      currentColors: ['#000000', '#aa55aa', '#ffffff']
     }
   },
   methods: {
     saveCurrentColor () {
       if (!this.currentColors.includes(this.typeColor)) {
         this.currentColors.push(this.typeColor)
-      } else {
-        console.log('Такой цвет уже есть')
-        this.hideAddColorButton = false
-      }
-    },
-    changeColorListener () {
-      if (!this.currentColors.includes(this.typeColor)) {
-        this.hideAddColorButton = true
-      } else {
-        this.hideAddColorButton = false
       }
     }
   }

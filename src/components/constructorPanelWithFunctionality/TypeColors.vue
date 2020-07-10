@@ -8,7 +8,7 @@
           </li>
         </ul>
         <BaseButton
-          @click="saveCurrentColor"
+          @click="$emit('saveCurrentColor')"
           size="small"
           class="type-color__button"
           v-if="hideAddColorButton"
@@ -20,7 +20,6 @@
         type="color"
         v-model="changeColor"
         label="Выберите цвет"
-        @input="changeColorListener"
         class="type-color__input"
       />
     </div>
@@ -46,9 +45,6 @@ export default {
     },
     currentColors: {
       type: Array
-    },
-    hideAddColorButton: {
-      type: Boolean
     }
   },
   computed: {
@@ -59,14 +55,9 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
-    }
-  },
-  methods: {
-    saveCurrentColor () {
-      this.$emit('saveCurrentColor')
     },
-    changeColorListener () {
-      this.$emit('changeColorListener')
+    hideAddColorButton () {
+      return !this.currentColors.includes(this.color)
     }
   }
 }
