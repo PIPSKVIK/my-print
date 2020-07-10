@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .nav-links :not(last-child) {
+  .nav-links :not(:last-child) {
     margin-right: 10px;
   }
 </style>

@@ -1,20 +1,22 @@
 <template>
   <div class="subjects">
-    <div>
-      <img class="subject-img subject__tshirt" src="@/assets/image/constructor/tshirt-icon.png" alt="tshirt" width="40" height="40">
-      <img class="subject-img subject__sweater" src="@/assets/image/constructor/sweater-icon.png" alt="sweater" width="40" height="40">
-    </div>
-    <div>
-      <BaseRadio
-        label="Футболка"
-        value="Футболка"
-        v-model="changeSubjects"
-      />
-      <BaseRadio
-        label="Кофта"
-        value="Кофта"
-        v-model="changeSubjects"
-      />
+    <div class="collapse" id="collapseExample1">
+      <div>
+        <img class="subject-img subject__tshirt" src="@/assets/image/constructor/tshirt-icon.png" alt="tshirt" width="40" height="40">
+        <img class="subject-img subject__sweater" src="@/assets/image/constructor/sweater-icon.png" alt="sweater" width="40" height="40">
+      </div>
+      <div>
+        <BaseRadio
+          label="Футболка"
+          value="Футболка"
+          v-model="changeSubjects"
+        />
+        <BaseRadio
+          label="Кофта"
+          value="Кофта"
+          v-model="changeSubjects"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
     BaseRadio
   },
   model: {
-    props: 'radio'
+    prop: 'radio'
   },
   props: {
     radio: {

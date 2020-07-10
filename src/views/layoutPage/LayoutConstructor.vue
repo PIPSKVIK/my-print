@@ -3,23 +3,36 @@
     <section class="constructor-left">
       <!-- <<< компонент выбора типа одежды -->
       <div>
+        <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="true" aria-controls="collapseExample">
+          Выбор одежды
+        </button>
         <TypeSubjects
           v-model="typeSubjects"
         />
         <span> {{ typeSubjects }} </span>
       </div>
       <!-- <<< компонент выбор цыетов -->
-      <TypeColors
-        v-model="typeColor"
-        :currentColors="currentColors"
-        @saveCurrentColor="saveCurrentColor"
-        @changeColorListener="changeColorListener"
-        :hideAddColorButton="hideAddColorButton"
-      />
+      <div>
+        <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+          Выбор цвета
+        </button>
+        <TypeColors
+          v-model="typeColor"
+          :currentColors="currentColors"
+          @saveCurrentColor="saveCurrentColor"
+          @changeColorListener="changeColorListener"
+          :hideAddColorButton="hideAddColorButton"
+        />
+      </div>
       <!-- <<< компонент выбора размера -->
-      <TypeSizes
-        class="constructor-left__sizes"
-      />
+      <div>
+        <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+          Выбор размера
+        </button>
+        <TypeSizes
+          class="constructor-left__sizes"
+        />
+      </div>
     </section>
     <!-- Правая сторона экрана конструктора -->
     <section class="constructor-right">
@@ -74,7 +87,6 @@ export default {
     flex-direction: column;
     align-items: center;
     background: #98be72;
-    padding: 10px;
   }
 // компонент выбора типа одежды>
 

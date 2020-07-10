@@ -3,9 +3,9 @@
     <label>
       <input
         type="radio"
-        :checked="shouldBeChecked"
+        :checked="modelValue === value"
         :value="value"
-        @change="updateInput"
+        @change="$emit('change', value)"
       >
       {{ label }}
     </label>
@@ -31,16 +31,6 @@ export default {
     label: {
       type: String,
       required: true
-    }
-  },
-  computed: {
-    shouldBeChecked () {
-      return this.modelValue === this.value
-    }
-  },
-  methods: {
-    updateInput () {
-      this.$emit('change', this.value)
     }
   }
 }

@@ -19,17 +19,14 @@ export default {
   inheritAttrs: false,
   props: {
     type: {
-      required: false,
       type: String,
       default: 'button'
     },
     theme: {
-      required: false,
       type: String,
       default: 'primary'
     },
     size: {
-      required: false,
       type: String,
       default: 'normal'
     }

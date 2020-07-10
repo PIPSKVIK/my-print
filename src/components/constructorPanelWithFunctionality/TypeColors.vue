@@ -1,27 +1,29 @@
 <template>
   <div class="type-color">
-    <div>
-      <ul class="color-list">
-        <li v-for="(currentColor, index) in currentColors" :key="index">
-          <div class="current-color" :style="{ 'background': currentColor }"></div>
-        </li>
-      </ul>
-      <BaseButton
-        @click="saveCurrentColor"
-        size="small"
-        class="type-color__button"
-        v-if="hideAddColorButton"
-      >
-        Добавить
-      </BaseButton>
+    <div class="collapse" id="collapseExample2">
+      <div>
+        <ul class="color-list">
+          <li v-for="(currentColor, index) in currentColors" :key="index">
+            <div class="current-color" :style="{ 'background': currentColor }"></div>
+          </li>
+        </ul>
+        <BaseButton
+          @click="saveCurrentColor"
+          size="small"
+          class="type-color__button"
+          v-if="hideAddColorButton"
+        >
+          Добавить
+        </BaseButton>
+      </div>
+      <BaseColor
+        type="color"
+        v-model="changeColor"
+        label="Выберите цвет"
+        @input="changeColorListener"
+        class="type-color__input"
+      />
     </div>
-    <BaseColor
-      type="color"
-      v-model="changeColor"
-      label="Выберите цвет"
-      @input="changeColorListener"
-      class="type-color__input"
-    />
   </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
     BaseColor
   },
   model: {
-    props: 'color'
+    prop: 'color'
   },
   props: {
     color: {
@@ -103,12 +105,10 @@ export default {
 
   .type-color {
     text-align: center;
-    padding: 20px;
     background: #4a4a81;
     color: #ffffff;
     display: flex;
     justify-content: space-between;
-    min-height: 150px;
   }
 
 </style>

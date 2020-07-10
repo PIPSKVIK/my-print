@@ -5,7 +5,6 @@
         type="checkbox"
         v-model="checked"
         :value="item"
-        @change="onChange"
       >
       <span class="base-caheckbox__element-style"></span>
     </label>
@@ -39,13 +38,8 @@ export default {
         return this.value
       },
       set (val) {
-        this.checkedP = val
+        this.$emit('input', val)
       }
-    }
-  },
-  methods: {
-    onChange () {
-      this.$emit('input', this.checkedP)
     }
   }
 }

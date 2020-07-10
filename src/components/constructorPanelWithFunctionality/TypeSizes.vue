@@ -1,16 +1,22 @@
 <template>
   <div class="type-size">
-    <h4>Выбрать размер</h4>
-    <div>
+    <div class="collapse" id="collapseExample3">
+      <div>
+        <ul>
+          <li
+          v-for="item in someData" :key="item.id"
+          >
+            <BaseCheckbox :label="item.name" :item="item.name"  v-model="selectSizes" />
+          </li>
+        </ul>
+      </div>
       <ul>
         <li
-        v-for="item in someData" :key="item.id"
-        >
-          <BaseCheckbox :label="item.name" :item="item.name"  v-model="selectSizes" />
-        </li>
+          v-for="(selectSize, index) in selectSizes"
+          :key="index"
+        > {{ selectSize }} </li>
       </ul>
     </div>
-    <span> {{ selectSizes }} </span>
   </div>
 </template>
 
@@ -65,7 +71,6 @@ export default {
 
   .type-size {
     text-align: center;
-    padding: 20px 0;
     background: #7878cf;
     color: #ffffff;
   }
