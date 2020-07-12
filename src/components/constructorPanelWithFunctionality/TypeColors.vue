@@ -1,6 +1,6 @@
 <template>
-  <div class="type-color">
-    <div class="collapse" id="collapseExample2">
+  <div class="collapse" id="collapseExample2">
+    <div class="type-color">
       <div>
         <ul class="color-list">
           <li v-for="(currentColor, index) in currentColors" :key="index">
@@ -95,7 +95,8 @@ export default {
   }
 
   .type-color {
-    text-align: center;
+    padding: 10px;
+    min-height: 200px;
     background: #4a4a81;
     color: #ffffff;
     display: flex;

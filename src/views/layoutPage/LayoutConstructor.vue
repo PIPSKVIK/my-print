@@ -8,8 +8,8 @@
         </button>
         <TypeSubjects
           v-model="typeSubjects"
+          :typeSubjectsData="typeSubjects"
         />
-        <span> {{ typeSubjects }} </span>
       </div>
       <!-- <<< компонент выбор цыетов -->
       <div>
@@ -31,23 +31,37 @@
           class="constructor-left__sizes"
         />
       </div>
+      <!-- Компонент выбора текста -->
+      <div>
+        <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
+          Добавить текст
+        </button>
+        <TypeText />
+      </div>
     </section>
+
     <!-- Правая сторона экрана конструктора -->
     <section class="constructor-right">
-      <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
+      <div class="constructor-right__text-block">
+        <!-- В этом блоке, временно будем работать с текстом -->
+      </div>
+      <div class="constructor-right__clothes-block">
+        <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import { TypeSizes, TypeColors, TypeSubjects } from '@/components/constructorPanelWithFunctionality'
+import { TypeSizes, TypeColors, TypeSubjects, TypeText } from '@/components/constructorPanelWithFunctionality'
 
 export default {
   name: 'LayoutConstructor',
   components: {
     TypeSizes,
     TypeColors,
-    TypeSubjects
+    TypeSubjects,
+    TypeText
   },
   data () {
     return {
@@ -88,9 +102,19 @@ export default {
   }
 
   .constructor-right {
+    padding: 10px;
     width: 70%;
     background: #989c9e;
     height: 800px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // Холст с текстом
+  .constructor-right__text-block {
+    width: 300px;
+    height: 300px;
+    border: 2px dashed green;
   }
 
 </style>
