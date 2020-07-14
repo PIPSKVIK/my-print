@@ -36,7 +36,9 @@
         <button class="btn btn-link btn-lg btn-block" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
           Добавить текст
         </button>
-        <TypeText />
+        <TypeText
+          v-model="typeText"
+        />
       </div>
     </section>
 
@@ -44,6 +46,7 @@
     <section class="constructor-right">
       <div class="constructor-right__text-block">
         <!-- В этом блоке, временно будем работать с текстом -->
+        <p class="constructor-right__text"> {{ typeText }} </p>
       </div>
       <div class="constructor-right__clothes-block">
         <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
@@ -67,7 +70,8 @@ export default {
     return {
       typeColor: '#000000',
       typeSubjects: '',
-      currentColors: ['#000000', '#aa55aa', '#ffffff']
+      currentColors: ['#000000', '#aa55aa', '#ffffff'],
+      typeText: ''
     }
   },
   methods: {
@@ -81,6 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+  .constructor-right__text {
+    white-space: pre-line;
+  }
 
 // <компонент выбора типа одежды
   .subjects {
