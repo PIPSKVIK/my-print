@@ -1,6 +1,6 @@
 <template>
   <div class="base-options">
-    <span :style="{ 'font-weight': selectedWeight, 'color': selectedColor, 'font-family': selectedFontFamily }">Какой-то текст</span>
+    <span :style="{ 'font-weight': selectedWeight, 'color': selectedColor, 'font-family': selectedFontFamily, 'font-size': selectedFontSize + 'px' }">Какой-то текст</span>
     <div>
       <select v-model="selectedWeight">
         <option
@@ -29,6 +29,14 @@
           :value="optionFontFamily.font"
         > {{ optionFontFamily.text }} </option>
       </select>
+      <!-- 44444444444 -->
+      <select v-model="selectedFontSize">
+        <option
+          v-for="(optionFontSize, index) in optionsFontSize"
+          :key="index"
+          :value="optionFontSize.size"
+        > {{ optionFontSize.text }} </option>
+      </select>
     </div>
   </div>
 </template>
@@ -41,6 +49,7 @@ export default {
       selectedWeight: '',
       selectedColor: '',
       selectedFontFamily: '',
+      selectedFontSize: '',
       optionsWeight: [
         { text: '200', value: 200 },
         { text: '600', value: 600 }
@@ -53,6 +62,11 @@ export default {
       optionsFontFamily: [
         { text: 'Trebuchet MS', font: 'Trebuchet MS' },
         { text: 'Gill Sans', font: 'Gill Sans' }
+      ],
+      optionsFontSize: [
+        { text: '14', size: 14 },
+        { text: '18', size: 18 },
+        { text: '24', size: 24 }
       ]
     }
   }
@@ -62,8 +76,7 @@ export default {
 <style lang="scss" scoped>
 
   span {
-    font-family: 'Trebuchet MS';
-    font-family: 'Gill Sans';
+    font-size: 10px;
   }
 
 </style>
