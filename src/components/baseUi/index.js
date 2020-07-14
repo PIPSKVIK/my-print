@@ -5,5 +5,6 @@ import BaseRadio from './BaseRadio'
 import BaseColor from './BaseColor'
 import BaseCheckbox from './BaseCheckbox'
 import BaseTextarea from './BaseTextarea'
+import BaseOptions from './BaseOptions'
 
-export { BaseButton, BaseInput, BaseRouterLink, BaseRadio, BaseColor, BaseCheckbox, BaseTextarea }
+export { BaseButton, BaseInput, BaseRouterLink, BaseRadio, BaseColor, BaseCheckbox, BaseTextarea, BaseOptions }

@@ -1,22 +1,23 @@
 <template>
   <div class="type-text">
     <div class="collapse" id="collapseExample4">
-      <h3>Введите свой текст</h3>
       <BaseTextarea
         name="Text"
         v-model="createText"
       />
+      <BaseOptions />
     </div>
   </div>
 </template>
 
 <script>
-import { BaseTextarea } from '@/components/baseUi'
+import { BaseTextarea, BaseOptions } from '@/components/baseUi'
 
 export default {
   name: 'TypeText',
   components: {
-    BaseTextarea
+    BaseTextarea,
+    BaseOptions
   },
   model: {
     prop: 'textarea'

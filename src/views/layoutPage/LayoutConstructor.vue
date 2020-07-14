@@ -38,6 +38,7 @@
         </button>
         <TypeText
           v-model="typeText"
+          @changeTextThickness="changeTextThickness"
         />
       </div>
     </section>
@@ -45,7 +46,6 @@
     <!-- Правая сторона экрана конструктора -->
     <section class="constructor-right">
       <div class="constructor-right__text-block">
-        <!-- В этом блоке, временно будем работать с текстом -->
         <p class="constructor-right__text"> {{ typeText }} </p>
       </div>
       <div class="constructor-right__clothes-block">
@@ -79,6 +79,9 @@ export default {
       if (!this.currentColors.includes(this.typeColor)) {
         this.currentColors.push(this.typeColor)
       }
+    },
+    changeTextThickness () {
+      console.log('eny text')
     }
   }
 }
@@ -123,6 +126,7 @@ export default {
     width: 300px;
     height: 300px;
     border: 2px dashed green;
+    text-align: center;
   }
 
 </style>
