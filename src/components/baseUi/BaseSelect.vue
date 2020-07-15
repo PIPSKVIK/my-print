@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  name: 'BaseOptions',
+  name: 'BaseSelect',
   data () {
     return {
       selectedWeight: '',
@@ -74,9 +74,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-  span {
-    font-size: 10px;
-  }
 
 </style>
