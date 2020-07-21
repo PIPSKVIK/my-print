@@ -73,11 +73,6 @@ export default {
         background: #3f3e3e;
         border-color: #3f3e3e;
       }
-      &:active {
-        color: #ffffff;
-        background: #000000;
-        border-color: #000000;
-      }
   }
 
   .standart-size {

@@ -58,7 +58,8 @@
           theme="standart"
           size="standart"
           class="typeface-weight"
-          @click="$emit('chengeTextFontWeight')"
+          @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
+          :class="{ standartButtonActive: isButtonWeightActive }"
         >
           B
         </BaseButton>
@@ -66,7 +67,8 @@
           theme="standart"
           size="standart"
           class="typeface-italic"
-          @click="$emit('chengeTextFontStyle')"
+          @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
+          :class="{ standartButtonActive: isButtonItalicActive }"
         >
           I
         </BaseButton>
@@ -74,7 +76,8 @@
           theme="standart"
           size="standart"
           class="typeface-underline"
-          @click="$emit('chengeTextUnderline')"
+          @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
+          :class="{ standartButtonActive: isButtonUnderlineActive }"
         >
           K
         </BaseButton>
@@ -82,7 +85,8 @@
           theme="standart"
           size="standart"
           class="typeface-uppercase"
-          @click="$emit('chengeTextTransform')"
+          @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
+          :class="{ standartButtonActive: isButtonUppercaseActive }"
         >
           U
         </BaseButton>
@@ -131,6 +135,10 @@ export default {
   },
   data () {
     return {
+      isButtonWeightActive: false,
+      isButtonItalicActive: false,
+      isButtonUnderlineActive: false,
+      isButtonUppercaseActive: false,
       selectColors: '',
       options: [
         { text: 'white', color: '#fff' }
@@ -223,6 +231,12 @@ export default {
 
   .typeface-uppercase {
     text-transform: uppercase;
+  }
+
+  .standartButtonActive {
+    color: #ffffff;
+    background: #000000;
+    border-color: #000000;
   }
 
 </style>
