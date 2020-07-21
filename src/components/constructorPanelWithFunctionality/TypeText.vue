@@ -5,10 +5,8 @@
         name="Text"
         v-model="createText"
       />
-      <BaseSelect />
 
-      <!-- поворот текста -->
-      <div class="wrapper-top">
+<!--  <div class="wrapper-top">
         <input type="text" v-model="turn" placeholder="Text rotation">
         <button @click="turn++">+</button>
         <button @click="turn--">-</button>
@@ -21,10 +19,24 @@
         <button @click="X++">+</button>
         <button @click="X--">-</button>
       </div>
+      <div>
+        <input type="range" min="0" max="150" v-model="X">
+        <input type="range" min="0" max="180" v-model="Y">
+      </div>
       <div class="wrapper">
         <p class="rotate" :style="[changePosition, rotateStyle]">Some text</p>
-      </div>
-      <!-- поворот текста -->
+      </div> -->
+
+      <!-- select выбора цвета -->
+      <BaseSelect
+        @select="optionsColor"
+        :options="allOptionsColors"
+        :selected="selectedName"
+      >
+        <template v-slot:title>
+          <span>Select</span>
+        </template>
+      </BaseSelect>
 
     </div>
   </div>
@@ -44,6 +56,15 @@ export default {
   },
   props: {
     textarea: {
+      type: String
+    },
+    optionsColors: {
+      type: Array
+    },
+    allOptionsColors: {
+      type: Array
+    },
+    selectedName: {
       type: String
     }
   },
@@ -77,6 +98,11 @@ export default {
         top: this.Y + 'px',
         left: this.X + 'px'
       }
+    }
+  },
+  methods: {
+    optionsColor (option) {
+      this.$emit('optionsColor', option)
     }
   }
 }

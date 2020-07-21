@@ -1,42 +1,26 @@
 <template>
   <div class="base-options">
-    <span :style="{ 'font-weight': selectedWeight, 'color': selectedColor, 'font-family': selectedFontFamily, 'font-size': selectedFontSize + 'px' }">Какой-то текст</span>
-    <div>
-      <select v-model="selectedWeight">
-        <option
-          v-for="(optionWeight, index) in optionsWeight"
-          :key="index"
-          :value="optionWeight.value"
-        >
-          {{ optionWeight.text }}
-        </option>
-      </select>
-      <!-- 22222222222 -->
-      <select v-model="selectedColor">
-        <option
-          v-for="(optionColor, index) in optionsColor"
-          :key="index"
-          :value="optionColor.color"
-        >
-        {{ optionColor.text }}
-        </option>
-      </select>
-      <!-- 33333333 -->
-      <select v-model="selectedFontFamily">
-        <option
-          v-for="(optionFontFamily, index) in optionsFontFamily"
-          :key="index"
-          :value="optionFontFamily.font"
-        > {{ optionFontFamily.text }} </option>
-      </select>
-      <!-- 44444444444 -->
-      <select v-model="selectedFontSize">
-        <option
-          v-for="(optionFontSize, index) in optionsFontSize"
-          :key="index"
-          :value="optionFontSize.size"
-        > {{ optionFontSize.text }} </option>
-      </select>
+    <div
+      class="options-title"
+      @click="optionsVisilble = !optionsVisilble"
+    >
+      <div>
+        <slot name="title">Default name</slot>
+        <span> {{ selected }} </span>
+      </div>
+    </div>
+    <div
+      class="options"
+      v-if="optionsVisilble"
+    >
+      <p
+        class="options-title"
+        v-for="(option, index) in options"
+        :key="index"
+        @click="selectOption(option)"
+      >
+      {{ option.name }}
+      </p>
     </div>
   </div>
 </template>
@@ -44,35 +28,62 @@
 <script>
 export default {
   name: 'BaseSelect',
+  props: {
+    options: {
+      type: Array
+    },
+    selected: {
+      type: String,
+      default: ''
+    }
+  },
   data () {
     return {
-      selectedWeight: '',
-      selectedColor: '',
-      selectedFontFamily: '',
-      selectedFontSize: '',
-      optionsWeight: [
-        { text: '200', value: 200 },
-        { text: '600', value: 600 }
-      ],
-      optionsColor: [
-        { text: 'red', color: '#ff0000' },
-        { text: 'green', color: '#008000' },
-        { text: 'orange', color: '#ffa500' }
-      ],
-      optionsFontFamily: [
-        { text: 'Trebuchet MS', font: 'Trebuchet MS' },
-        { text: 'Gill Sans', font: 'Gill Sans' }
-      ],
-      optionsFontSize: [
-        { text: '14', size: 14 },
-        { text: '18', size: 18 },
-        { text: '24', size: 24 }
-      ]
+      optionsVisilble: false
     }
+  },
+  methods: {
+    selectOption (option) {
+      this.$emit('select', option)
+      this.optionsVisilble = false
+    },
+    hideSelect () {
+      this.optionsVisilble = false
+    }
+  },
+  mounted () {
+    document.addEventListener('click', this.hideSelect.bind(this), true)
+  },
+  beforeDestroy () {
+    document.removeEventListener('click', this.hideSelect)
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+  .base-options {
+    position: relative;
+    width: 200px;
+  }
+
+  .options p {
+    margin: 0;
+      &:hover {
+        background: #e7e7e7;
+      }
+  }
+
+  .options {
+    border: 1px solid #808080;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 100%;
+  }
+
+  .options-title {
+    border: 1px solid #808080;
+  }
 
 </style>
