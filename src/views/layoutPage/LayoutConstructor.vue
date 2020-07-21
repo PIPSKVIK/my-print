@@ -40,14 +40,15 @@
           v-model="typeText"
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
-          :allOptionsTypeface="allOptionsTypeface"
           @optionsColor="optionsColor"
           @optionsSize="optionsSize"
-          @optionsTypeface="optionsTypeface"
           :selectedName="selectedName"
           :selectedTextValue="selectedTextValue"
           :selectedSize="selectedSize"
-          :selectTypefaceValue="selectTypefaceValue"
+          @chengeTextFontWeight="isTextFontWeightActive = !isTextFontWeightActive"
+          @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
+          @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
+          @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
         />
       </div>
     </section>
@@ -57,13 +58,16 @@
       <div class="constructor-right__text-block">
         <p
           class="constructor-right__text"
+          :class="{
+            'font-weight__active': isTextFontWeightActive,
+            'font-style__active': isTextFontStyleActive,
+            'text-underline__active': isTextUnderlineActive,
+            'text-transform__active': isTextTransformActive
+          }"
           :style="{
             'color': selectedTextValue,
-            'font-size': selectedSize + 'px',
-            'font-weight': selectTypefaceValue,
-            'text-decoration': selectTypefaceValue,
-            'font-style': selectTypefaceValue
-             }"
+            'font-size': selectedSize + 'px'
+          }"
           > {{ typeText }} </p>
       </div>
       <div class="constructor-right__clothes-block">
@@ -94,8 +98,10 @@ export default {
       selectedTextValue: '#000000',
       selectedName: 'black',
       selectedSize: 14,
-      selectTypefaceValue: '',
-      selectTepefaceProperty: ''
+      isTextFontWeightActive: false,
+      isTextFontStyleActive: false,
+      isTextUnderlineActive: false,
+      isTextTransformActive: false
     }
   },
   methods: {
@@ -110,14 +116,11 @@ export default {
     },
     optionsSize (option) {
       this.selectedSize = option.value
-    },
-    optionsTypeface (option) {
-      this.selectTypefaceValue = option.value
-      this.seleTypefaceName = option.name
-      this.selectTepefaceProperty = option.property
     }
   },
-  computed: mapGetters(['allOptionsColors', 'allOptionsSize', 'allOptionsTypeface'])
+  computed: {
+    ...mapGetters(['allOptionsColors', 'allOptionsSize', 'allOptionsTypeface'])
+  }
 }
 </script>
 
@@ -161,6 +164,24 @@ export default {
     height: 300px;
     border: 2px dashed green;
     text-align: center;
+  }
+
+  // классы управляющие начертанием текста
+
+  .font-weight__active {
+    font-weight: bold;
+  }
+
+  .font-style__active {
+    font-style: italic;
+  }
+
+  .text-underline__active {
+    text-decoration: underline;
+  }
+
+  .text-transform__active {
+    text-transform: uppercase;
   }
 
 </style>

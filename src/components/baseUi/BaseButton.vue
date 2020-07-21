@@ -8,7 +8,7 @@
     :type="type"
     v-on="$listeners"
   >
-    <slot>Button</slot>
+    <slot></slot>
   </button>
 </template>
 
@@ -40,12 +40,14 @@ export default {
         info: 'btn-info',
         dark: 'btn-dark',
         success: 'btn-success',
-        constructor: 'btn-link-constructor'
+        constructor: 'btn-link-constructor',
+        standart: 'standart'
       },
       sizes: {
         normail: '',
         large: 'btn-lg',
-        small: 'btn-sm'
+        small: 'btn-sm',
+        standart: 'standart-size'
       }
     }
   }
@@ -60,6 +62,27 @@ export default {
     color: #ffffff;
     width: 100%;
     outline: none;
+  }
+
+  .standart {
+    background: transparent;
+    border: 1px solid #000000;
+    border-radius: 5px;
+      &:hover {
+        color: #ffffff;
+        background: #3f3e3e;
+        border-color: #3f3e3e;
+      }
+      &:active {
+        color: #ffffff;
+        background: #000000;
+        border-color: #000000;
+      }
+  }
+
+  .standart-size {
+    width: 40px;
+    height: 35px;
   }
 
 </style>

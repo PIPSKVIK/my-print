@@ -52,28 +52,55 @@
         </template>
       </BaseSelect>
 
-      <!-- select - выбор начертания текста -->
-      <BaseSelect
-        @select="optionsTypeface"
-        :options="allOptionsTypeface"
-      >
-        <template v-slot:title>
-          <span>Начертание: </span>
-        </template>
-      </BaseSelect>
+      <!-- checkbox - выбор начертания текста -->
+      <div class="typeface">
+        <BaseButton
+          theme="standart"
+          size="standart"
+          class="typeface-weight"
+          @click="$emit('chengeTextFontWeight')"
+        >
+          B
+        </BaseButton>
+        <BaseButton
+          theme="standart"
+          size="standart"
+          class="typeface-italic"
+          @click="$emit('chengeTextFontStyle')"
+        >
+          I
+        </BaseButton>
+        <BaseButton
+          theme="standart"
+          size="standart"
+          class="typeface-underline"
+          @click="$emit('chengeTextUnderline')"
+        >
+          K
+        </BaseButton>
+        <BaseButton
+          theme="standart"
+          size="standart"
+          class="typeface-uppercase"
+          @click="$emit('chengeTextTransform')"
+        >
+          U
+        </BaseButton>
+      </div>
 
     </div>
   </div>
 </template>
 
 <script>
-import { BaseTextarea, BaseSelect } from '@/components/baseUi'
+import { BaseTextarea, BaseSelect, BaseButton } from '@/components/baseUi'
 
 export default {
   name: 'TypeText',
   components: {
     BaseTextarea,
-    BaseSelect
+    BaseSelect,
+    BaseButton
   },
   model: {
     prop: 'textarea'
@@ -91,18 +118,12 @@ export default {
     allOptionsSize: {
       type: Array
     },
-    allOptionsTypeface: {
-      type: Array
-    },
     selectedName: {
       type: String
     },
     selectedTextValue: {
       type: String,
       default: ''
-    },
-    selectTypefaceValue: {
-      type: String
     },
     selectedSize: {
       type: Number
@@ -146,9 +167,6 @@ export default {
     },
     optionsSize (option) {
       this.$emit('optionsSize', option)
-    },
-    optionsTypeface (option) {
-      this.$emit('optionsTypeface', option)
     }
   }
 }
@@ -189,6 +207,22 @@ export default {
 
   .type-size__name {
     margin-left: 10px;
+  }
+
+  .typeface-weight {
+    font-weight: bold;
+  }
+
+  .typeface-italic {
+    font-style: italic;
+  }
+
+  .typeface-underline {
+    text-decoration: underline;
+  }
+
+  .typeface-uppercase {
+    text-transform: uppercase;
   }
 
 </style>
