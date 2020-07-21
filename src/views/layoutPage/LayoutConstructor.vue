@@ -119,7 +119,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['allOptionsColors', 'allOptionsSize', 'allOptionsTypeface'])
+    ...mapGetters(['allOptionsColors', 'allOptionsSize'])
   }
 }
 </script>

@@ -77,7 +77,7 @@ export default {
 
   .standart-size {
     width: 40px;
-    height: 35px;
+    height: 40px;
   }
 
 </style>

@@ -19,11 +19,6 @@ export default {
       { name: '18', value: 18 },
       { name: '24', value: 24 },
       { name: '36', value: 36 }
-    ],
-    optionsTypeface: [
-      { name: 'Подчеркнутый', value: 'underline', property: 'text-decoration' },
-      { name: 'Наклонный', value: 'italic', property: 'font-style' },
-      { name: 'Жирный', value: 'bold', property: 'font-weight' }
     ]
   },
   mutations: {},
