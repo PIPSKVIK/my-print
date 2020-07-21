@@ -39,8 +39,15 @@
         <TypeText
           v-model="typeText"
           :allOptionsColors="allOptionsColors"
+          :allOptionsSize="allOptionsSize"
+          :allOptionsTypeface="allOptionsTypeface"
           @optionsColor="optionsColor"
+          @optionsSize="optionsSize"
+          @optionsTypeface="optionsTypeface"
           :selectedName="selectedName"
+          :selectedTextValue="selectedTextValue"
+          :selectedSize="selectedSize"
+          :selectTypefaceValue="selectTypefaceValue"
         />
       </div>
     </section>
@@ -50,7 +57,13 @@
       <div class="constructor-right__text-block">
         <p
           class="constructor-right__text"
-          :style="{ 'color': selected }"
+          :style="{
+            'color': selectedTextValue,
+            'font-size': selectedSize + 'px',
+            'font-weight': selectTypefaceValue,
+            'text-decoration': selectTypefaceValue,
+            'font-style': selectTypefaceValue
+             }"
           > {{ typeText }} </p>
       </div>
       <div class="constructor-right__clothes-block">
@@ -78,8 +91,11 @@ export default {
       typeSubjects: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
       typeText: '',
-      selected: '',
-      selectedName: 'Select'
+      selectedTextValue: '#000000',
+      selectedName: 'black',
+      selectedSize: 14,
+      selectTypefaceValue: '',
+      selectTepefaceProperty: ''
     }
   },
   methods: {
@@ -89,11 +105,19 @@ export default {
       }
     },
     optionsColor (option) {
-      this.selected = option.value
+      this.selectedTextValue = option.value
       this.selectedName = option.name
+    },
+    optionsSize (option) {
+      this.selectedSize = option.value
+    },
+    optionsTypeface (option) {
+      this.selectTypefaceValue = option.value
+      this.seleTypefaceName = option.name
+      this.selectTepefaceProperty = option.property
     }
   },
-  computed: mapGetters(['allOptionsColors'])
+  computed: mapGetters(['allOptionsColors', 'allOptionsSize', 'allOptionsTypeface'])
 }
 </script>
 

@@ -1,12 +1,11 @@
 <template>
   <div class="base-options">
     <div
-      class="options-title"
+      class="options"
       @click="optionsVisilble = !optionsVisilble"
     >
-      <div>
+      <div class="options-title">
         <slot name="title">Default name</slot>
-        <span> {{ selected }} </span>
       </div>
     </div>
     <div
@@ -14,7 +13,7 @@
       v-if="optionsVisilble"
     >
       <p
-        class="options-title"
+        class="options-list"
         v-for="(option, index) in options"
         :key="index"
         @click="selectOption(option)"
@@ -31,10 +30,6 @@ export default {
   props: {
     options: {
       type: Array
-    },
-    selected: {
-      type: String,
-      default: ''
     }
   },
   data () {
@@ -63,8 +58,7 @@ export default {
 <style lang="scss" scoped>
 
   .base-options {
-    position: relative;
-    width: 200px;
+    width: 150px;
   }
 
   .options p {
@@ -76,14 +70,26 @@ export default {
 
   .options {
     border: 1px solid #808080;
-    position: absolute;
+    border-radius: 5px;
     top: 30px;
     right: 0;
     width: 100%;
+    cursor: pointer;
+  }
+
+  .options {
+    border: 1px solid #808080;
+  }
+
+  .options-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .options-title {
-    border: 1px solid #808080;
+    display: flex;
+    align-items: center;
   }
 
 </style>

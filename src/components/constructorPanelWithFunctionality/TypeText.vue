@@ -31,10 +31,34 @@
       <BaseSelect
         @select="optionsColor"
         :options="allOptionsColors"
-        :selected="selectedName"
+        class="type-text"
       >
         <template v-slot:title>
-          <span>Select</span>
+          <span>Цвет текста: </span>
+          <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
+          <span class="tepe-text__name"> {{ selectedName }} </span>
+        </template>
+      </BaseSelect>
+
+      <!-- select - выбор размера шрифта -->
+      <BaseSelect
+        @select="optionsSize"
+        :options="allOptionsSize"
+        class="type-size"
+      >
+        <template v-slot:title>
+          <span>Размер текста: </span>
+          <span class="type-size__name"> {{ selectedSize }} </span>
+        </template>
+      </BaseSelect>
+
+      <!-- select - выбор начертания текста -->
+      <BaseSelect
+        @select="optionsTypeface"
+        :options="allOptionsTypeface"
+      >
+        <template v-slot:title>
+          <span>Начертание: </span>
         </template>
       </BaseSelect>
 
@@ -64,8 +88,24 @@ export default {
     allOptionsColors: {
       type: Array
     },
+    allOptionsSize: {
+      type: Array
+    },
+    allOptionsTypeface: {
+      type: Array
+    },
     selectedName: {
       type: String
+    },
+    selectedTextValue: {
+      type: String,
+      default: ''
+    },
+    selectTypefaceValue: {
+      type: String
+    },
+    selectedSize: {
+      type: Number
     }
   },
   data () {
@@ -103,6 +143,12 @@ export default {
   methods: {
     optionsColor (option) {
       this.$emit('optionsColor', option)
+    },
+    optionsSize (option) {
+      this.$emit('optionsSize', option)
+    },
+    optionsTypeface (option) {
+      this.$emit('optionsTypeface', option)
     }
   }
 }
@@ -127,6 +173,22 @@ export default {
 
   .wrapper-top {
     margin-top: 30px;
+  }
+
+  .type-text__color {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    margin-left: 5px;
+  }
+
+  .tepe-text__name {
+    margin-left: 10px;
+  }
+
+  .type-size__name {
+    margin-left: 10px;
   }
 
 </style>
