@@ -77,14 +77,18 @@
         <!-- Позиционирование текста -->
         <div class="type-text__text-posipion">
           <div class="text-posipion">
-            <BaseInput
-              name="rotate"
-              type="text"
-              class="text-posipion__input-rotate"
-              v-model="textRotate"
-              @input="changeTextRotate"
-              placeholder="Угол"
-            />
+            <div class="text-posipion__position-deg">
+              <BaseInput
+                name="rotate"
+                type="text"
+                class="text-posipion__input-rotate"
+                v-model="textRotate"
+                @input="changeTextRotate"
+                placeholder="Угол"
+              />
+              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="textRotate" @input="changeDragDeg">
+              <span>&#176; {{textRotate}} </span>
+            </div>
             <div class="text-posipion__position-x">
               <BaseInput
                 name="positioX"
@@ -94,8 +98,8 @@
                 @input="changeTextX"
                 v-model="PositionX"
               />
-              <input class="text-posipion__range-positioX" type="range" min="0" max="275" v-model="PositionX" @input="changeDragPositionX">
-              <span> {{ PositionX }} </span>
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="PositionX" @input="changeDragPositionX">
+              <span>X: {{ PositionX }} </span>
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
@@ -106,8 +110,8 @@
                 @input="changeTextY"
                 v-model="PositionY"
               />
-              <input class="text-posipion__range-positioX" type="range" min="0" max="275" v-model="PositionY" @input="changeDragPositionY">
-              <span> {{ PositionY }} </span>
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="PositionY" @input="changeDragPositionY">
+              <span>Y: {{ PositionY }} </span>
             </div>
           </div>
         </div>
@@ -200,6 +204,9 @@ export default {
     },
     changeDragPositionY () {
       this.$emit('changeDragPositionY', this.PositionY)
+    },
+    changeDragDeg () {
+      this.$emit('changeDragDeg', this.textRotate)
     }
   }
 }
@@ -284,11 +291,12 @@ export default {
   }
 
   .text-posipion__position-x,
-  .text-posipion__position-x {
+  .text-posipion__position-x,
+  .text-posipion__position-deg {
     display: flex;
   }
 
-  .text-posipion__range-positioX {
+  .text-posipion__range {
     margin: 20px 0 0 10px;
   }
 
