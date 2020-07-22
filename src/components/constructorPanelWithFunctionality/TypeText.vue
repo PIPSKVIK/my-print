@@ -76,26 +76,6 @@
 
         <!-- Позиционирование текста -->
         <div class="type-text__text-posipion">
-          <!-- <div class="wrapper-top">
-            <input type="text" v-model="turn" placeholder="Text rotation">
-            <button @click="turn++">+</button>
-            <button @click="turn--">-</button>
-          </div>
-          <div>
-            <input type="text" v-model="Y" placeholder="Y">
-            <button @click="Y++">+</button>
-            <button @click="Y--">-</button>
-            <input type="text" v-model="X" placeholder="X">
-            <button @click="X++">+</button>
-            <button @click="X--">-</button>
-          </div>
-          <div>
-            <input type="range" min="0" max="150" v-model="X">
-            <input type="range" min="0" max="180" v-model="Y">
-          </div>
-          <div class="wrapper">
-            <p class="rotate" :style="[changePosition, rotateStyle]">Some text</p>
-          </div> -->
           <div class="text-posipion">
             <BaseInput
               name="rotate"
@@ -105,22 +85,30 @@
               @input="changeTextRotate"
               placeholder="Угол"
             />
-            <BaseInput
-              name="positioX"
-              type="text"
-              class="text-posipion__input-positioX"
-              placeholder="X"
-              @input="changeTextX"
-              v-model="PositionX"
-            />
-            <BaseInput
-              name="positioY"
-              type="text"
-              class="text-posipion__input-positioY"
-              placeholder="Y"
-              @input="changeTextY"
-              v-model="PositionY"
-            />
+            <div class="text-posipion__position-x">
+              <BaseInput
+                name="positioX"
+                type="text"
+                class="text-posipion__input-positioX"
+                placeholder="X"
+                @input="changeTextX"
+                v-model="PositionX"
+              />
+              <input class="text-posipion__range-positioX" type="range" min="0" max="275" v-model="PositionX" @input="changeDragPositionX">
+              <span> {{ PositionX }} </span>
+            </div>
+            <div class="text-posipion__position-x">
+              <BaseInput
+                name="positioY"
+                type="text"
+                class="text-posipion__input-positioY"
+                placeholder="Y"
+                @input="changeTextY"
+                v-model="PositionY"
+              />
+              <input class="text-posipion__range-positioX" type="range" min="0" max="275" v-model="PositionY" @input="changeDragPositionY">
+              <span> {{ PositionY }} </span>
+            </div>
           </div>
         </div>
       </div>
@@ -206,6 +194,12 @@ export default {
     },
     changeTextY () {
       this.$emit('changeTextY', this.PositionY)
+    },
+    changeDragPositionX () {
+      this.$emit('changeDragPositionX', this.PositionX)
+    },
+    changeDragPositionY () {
+      this.$emit('changeDragPositionY', this.PositionY)
     }
   }
 }
@@ -287,6 +281,15 @@ export default {
   .text-posipion__input-positioX,
   .text-posipion__input-positioY {
     width: 80px;
+  }
+
+  .text-posipion__position-x,
+  .text-posipion__position-x {
+    display: flex;
+  }
+
+  .text-posipion__range-positioX {
+    margin: 20px 0 0 10px;
   }
 
 </style>

@@ -51,6 +51,8 @@
           @changeTextRotate="changeTextRotate"
           @changeTextX="changeTextX"
           @changeTextY="changeTextY"
+          @changeDragPositionX="changeDragPositionX"
+          @changeDragPositionY="changeDragPositionY"
         />
       </div>
     </section>
@@ -131,6 +133,12 @@ export default {
       this.PositionX = value
     },
     changeTextY (value) {
+      this.PositionY = value
+    },
+    changeDragPositionX (value) {
+      this.PositionX = value
+    },
+    changeDragPositionY (value) {
       this.PositionY = value
     }
   },
