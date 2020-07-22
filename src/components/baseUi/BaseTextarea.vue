@@ -30,7 +30,7 @@ export default {
   },
   computed: {
     rows () {
-      return Math.max(2, this.value.split('\n').length)
+      return Math.max(1, this.value.split('\n').length)
     }
   }
 }

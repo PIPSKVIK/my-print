@@ -1,6 +1,6 @@
 <template>
-  <div class="type-size">
-    <div class="collapse" id="collapseExample3">
+  <div class="collapse" id="collapseExample3">
+    <div class="type-size">
       <div>
         <ul>
           <li
@@ -71,8 +71,10 @@ export default {
 
   .type-size {
     text-align: center;
-    background: #7878cf;
-    color: #ffffff;
+    padding: 10px;
+    background: #adccae;
+    margin: 10px;
+    border-radius: 10px;
   }
 
 </style>>

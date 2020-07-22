@@ -67,6 +67,10 @@ export default {
 
   .type-color__input {
     width: 100px;
+    padding: 10px;
+    background: #adccae;
+    margin: 10px;
+    border-radius: 10px;
   }
 
   .type-color__button {
@@ -97,7 +101,9 @@ export default {
   .type-color {
     padding: 10px;
     min-height: 200px;
-    background: #4a4a81;
+    background: #adccae;
+    margin: 10px;
+    border-radius: 10px;
     color: #ffffff;
     display: flex;
     justify-content: space-between;

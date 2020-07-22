@@ -41,7 +41,8 @@ export default {
         dark: 'btn-dark',
         success: 'btn-success',
         constructor: 'btn-link-constructor',
-        standart: 'standart'
+        standart: 'standart',
+        secondary: 'btn-secondary'
       },
       sizes: {
         normail: '',

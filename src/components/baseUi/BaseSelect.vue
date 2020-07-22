@@ -1,24 +1,18 @@
 <template>
   <div class="base-options">
-    <div
-      class="options"
-      @click="optionsVisilble = !optionsVisilble"
-    >
+    <div class="options" @click="optionsVisilble = !optionsVisilble">
       <div class="options-title">
         <slot name="title">Default name</slot>
       </div>
     </div>
-    <div
-      class="options"
-      v-if="optionsVisilble"
-    >
+    <div class="options-list"  v-if="optionsVisilble">
       <p
-        class="options-list"
+        class="options-list__item"
         v-for="(option, index) in options"
         :key="index"
         @click="selectOption(option)"
       >
-      {{ option.name }}
+        {{ option.name }}
       </p>
     </div>
   </div>
@@ -58,33 +52,30 @@ export default {
 <style lang="scss" scoped>
 
   .base-options {
-    width: 150px;
+    position: relative;
   }
 
-  .options p {
-    margin: 0;
+  .options {
+    border: 1px solid #808080;
+    padding: 3px;
+    background: #ffffff;
+    border-radius: 10px 0;
+    cursor: pointer;
       &:hover {
-        background: #e7e7e7;
+        background: #c2c2c2;
       }
   }
 
-  .options {
-    border: 1px solid #808080;
-    border-radius: 5px;
-    top: 30px;
-    right: 0;
-    width: 100%;
-    cursor: pointer;
-  }
-
-  .options {
-    border: 1px solid #808080;
-  }
-
   .options-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    background: #ffffff;
+    padding: 5px;
+    border-radius: 10px 0;
+    top: 30px;
+  }
+
+  .options-list:not(:last-child) {
+    margin-bottom: 10px;
   }
 
   .options-title {
@@ -92,4 +83,11 @@ export default {
     align-items: center;
   }
 
+  .options-list__item {
+    cursor: pointer;
+    margin: 0;
+      &:hover {
+        background: #c2c2c2;
+      }
+  }
 </style>

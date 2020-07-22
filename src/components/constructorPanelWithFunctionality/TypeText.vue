@@ -1,110 +1,118 @@
 <template>
   <div class="type-text">
     <div class="collapse" id="collapseExample4">
-      <BaseTextarea
-        name="Text"
-        v-model="createText"
-      />
+      <div class="type-text__content-wrapper">
+        <div class="type-text__section-textarea">
+          <BaseTextarea
+            name="Text"
+            v-model="createText"
+            class="type-text__textarea"
+            placeholder="Введите ваш текст"
+          />
+        </div>
+        <!-- кнопки управлением Начертиание -->
+        <div class="typeface btn-toolbar" role="toolbar">
+          <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+            <BaseButton
+              theme="secondary"
+              class="typeface-weight"
+              @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
+              :class="{ standartButtonActive: isButtonWeightActive }"
+            >
+              B
+            </BaseButton>
+            <BaseButton
+              theme="secondary"
+              class="typeface-italic"
+              @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
+              :class="{ standartButtonActive: isButtonItalicActive }"
+            >
+              I
+            </BaseButton>
+            <BaseButton
+              theme="secondary"
+              class="typeface-underline"
+              @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
+              :class="{ standartButtonActive: isButtonUnderlineActive }"
+            >
+              K
+            </BaseButton>
+            <BaseButton
+              theme="secondary"
+              class="typeface-uppercase"
+              @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
+              :class="{ standartButtonActive: isButtonUppercaseActive }"
+            >
+              U
+            </BaseButton>
+          </div>
+        </div>
 
-<!--  <div class="wrapper-top">
-        <input type="text" v-model="turn" placeholder="Text rotation">
-        <button @click="turn++">+</button>
-        <button @click="turn--">-</button>
+        <!-- select выбора цвета -->
+        <div class="type-text__section-select">
+          <BaseSelect
+            @select="optionsColor"
+            :options="allOptionsColors"
+            class="type-text"
+          >
+            <template v-slot:title>
+              <span>Цвет: </span>
+              <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
+              <span class="tepe-text__name"> {{ selectedName }} </span>
+            </template>
+          </BaseSelect>
+          <!-- select - выбор размера шрифта -->
+          <BaseSelect
+            @select="optionsSize"
+            :options="allOptionsSize"
+            class="type-size"
+          >
+            <template v-slot:title>
+              <span>Размер: </span>
+              <span class="type-size__name"> {{ selectedSize }} </span>
+            </template>
+          </BaseSelect>
+        </div>
+
+        <!-- Позиционирование текста -->
+        <div class="type-text__text-posipion">
+          <!-- <div class="wrapper-top">
+            <input type="text" v-model="turn" placeholder="Text rotation">
+            <button @click="turn++">+</button>
+            <button @click="turn--">-</button>
+          </div>
+          <div>
+            <input type="text" v-model="Y" placeholder="Y">
+            <button @click="Y++">+</button>
+            <button @click="Y--">-</button>
+            <input type="text" v-model="X" placeholder="X">
+            <button @click="X++">+</button>
+            <button @click="X--">-</button>
+          </div>
+          <div>
+            <input type="range" min="0" max="150" v-model="X">
+            <input type="range" min="0" max="180" v-model="Y">
+          </div>
+          <div class="wrapper">
+            <p class="rotate" :style="[changePosition, rotateStyle]">Some text</p>
+          </div> -->
+          <BaseInput type="text"></BaseInput>
+        </div>
       </div>
-      <div>
-        <input type="text" v-model="Y" placeholder="Y">
-        <button @click="Y++">+</button>
-        <button @click="Y--">-</button>
-        <input type="text" v-model="X" placeholder="X">
-        <button @click="X++">+</button>
-        <button @click="X--">-</button>
-      </div>
-      <div>
-        <input type="range" min="0" max="150" v-model="X">
-        <input type="range" min="0" max="180" v-model="Y">
-      </div>
-      <div class="wrapper">
-        <p class="rotate" :style="[changePosition, rotateStyle]">Some text</p>
-      </div> -->
-
-      <!-- select выбора цвета -->
-      <BaseSelect
-        @select="optionsColor"
-        :options="allOptionsColors"
-        class="type-text"
-      >
-        <template v-slot:title>
-          <span>Цвет текста: </span>
-          <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
-          <span class="tepe-text__name"> {{ selectedName }} </span>
-        </template>
-      </BaseSelect>
-
-      <!-- select - выбор размера шрифта -->
-      <BaseSelect
-        @select="optionsSize"
-        :options="allOptionsSize"
-        class="type-size"
-      >
-        <template v-slot:title>
-          <span>Размер текста: </span>
-          <span class="type-size__name"> {{ selectedSize }} </span>
-        </template>
-      </BaseSelect>
-
-      <!-- checkbox - выбор начертания текста -->
-      <div class="typeface">
-        <BaseButton
-          theme="standart"
-          size="standart"
-          class="typeface-weight"
-          @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
-          :class="{ standartButtonActive: isButtonWeightActive }"
-        >
-          B
-        </BaseButton>
-        <BaseButton
-          theme="standart"
-          size="standart"
-          class="typeface-italic"
-          @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
-          :class="{ standartButtonActive: isButtonItalicActive }"
-        >
-          I
-        </BaseButton>
-        <BaseButton
-          theme="standart"
-          size="standart"
-          class="typeface-underline"
-          @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
-          :class="{ standartButtonActive: isButtonUnderlineActive }"
-        >
-          K
-        </BaseButton>
-        <BaseButton
-          theme="standart"
-          size="standart"
-          class="typeface-uppercase"
-          @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
-          :class="{ standartButtonActive: isButtonUppercaseActive }"
-        >
-          U
-        </BaseButton>
-      </div>
-
     </div>
   </div>
 </template>
 
 <script>
-import { BaseTextarea, BaseSelect, BaseButton } from '@/components/baseUi'
+import { BaseTextarea, BaseSelect, BaseButton, BaseInput } from '@/components/baseUi'
 
 export default {
   name: 'TypeText',
   components: {
     BaseTextarea,
     BaseSelect,
-    BaseButton
+    BaseButton,
+    BaseInput
   },
   model: {
     prop: 'textarea'
@@ -182,13 +190,17 @@ export default {
 
 <style lang="scss" scoped>
 
-  .wrapper {
-    margin-top: 30px;
-    text-align: center;
-    width: 200px;
-    height: 200px;
-    background: #dfb19f;
-    position: relative;
+  .type-text__content-wrapper {
+    padding: 10px;
+    background: #adccae;
+    min-height: 350px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .type-text__section-select {
+    display: flex;
+    justify-content: space-between;
   }
 
   .rotate {
@@ -234,9 +246,17 @@ export default {
   }
 
   .standartButtonActive {
-    color: #ffffff;
-    background: #000000;
-    border-color: #000000;
+    background: #515558;
+  }
+
+  .typeface {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .type-text__section-textarea {
+    margin-bottom: 10px;
   }
 
 </style>
