@@ -48,6 +48,9 @@
           @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
           @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
           @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
+          @changeTextRotate="changeTextRotate"
+          @changeTextX="changeTextX"
+          @changeTextY="changeTextY"
         />
       </div>
     </section>
@@ -62,15 +65,13 @@
             'text-underline__active': isTextUnderlineActive,
             'text-transform__active': isTextTransformActive
           }"
-          :style="{
-            'color': selectedTextValue,
-            'font-size': selectedSize + 'px'
-          }"
+          :style="[ changeTextValue, changeFotSize, rotateStyle, changePosition ]"
           > {{ typeText }}
         </p>
         <div class="constructor-right__subjects-selected">
           <!-- <span> {{ typeSubjects }} </span> -->
-          <!-- <img :src=" require( '@/assets/image/constructor/' + typeSubjects ) " alt="img" width="300" height="250"> -->
+          <!-- <img :src="('@/assets/image/constructor/' + typeSubjects)" alt="img" width="300" height="250"> -->
+          <img src="@/assets/image/constructor/image-men-t-shirt.jpg" alt="img" width="300" height="250">
         </div>
       </div>
       <div class="constructor-right__clothes-block">
@@ -98,6 +99,9 @@ export default {
       typeSubjects: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
       typeText: '',
+      textRotare: null,
+      PositionX: null,
+      PositionY: null,
       selectedTextValue: '#000000',
       selectedName: 'black',
       selectedSize: 14,
@@ -119,10 +123,42 @@ export default {
     },
     optionsSize (option) {
       this.selectedSize = option.value
+    },
+    changeTextRotate (value) {
+      this.textRotare = value
+    },
+    changeTextX (value) {
+      this.PositionX = value
+    },
+    changeTextY (value) {
+      this.PositionY = value
     }
   },
   computed: {
-    ...mapGetters(['allOptionsColors', 'allOptionsSize'])
+    ...mapGetters([
+      'allOptionsColors', 'allOptionsSize'
+    ]),
+    rotateStyle () {
+      return {
+        transform: 'rotate(' + this.textRotare + 'deg)'
+      }
+    },
+    changeTextValue () {
+      return {
+        color: this.selectedTextValue
+      }
+    },
+    changeFotSize () {
+      return {
+        'font-size': this.selectedSize + 'px'
+      }
+    },
+    changePosition () {
+      return {
+        top: this.PositionY + 'px',
+        left: this.PositionX + 'px'
+      }
+    }
   }
 }
 </script>
@@ -132,9 +168,10 @@ export default {
   .constructor-right__text {
     white-space: pre-line;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 140px;
+    left: 130px;
+    // transform: translate(-50%, -50%);
+    margin: 0;
   }
 
 // <компонент выбора типа одежды

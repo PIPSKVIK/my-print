@@ -96,7 +96,32 @@
           <div class="wrapper">
             <p class="rotate" :style="[changePosition, rotateStyle]">Some text</p>
           </div> -->
-          <BaseInput type="text"></BaseInput>
+          <div class="text-posipion">
+            <BaseInput
+              name="rotate"
+              type="text"
+              class="text-posipion__input-rotate"
+              v-model="textRotate"
+              @input="changeTextRotate"
+              placeholder="Угол"
+            />
+            <BaseInput
+              name="positioX"
+              type="text"
+              class="text-posipion__input-positioX"
+              placeholder="X"
+              @input="changeTextX"
+              v-model="PositionX"
+            />
+            <BaseInput
+              name="positioY"
+              type="text"
+              class="text-posipion__input-positioY"
+              placeholder="Y"
+              @input="changeTextY"
+              v-model="PositionY"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -151,9 +176,9 @@ export default {
       options: [
         { text: 'white', color: '#fff' }
       ],
-      turn: null,
-      X: null,
-      Y: null
+      PositionX: null,
+      PositionY: null,
+      textRotate: null
     }
   },
   computed: {
@@ -164,17 +189,6 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
-    },
-    rotateStyle () {
-      return {
-        transform: 'rotate(' + this.turn + 'deg)'
-      }
-    },
-    changePosition () {
-      return {
-        top: this.Y + 'px',
-        left: this.X + 'px'
-      }
     }
   },
   methods: {
@@ -183,6 +197,15 @@ export default {
     },
     optionsSize (option) {
       this.$emit('optionsSize', option)
+    },
+    changeTextRotate () {
+      this.$emit('changeTextRotate', this.textRotate)
+    },
+    changeTextX () {
+      this.$emit('changeTextX', this.PositionX)
+    },
+    changeTextY () {
+      this.$emit('changeTextY', this.PositionY)
     }
   }
 }
@@ -201,6 +224,7 @@ export default {
   .type-text__section-select {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   .rotate {
@@ -257,6 +281,12 @@ export default {
 
   .type-text__section-textarea {
     margin-bottom: 10px;
+  }
+
+  .text-posipion__input-rotate,
+  .text-posipion__input-positioX,
+  .text-posipion__input-positioY {
+    width: 80px;
   }
 
 </style>

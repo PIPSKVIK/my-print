@@ -8,12 +8,12 @@
       <div>
         <BaseRadio
           label="Мужская"
-          value="image_men_ t_shirt.jpg"
+          value="image-men-t-shirt.jpg"
           v-model="changeSubjects"
         />
         <BaseRadio
           label="Женская"
-          value="image_womens_t_shirt.jpg"
+          value="image-womens-t-shirt.jpg"
           v-model="changeSubjects"
         />
       </div>
