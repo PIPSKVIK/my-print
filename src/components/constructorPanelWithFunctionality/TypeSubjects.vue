@@ -1,11 +1,7 @@
 <template>
   <div class="collapse" id="collapseExample1">
     <div class="subjects">
-      <div>
-        <img class="subject-img subject__tshirt" src="@/assets/image/constructor/tshirt-icon.png" alt="tshirt" width="40" height="40">
-        <img class="subject-img subject__sweater" src="@/assets/image/constructor/sweater-icon.png" alt="sweater" width="40" height="40">
-      </div>
-      <div>
+      <div class="subjects-type">
         <BaseRadio
           label="Мужская"
           value="image-men-t-shirt.jpg"
@@ -34,8 +30,7 @@ export default {
   },
   props: {
     radio: {
-      type: String,
-      default: ''
+      type: String
     }
   },
   computed: {

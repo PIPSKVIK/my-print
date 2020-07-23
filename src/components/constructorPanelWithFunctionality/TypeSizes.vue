@@ -1,21 +1,22 @@
 <template>
   <div class="collapse" id="collapseExample3">
     <div class="type-size">
-      <div>
-        <ul>
+      <div class="size">
+        <ul class="size__list">
           <li
-          v-for="item in someData" :key="item.id"
+            v-for="item in allTypeSize"
+            :key="item.id"
+            class="size__item"
           >
-            <BaseCheckbox :label="item.name" :item="item.name"  v-model="selectSizes" />
+            <BaseCheckbox
+              :label="item.name"
+              :item="item.name"
+              v-model="selectSizes"
+              @input="selectTypeSize"
+            />
           </li>
         </ul>
       </div>
-      <ul>
-        <li
-          v-for="(selectSize, index) in selectSizes"
-          :key="index"
-        > {{ selectSize }} </li>
-      </ul>
     </div>
   </div>
 </template>
@@ -29,23 +30,20 @@ export default {
     BaseCheckbox
   },
   inheritAttrs: false,
+  props: {
+    allTypeSize: {
+      type: Array,
+      required: true
+    }
+  },
   data () {
     return {
-      selectSizes: [],
-      someData: [
-        {
-          id: 1,
-          name: 'M'
-        },
-        {
-          id: 2,
-          name: 'S'
-        },
-        {
-          id: 3,
-          name: 'L'
-        }
-      ]
+      selectSizes: []
+    }
+  },
+  methods: {
+    selectTypeSize () {
+      this.$emit('selectTypeSize', this.selectSizes)
     }
   }
 }
@@ -53,28 +51,20 @@ export default {
 
 <style lang="scss" scoped>
 
-  .test {
-    width: 30px;
-    height: 30px;
-    background: transparent;
-    border: 2px solid #000000;
-    border-radius: 8px;
-    margin-right: 5px;
-      &:hover {
-        background: #888888;
-      }
-  }
-
-  .test-active {
-    background: #353535;
-  }
-
-  .type-size {
-    text-align: center;
+  .size__list {
+    margin: 0;
     padding: 10px;
-    background: #adccae;
-    margin: 10px;
-    border-radius: 10px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  .size__item {
+    margin: 0;
+  }
+
+  .size__item:not(:last-child) {
+    margin-right: 15px;
   }
 
 </style>>

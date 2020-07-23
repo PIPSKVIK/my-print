@@ -28,6 +28,8 @@
         </button>
         <TypeSizes
           class="constructor-left__sizes"
+          :allTypeSize="allTypeSize"
+          @selectTypeSize="selectTypeSize"
         />
       </div>
       <!-- Компонент выбора текста -->
@@ -39,11 +41,14 @@
           v-model="typeText"
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
+          :allTypeFontFamily="allTypeFontFamily"
           @optionsColor="optionsColor"
           @optionsSize="optionsSize"
+          @optionsFont="optionsFont"
           :selectedName="selectedName"
           :selectedTextValue="selectedTextValue"
           :selectedSize="selectedSize"
+          :selectFonts="selectFonts"
           @chengeTextFontWeight="isTextFontWeightActive = !isTextFontWeightActive"
           @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
           @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
@@ -60,21 +65,33 @@
 
     <!-- Правая сторона экрана конструктора -->
     <section class="constructor-right">
-      <div class="constructor-right__text-block">
-        <p class="constructor-right__text"
-          :class="{
-            'font-weight__active': isTextFontWeightActive,
-            'font-style__active': isTextFontStyleActive,
-            'text-underline__active': isTextUnderlineActive,
-            'text-transform__active': isTextTransformActive
-          }"
-          :style="[ changeTextValue, changeFotSize, rotateStyle, changePosition ]"
-          > {{ typeText }}
-        </p>
-        <div class="constructor-right__subjects-selected">
-          <!-- <span> {{ typeSubjects }} </span> -->
-          <!-- <img :src="('@/assets/image/constructor/' + typeSubjects)" alt="img" width="300" height="250"> -->
-          <img src="@/assets/image/constructor/image-men-t-shirt.jpg" alt="img" width="300" height="250">
+      <div class="constructor-right__first-block">
+        <div class="constructor-right__text-block">
+          <p class="constructor-right__text"
+            :class="{
+              'font-weight__active': isTextFontWeightActive,
+              'font-style__active': isTextFontStyleActive,
+              'text-underline__active': isTextUnderlineActive,
+              'text-transform__active': isTextTransformActive
+            }"
+            :style="[ changeTextValue, changeFotSize, rotateStyle, changePosition, changeTextFonts ]"
+            > {{ typeText }}
+          </p>
+          <div class="constructor-right__subjects-selected">
+            <!-- <span> {{ typeSubjects }} </span> -->
+            <!-- <img :src="'../../assets/image/constructor/' + typeSubjects" alt="img" width="300" height="250"> -->
+            <img src="@/assets/image/constructor/image-men-t-shirt.jpg" alt="img" width="300" height="250">
+          </div>
+        </div>
+        <div class="constructor-right__size">
+          <h5 class="constructor-right__size-title">Тип размера:</h5>
+          <ul class="constructor-right__size-list">
+            <li
+              v-for="size in typeSizes"
+              :key="size.id"
+              class="constructor-right__size-item"
+            > {{ size }} </li>
+          </ul>
         </div>
       </div>
       <div class="constructor-right__clothes-block">
@@ -100,6 +117,7 @@ export default {
     return {
       typeColor: '#000000',
       typeSubjects: '',
+      typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
       typeText: '',
       textRotare: null,
@@ -108,6 +126,7 @@ export default {
       selectedTextValue: '#000000',
       selectedName: 'black',
       selectedSize: 14,
+      selectFonts: '',
       isTextFontWeightActive: false,
       isTextFontStyleActive: false,
       isTextUnderlineActive: false,
@@ -127,6 +146,9 @@ export default {
     optionsSize (option) {
       this.selectedSize = option.value
     },
+    optionsFont (option) {
+      this.selectFonts = option.value
+    },
     changeTextRotate (value) {
       this.textRotare = value
     },
@@ -144,11 +166,17 @@ export default {
     },
     changeDragDeg (value) {
       this.textRotare = value
+    },
+    selectTypeSize (value) {
+      this.typeSizes = value
     }
   },
   computed: {
     ...mapGetters([
-      'allOptionsColors', 'allOptionsSize'
+      'allOptionsColors',
+      'allOptionsSize',
+      'allTypeSize',
+      'allTypeFontFamily'
     ]),
     rotateStyle () {
       return {
@@ -169,6 +197,11 @@ export default {
       return {
         top: this.PositionY + 'px',
         left: this.PositionX + 'px'
+      }
+    },
+    changeTextFonts () {
+      return {
+        'font-family': this.selectFonts
       }
     }
   }
@@ -248,6 +281,37 @@ export default {
     border-radius: 10px;
     margin: 10px;
     background: #17a2b8;
+  }
+
+  // лист размеров одежды
+  .constructor-right__size {
+    width: 100%;
+    min-height: 80px;
+    background: #7e7d7d;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .constructor-right__size-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .constructor-right__size-item {
+    background: #ffffff;
+    border-radius: 3px;
+    padding: 5px 0;
+    width: 30px;
+    color: #000000;
+    margin: 0 5px;
+    font-weight: bold;
+  }
+
+  .constructor-right__size-title {
+    color: #ffffff;
   }
 
 </style>

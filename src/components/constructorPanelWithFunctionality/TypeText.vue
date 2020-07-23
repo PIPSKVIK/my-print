@@ -115,6 +115,17 @@
             </div>
           </div>
         </div>
+        <div class="type-text__fonts">
+          <BaseSelect
+            :options="allTypeFontFamily"
+            @select="optionsFont"
+          >
+            <template v-slot:title>
+              <span>Шрифт: </span>
+              <span class="type-text__fonts-name"> {{ selectFonts }} </span>
+            </template>
+          </BaseSelect>
+        </div>
       </div>
     </div>
   </div>
@@ -147,6 +158,9 @@ export default {
     allOptionsSize: {
       type: Array
     },
+    allTypeFontFamily: {
+      type: Array
+    },
     selectedName: {
       type: String
     },
@@ -156,6 +170,9 @@ export default {
     },
     selectedSize: {
       type: Number
+    },
+    selectFonts: {
+      type: String
     }
   },
   data () {
@@ -190,6 +207,9 @@ export default {
     optionsSize (option) {
       this.$emit('optionsSize', option)
     },
+    optionsFont (option) {
+      this.$emit('optionsFont', option)
+    },
     changeTextRotate () {
       this.$emit('changeTextRotate', this.textRotate)
     },
@@ -217,7 +237,7 @@ export default {
   .type-text__content-wrapper {
     padding: 10px;
     background: #adccae;
-    min-height: 350px;
+    min-height: 530px;
     margin: 10px;
     border-radius: 10px;
   }
@@ -298,6 +318,14 @@ export default {
 
   .text-posipion__range {
     margin: 20px 0 0 10px;
+  }
+
+  .type-text__fonts {
+    margin-top: 40px;
+  }
+
+  .type-text__fonts-name {
+    margin-left: 10px;
   }
 
 </style>

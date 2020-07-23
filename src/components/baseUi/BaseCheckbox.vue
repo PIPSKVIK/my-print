@@ -5,6 +5,7 @@
         type="checkbox"
         v-model="checked"
         :value="item"
+        class="base-caheckbox__item"
       >
       <span class="base-caheckbox__element-style"></span>
     </label>
@@ -47,47 +48,19 @@ export default {
 
 <style lang="scss">
 
-// Кастомный checkbox >>>
+  .base-caheckbox__label {
+    margin: 0;
+    color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
 
-  // .base-caheckbox__label {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-
-  // .base-caheckbox__element-style {
-  //   position: relative;
-  //   width: 16px;
-  //   height: 16px;
-  //   border: 1px solid #ccc;
-  //   display: inline-block;
-  //   border-radius: 50%;
-  //   transition: all linear 0.3s;
-  //   margin-left: 10px;
-  //     &:after {
-  //       content: '';
-  //       position: absolute;
-  //       top: 2px;
-  //       left: 5px;
-  //       border-bottom: 2px solid #000000;
-  //       border-right: 2px solid #000000;
-  //       height: 9px;
-  //       width: 4px;
-  //       transform: rotate(45deg);
-  //       visibility: hidden;
-  //     }
-  // }
-
-  // .base-caheckbox__element {
-  //   display: none;
-  //     &:checked ~ .base-caheckbox__element-style {
-  //       background: #cccccc;
-  //         &:after {
-  //           visibility: visible;
-  //         }
-  //     }
-  // }
-
-// Кастомный checkbox >>>
+  .base-caheckbox__item {
+    width: 30px;
+    height: 30px;
+  }
 
 </style>

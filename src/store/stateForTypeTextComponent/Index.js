@@ -19,6 +19,20 @@ export default {
       { name: '18', value: 18 },
       { name: '24', value: 24 },
       { name: '36', value: 36 }
+    ],
+    typeSize: [
+      { id: 1, name: 'XS' },
+      { id: 2, name: 'S' },
+      { id: 3, name: 'M' },
+      { id: 4, name: 'L' },
+      { id: 5, name: 'XL' },
+      { id: 6, name: 'XXL' }
+    ],
+    typeFontFamily: [
+      { name: 'Amatic SC', value: 'Amatic SC' },
+      { name: 'Lobster', value: 'Lobster' },
+      { name: 'Oswald', value: 'Oswald' },
+      { name: 'Ruslan Display', value: 'Ruslan Display' }
     ]
   },
   mutations: {},
@@ -30,8 +44,11 @@ export default {
     allOptionsSize (state) {
       return state.optionsSize
     },
-    allOptionsTypeface (state) {
-      return state.optionsTypeface
+    allTypeSize (state) {
+      return state.typeSize
+    },
+    allTypeFontFamily (state) {
+      return state.typeFontFamily
     }
   }
 }

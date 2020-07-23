@@ -16,3 +16,9 @@ export default {
   }
 }
 </script>
+
+<style>
+
+  @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Lobster&family=Oswald&family=Press+Start+2P&family=Ruslan+Display&display=swap');
+
+</style>
