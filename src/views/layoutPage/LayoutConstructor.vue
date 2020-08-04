@@ -39,6 +39,9 @@
         </button>
         <TypeText
           :printText.sync="printText"
+          :textRotare.sync="textRotare"
+          :textPositionX.sync="textPositionX"
+          :textPositionY.sync="textPositionY"
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
           :allTypeFontFamily="allTypeFontFamily"
@@ -53,12 +56,6 @@
           @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
           @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
           @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
-          @changeTextRotate="changeTextRotate"
-          @changeTextX="changeTextX"
-          @changeTextY="changeTextY"
-          @changeDragPositionX="changeDragPositionX"
-          @changeDragPositionY="changeDragPositionY"
-          @changeDragDeg="changeDragDeg"
         />
       </div>
     </section>
@@ -119,9 +116,9 @@ export default {
       typeSubjects: '',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      textRotare: null,
-      PositionX: null,
-      PositionY: null,
+      textRotare: '0',
+      textPositionX: '120',
+      textPositionY: '120',
       selectedTextValue: '#000000',
       selectedName: 'black',
       selectedSize: 14,
@@ -148,24 +145,6 @@ export default {
     },
     optionsFont (option) {
       this.selectFonts = option.value
-    },
-    changeTextRotate (value) {
-      this.textRotare = value
-    },
-    changeTextX (value) {
-      this.PositionX = value
-    },
-    changeTextY (value) {
-      this.PositionY = value
-    },
-    changeDragPositionX (value) {
-      this.PositionX = value
-    },
-    changeDragPositionY (value) {
-      this.PositionY = value
-    },
-    changeDragDeg (value) {
-      this.textRotare = value
     },
     selectTypeSize (value) {
       this.typeSizes = value
@@ -195,8 +174,8 @@ export default {
     },
     changePosition () {
       return {
-        top: this.PositionY + 'px',
-        left: this.PositionX + 'px'
+        top: this.textPositionY + 'px',
+        left: this.textPositionX + 'px'
       }
     },
     changeTextFonts () {

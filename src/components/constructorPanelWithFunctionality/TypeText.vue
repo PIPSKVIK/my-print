@@ -82,36 +82,31 @@
                 name="rotate"
                 type="text"
                 class="text-posipion__input-rotate"
-                v-model="textRotate"
-                @input="changeTextRotate"
-                placeholder="Угол"
+                :placeholder="chengeTextRotate"
+                v-model="chengeTextRotate"
               />
-              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="textRotate" @input="changeDragDeg">
-              <span>&#176; {{textRotate}} </span>
+              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="chengeTextRotate">
+              <span>&#176; {{textRotare}} </span>
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
                 name="positioX"
                 type="text"
                 class="text-posipion__input-positioX"
-                placeholder="X"
-                @input="changeTextX"
-                v-model="PositionX"
+                :placeholder=" 'X:' + textPositionX"
+                v-model="chengeTextPositionX"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="PositionX" @input="changeDragPositionX">
-              <span>X: {{ PositionX }} </span>
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="chengeTextPositionX">
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
                 name="positioY"
                 type="text"
                 class="text-posipion__input-positioY"
-                placeholder="Y"
-                @input="changeTextY"
-                v-model="PositionY"
+                :placeholder=" 'X:' + textPositionY"
+                v-model="chengeTextPositionY"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="PositionY" @input="changeDragPositionY">
-              <span>Y: {{ PositionY }} </span>
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="chengeTextPositionY">
             </div>
           </div>
         </div>
@@ -143,6 +138,15 @@ export default {
     BaseInput
   },
   props: {
+    textPositionY: {
+      type: String
+    },
+    textPositionX: {
+      type: String
+    },
+    textRotare: {
+      type: String
+    },
     printText: {
       type: String,
       required: true
@@ -182,10 +186,7 @@ export default {
       selectColors: '',
       options: [
         { text: 'white', color: '#fff' }
-      ],
-      PositionX: null,
-      PositionY: null,
-      textRotate: null
+      ]
     }
   },
   methods: {
@@ -198,23 +199,8 @@ export default {
     optionsFont (option) {
       this.$emit('optionsFont', option)
     },
-    changeTextRotate () {
-      this.$emit('changeTextRotate', this.textRotate)
-    },
-    changeTextX () {
-      this.$emit('changeTextX', this.PositionX)
-    },
-    changeTextY () {
-      this.$emit('changeTextY', this.PositionY)
-    },
-    changeDragPositionX () {
-      this.$emit('changeDragPositionX', this.PositionX)
-    },
     changeDragPositionY () {
       this.$emit('changeDragPositionY', this.PositionY)
-    },
-    changeDragDeg () {
-      this.$emit('changeDragDeg', this.textRotate)
     }
   },
   computed: {
@@ -224,6 +210,30 @@ export default {
       },
       set (value) {
         this.$emit('update:printText', value)
+      }
+    },
+    chengeTextRotate: {
+      get () {
+        return this.textRotare
+      },
+      set (val) {
+        this.$emit('update:textRotare', val)
+      }
+    },
+    chengeTextPositionX: {
+      get () {
+        return this.textPositionX
+      },
+      set (val) {
+        this.$emit('update:textPositionX', val)
+      }
+    },
+    chengeTextPositionY: {
+      get () {
+        return this.textPositionY
+      },
+      set (val) {
+        this.$emit('update:textPositionY', val)
       }
     }
   }
