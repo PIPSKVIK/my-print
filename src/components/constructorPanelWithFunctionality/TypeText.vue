@@ -5,7 +5,7 @@
         <div class="type-text__section-textarea">
           <BaseTextarea
             name="Text"
-            v-model="createText"
+            v-model="createPrintText"
             class="type-text__textarea"
             placeholder="Введите ваш текст"
           />
@@ -142,12 +142,10 @@ export default {
     BaseButton,
     BaseInput
   },
-  model: {
-    prop: 'textarea'
-  },
   props: {
-    textarea: {
-      type: String
+    printText: {
+      type: String,
+      required: true
     },
     optionsColors: {
       type: Array
@@ -190,16 +188,6 @@ export default {
       textRotate: null
     }
   },
-  computed: {
-    createText: {
-      get () {
-        return this.textarea
-      },
-      set (value) {
-        this.$emit('input', value)
-      }
-    }
-  },
   methods: {
     optionsColor (option) {
       this.$emit('optionsColor', option)
@@ -227,6 +215,16 @@ export default {
     },
     changeDragDeg () {
       this.$emit('changeDragDeg', this.textRotate)
+    }
+  },
+  computed: {
+    createPrintText: {
+      get () {
+        return this.printText
+      },
+      set (value) {
+        this.$emit('update:printText', value)
+      }
     }
   }
 }

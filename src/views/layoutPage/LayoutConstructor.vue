@@ -38,7 +38,7 @@
           Добавить текст
         </button>
         <TypeText
-          v-model="typeText"
+          :printText.sync="printText"
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
           :allTypeFontFamily="allTypeFontFamily"
@@ -75,7 +75,7 @@
               'text-transform__active': isTextTransformActive
             }"
             :style="[ changeTextValue, changeFotSize, rotateStyle, changePosition, changeTextFonts ]"
-            > {{ typeText }}
+            > {{ printText }}
           </p>
           <div class="constructor-right__subjects-selected">
             <!-- <span> {{ typeSubjects }} </span> -->
@@ -119,7 +119,6 @@ export default {
       typeSubjects: '',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      typeText: '',
       textRotare: null,
       PositionX: null,
       PositionY: null,
@@ -127,6 +126,7 @@ export default {
       selectedName: 'black',
       selectedSize: 14,
       selectFonts: '',
+      printText: 'Ваш Текст',
       isTextFontWeightActive: false,
       isTextFontStyleActive: false,
       isTextUnderlineActive: false,
@@ -215,7 +215,6 @@ export default {
     position: absolute;
     top: 140px;
     left: 130px;
-    // transform: translate(-50%, -50%);
     margin: 0;
   }
 
