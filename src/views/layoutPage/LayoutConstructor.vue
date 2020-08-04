@@ -75,9 +75,7 @@
             > {{ printText }}
           </p>
           <div class="constructor-right__subjects-selected">
-            <!-- <span> {{ typeSubjects }} </span> -->
-            <!-- <img :src="'../../assets/image/constructor/' + typeSubjects" alt="img" width="300" height="250"> -->
-            <img src="@/assets/image/constructor/image-men-t-shirt.jpg" alt="img" width="300" height="250">
+            <img :src="getImgUrl(typeSubjects)" alt="img" width="300" height="250">
           </div>
         </div>
         <div class="constructor-right__size">
@@ -113,7 +111,7 @@ export default {
   data () {
     return {
       typeColor: '#000000',
-      typeSubjects: '',
+      typeSubjects: 'image-men-t-shirt.jpg',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
       textRotare: '0',
@@ -148,6 +146,9 @@ export default {
     },
     selectTypeSize (value) {
       this.typeSizes = value
+    },
+    getImgUrl (img) {
+      return require(`@/assets/image/constructor/${img}`)
     }
   },
   computed: {

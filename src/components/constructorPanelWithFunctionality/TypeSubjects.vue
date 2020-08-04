@@ -3,12 +3,12 @@
     <div class="subjects">
       <div class="subjects-type">
         <BaseRadio
-          label="Мужская"
+          label="М-Майка"
           value="image-men-t-shirt.jpg"
           v-model="changeSubjects"
         />
         <BaseRadio
-          label="Женская"
+          label="Ж-Майка"
           value="image-womens-t-shirt.jpg"
           v-model="changeSubjects"
         />
