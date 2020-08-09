@@ -110,6 +110,7 @@
             </div>
           </div>
         </div>
+        <!-- Тип шрифта -->
         <div class="type-text__fonts">
           <BaseSelect
             :options="allTypeFontFamily"

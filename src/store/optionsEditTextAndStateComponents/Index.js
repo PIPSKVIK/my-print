@@ -33,7 +33,8 @@ export default {
       { name: 'Lobster', value: 'Lobster' },
       { name: 'Oswald', value: 'Oswald' },
       { name: 'Ruslan Display', value: 'Ruslan Display' }
-    ]
+    ],
+    testStateData: 'Test'
   },
   mutations: {},
   actions: {},
