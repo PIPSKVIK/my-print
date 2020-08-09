@@ -129,6 +129,7 @@
 
 <script>
 import { BaseTextarea, BaseSelect, BaseButton, BaseInput } from '@/components/baseUi'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TypeText',
@@ -221,15 +222,11 @@ export default {
         this.$store.commit('updateTextRotate', val)
       }
     },
-    getTextRotate () {
-      return this.$store.getters.getTextRotate
-    },
-    getTextPositionX () {
-      return this.$store.getters.getTextPositionX
-    },
-    getTextPositionY () {
-      return this.$store.getters.getTextPositionY
-    }
+    ...mapGetters([
+      'getTextRotate',
+      'getTextPositionX',
+      'getTextPositionY'
+    ])
   }
 }
 </script>
