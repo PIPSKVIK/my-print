@@ -3,11 +3,12 @@
     <div class="collapse" id="collapseExample4">
       <div class="type-text__content-wrapper">
         <div class="type-text__section-textarea">
+        <!-- поле ввода основного текста -->
           <BaseTextarea
             name="Text"
-            v-model="createPrintText"
             class="type-text__textarea"
             placeholder="Введите ваш текст"
+            v-model="chengePrintText"
           />
         </div>
         <!-- кнопки управлением Начертиание -->
@@ -79,34 +80,33 @@
           <div class="text-posipion">
             <div class="text-posipion__position-deg">
               <BaseInput
-                name="rotate"
+                name="TextRotate"
                 type="text"
                 class="text-posipion__input-rotate"
-                :placeholder="chengeTextRotate"
-                v-model="chengeTextRotate"
+                :placeholder="getTextRotate"
+                v-model="changeTextRotate"
               />
-              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="chengeTextRotate">
-              <span>&#176; {{textRotare}} </span>
+              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="changeTextRotate">
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
                 name="positioX"
                 type="text"
                 class="text-posipion__input-positioX"
-                :placeholder=" 'X:' + textPositionX"
-                v-model="chengeTextPositionX"
+                :placeholder="getTextPositionX"
+                v-model="changeTextPositionX"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="chengeTextPositionX">
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="changeTextPositionX">
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
                 name="positioY"
                 type="text"
                 class="text-posipion__input-positioY"
-                :placeholder=" 'X:' + textPositionY"
-                v-model="chengeTextPositionY"
+                :placeholder="getTextPositionY"
+                v-model="changeTextPositionY"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="chengeTextPositionY">
+              <input class="text-posipion__range" type="range" min="0" max="275" v-model="changeTextPositionY">
             </div>
           </div>
         </div>
@@ -139,19 +139,6 @@ export default {
     BaseInput
   },
   props: {
-    textPositionY: {
-      type: String
-    },
-    textPositionX: {
-      type: String
-    },
-    textRotare: {
-      type: String
-    },
-    printText: {
-      type: String,
-      required: true
-    },
     optionsColors: {
       type: Array
     },
@@ -199,43 +186,49 @@ export default {
     },
     optionsFont (option) {
       this.$emit('optionsFont', option)
-    },
-    changeDragPositionY () {
-      this.$emit('changeDragPositionY', this.PositionY)
     }
   },
   computed: {
-    createPrintText: {
+    chengePrintText: {
       get () {
-        return this.printText
-      },
-      set (value) {
-        this.$emit('update:printText', value)
-      }
-    },
-    chengeTextRotate: {
-      get () {
-        return this.textRotare
+        return this.$store.state.printText
       },
       set (val) {
-        this.$emit('update:textRotare', val)
+        this.$store.commit('upgradePrintText', val)
       }
     },
-    chengeTextPositionX: {
+    changeTextPositionX: {
       get () {
-        return this.textPositionX
+        return this.$store.state.textPositionX
       },
       set (val) {
-        this.$emit('update:textPositionX', val)
+        this.$store.commit('updateTextPositionX', val)
       }
     },
-    chengeTextPositionY: {
+    changeTextPositionY: {
       get () {
-        return this.textPositionY
+        return this.$store.state.textPositionY
       },
       set (val) {
-        this.$emit('update:textPositionY', val)
+        this.$store.commit('updateTextPositionY', val)
       }
+    },
+    changeTextRotate: {
+      get () {
+        return this.$store.state.textRotate
+      },
+      set (val) {
+        this.$store.commit('updateTextRotate', val)
+      }
+    },
+    getTextRotate () {
+      return this.$store.getters.getTextRotate
+    },
+    getTextPositionX () {
+      return this.$store.getters.getTextPositionX
+    },
+    getTextPositionY () {
+      return this.$store.getters.getTextPositionY
     }
   }
 }

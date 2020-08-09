@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import TypeText from './optionsEditTextAndStateComponents/Index'
-import OptionsText from './dataTextOptions/index'
+import TypeTextVariables from './optionsEditTextAndStateComponents/TypeTextComponentVariables.js'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
@@ -8,6 +8,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
     TypeText,
-    OptionsText
+    TypeTextVariables
   }
 })

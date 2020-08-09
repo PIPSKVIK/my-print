@@ -38,10 +38,6 @@
           Добавить текст
         </button>
         <TypeText
-          :printText.sync="printText"
-          :textRotare.sync="textRotare"
-          :textPositionX.sync="textPositionX"
-          :textPositionY.sync="textPositionY"
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
           :allTypeFontFamily="allTypeFontFamily"
@@ -71,8 +67,8 @@
               'text-underline__active': isTextUnderlineActive,
               'text-transform__active': isTextTransformActive
             }"
-            :style="[ changeTextValue, changeFotSize, rotateStyle, changePosition, changeTextFonts ]"
-            > {{ printText }}
+            :style="[ changeTextValue, changeFotSize, changePosition, changeTextFonts, rotateStyle ]"
+            > {{ getPrintText }}
           </p>
           <div class="constructor-right__subjects-selected">
             <img :src="getImgUrl(typeSubjects)" alt="img" width="300" height="250">
@@ -114,14 +110,10 @@ export default {
       typeSubjects: 'image-men-t-shirt.jpg',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      textRotare: '0',
-      textPositionX: '120',
-      textPositionY: '120',
       selectedTextValue: '#000000',
       selectedName: 'black',
       selectedSize: 14,
       selectFonts: '',
-      printText: 'Ваш Текст',
       isTextFontWeightActive: false,
       isTextFontStyleActive: false,
       isTextUnderlineActive: false,
@@ -156,11 +148,15 @@ export default {
       'allOptionsColors',
       'allOptionsSize',
       'allTypeSize',
-      'allTypeFontFamily'
+      'allTypeFontFamily',
+      'getPrintText',
+      'getTextPositionX',
+      'getTextPositionY',
+      'getTextRotate'
     ]),
     rotateStyle () {
       return {
-        transform: 'rotate(' + this.textRotare + 'deg)'
+        transform: 'rotate(' + this.getTextRotate + 'deg)'
       }
     },
     changeTextValue () {
@@ -175,8 +171,8 @@ export default {
     },
     changePosition () {
       return {
-        top: this.textPositionY + 'px',
-        left: this.textPositionX + 'px'
+        top: this.getTextPositionX + 'px',
+        left: this.getTextPositionY + 'px'
       }
     },
     changeTextFonts () {

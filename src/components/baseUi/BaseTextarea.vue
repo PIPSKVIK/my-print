@@ -5,7 +5,6 @@
       class="form-control"
       :name="name"
       :id="name"
-      :value="value"
       @input="$emit('input', $event.target.value)"
       :rows="rows"
     >
@@ -25,7 +24,7 @@ export default {
     value: {
       required: false,
       type: String,
-      default: null
+      default: ''
     }
   },
   computed: {
