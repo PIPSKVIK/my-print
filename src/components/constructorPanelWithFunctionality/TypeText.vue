@@ -11,6 +11,7 @@
             v-model="chengePrintText"
           />
         </div>
+
         <!-- кнопки управлением Начертиание -->
         <div class="typeface btn-toolbar" role="toolbar">
           <div class="btn-group btn-group-sm" role="group" aria-label="First group">
@@ -96,7 +97,7 @@
                 :placeholder="getTextPositionX"
                 v-model="changeTextPositionX"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="changeTextPositionX">
+              <input class="text-posipion__range" type="range" min="0" max="420" v-model="changeTextPositionX">
             </div>
             <div class="text-posipion__position-x">
               <BaseInput
@@ -106,7 +107,7 @@
                 :placeholder="getTextPositionY"
                 v-model="changeTextPositionY"
               />
-              <input class="text-posipion__range" type="range" min="0" max="275" v-model="changeTextPositionY">
+              <input class="text-posipion__range" type="range" min="0" max="300" v-model="changeTextPositionY">
             </div>
           </div>
         </div>

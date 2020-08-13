@@ -60,33 +60,47 @@
     <section class="constructor-right">
       <div class="constructor-right__first-block">
         <div class="constructor-right__text-block">
-          <p class="constructor-right__text"
-            :class="{
-              'font-weight__active': isTextFontWeightActive,
-              'font-style__active': isTextFontStyleActive,
-              'text-underline__active': isTextUnderlineActive,
-              'text-transform__active': isTextTransformActive
-            }"
-            :style="[ changeTextValue, changeFotSize, changePosition, changeTextFonts, rotateStyle ]"
-            > {{ getPrintText }}
-          </p>
           <div class="constructor-right__subjects-selected">
-            <img :src="getImgUrl(typeSubjects)" alt="img" width="300" height="250">
+            <img :src="getImgUrl(typeSubjects)" alt="img" width="500" height="450">
+            <p class="constructor-right__text"
+              :class="{
+                'font-weight__active': isTextFontWeightActive,
+                'font-style__active': isTextFontStyleActive,
+                'text-underline__active': isTextUnderlineActive,
+                'text-transform__active': isTextTransformActive
+              }"
+              :style="[ changeTextValue, changeFotSize, changePosition, changeTextFonts, rotateStyle ]"
+              > {{ getPrintText }}
+            </p>
           </div>
         </div>
-        <div class="constructor-right__size">
-          <h5 class="constructor-right__size-title">Тип размера:</h5>
-          <ul class="constructor-right__size-list">
-            <li
-              v-for="size in typeSizes"
-              :key="size.id"
-              class="constructor-right__size-item"
-            > {{ size }} </li>
-          </ul>
+        <div class="constructor-right__block-info">
+          <div class="constructor-right__size">
+            <h5 class="constructor-right__size-title">Тип размера:</h5>
+            <ul class="constructor-right__size-list">
+              <li
+                v-for="size in typeSizes"
+                :key="size.id"
+                class="constructor-right__size-item"
+              > {{ size }} </li>
+            </ul>
+          </div>
+          <div class="constructor-right__color">
+            <h5 class="constructor-right__color-title">Выбранные цвета:</h5>
+            <ul class="constructor-right__colot-list">
+              <li
+                class="constructor-right__color-item"
+                v-for="(color, id) in currentColors"
+                :key="id"
+              >
+                <div
+                  class="constructor-right__color-style"
+                  :style="{ backgroundColor: color }"
+                ></div>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div class="constructor-right__clothes-block">
-        <svg :style="{ 'fill': typeColor }" fill="#ffffff" id="tshirt" enable-background="new 0 0 512 512" height="300" width="300" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><g><path d="m361 37.591v97.409h-90v90h-30v-90h-90v-97.409l-151 40.934v146.475h61v-90h30v377h330v-377h30v90h61v-146.475z"/><path d="m331 105v-79.193l-56.566 79.193z"/><path d="m181 25.807v79.193h56.566z"/><path d="m312.566 0h-113.132l56.566 79.193z"/></g></svg>
       </div>
     </section>
   </div>
@@ -186,14 +200,6 @@ export default {
 
 <style lang="scss" scoped>
 
-  .constructor-right__text {
-    white-space: pre-line;
-    position: absolute;
-    top: 140px;
-    left: 130px;
-    margin: 0;
-  }
-
 // <компонент выбора типа одежды
   .subjects {
     display: flex;
@@ -224,11 +230,47 @@ export default {
 
   // Холст с текстом
   .constructor-right__text-block {
-    width: 300px;
-    height: 300px;
-    border: 2px dashed green;
+    display: flex;
+    justify-content: center;
+  }
+
+  .constructor-right__subjects-selected {
+    width: 450px;
     text-align: center;
     position: relative;
+  }
+
+  .constructor-right__text {
+    white-space: pre-line;
+    position: absolute;
+    top: 140px;
+    left: 130px;
+    margin: 0;
+  }
+
+  .constructor-right__color {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+  }
+
+  .constructor-right__color-style {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    margin: 3px 3px 0 0;
+  }
+
+  .constructor-right__colot-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .constructor-right__color-title {
+    color: #ffffff;
   }
 
   // классы управляющие начертанием текста
@@ -259,12 +301,17 @@ export default {
   }
 
   // лист размеров одежды
-  .constructor-right__size {
-    width: 100%;
+  .constructor-right__block-info {
     min-height: 80px;
     background: #7e7d7d;
     margin-top: 20px;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .constructor-right__size {
+    width: 50%;
   }
 
   .constructor-right__size-list {
@@ -287,6 +334,10 @@ export default {
 
   .constructor-right__size-title {
     color: #ffffff;
+  }
+
+  .constructor-right__first-block {
+    width: 100%;
   }
 
 </style>

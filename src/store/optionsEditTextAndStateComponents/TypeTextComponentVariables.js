@@ -1,8 +1,8 @@
 export default {
   state: {
     printText: 'Ваш Текст',
-    textPositionX: '120',
-    textPositionY: '120',
+    textPositionX: '203',
+    textPositionY: '192',
     textRotate: '0'
   },
   mutations: {
