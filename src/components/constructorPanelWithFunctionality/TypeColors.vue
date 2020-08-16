@@ -38,6 +38,11 @@ export default {
   model: {
     prop: 'color'
   },
+  data () {
+    return {
+      text: []
+    }
+  },
   props: {
     color: {
       type: String,
