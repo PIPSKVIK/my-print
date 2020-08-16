@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse" id="collapseExample2">
+  <div class="collapse" id="typeColor">
     <div class="type-color">
       <div>
         <ul class="color-list">

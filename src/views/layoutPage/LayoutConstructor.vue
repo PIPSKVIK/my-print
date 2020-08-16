@@ -3,18 +3,18 @@
     <section class="constructor-left">
       <!-- <<< компонент выбора типа одежды -->
       <div class="layout-constructor__type-subjects">
-        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="true" aria-controls="collapseExample">
-          Выбор одежды
-        </button>
+        <BaseCollapseButton dataTarget="#typeSubjects">
+          <template>Выбор Одежды</template>
+        </BaseCollapseButton>
         <TypeSubjects
           v-model="typeSubjects"
         />
       </div>
       <!-- <<< компонент выбор цыетов -->
       <div class="layout-constructor__type-colors">
-        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+        <BaseCollapseButton dataTarget="#typeColor">
           Выбор цвета
-        </button>
+        </BaseCollapseButton>
         <TypeColors
           v-model="typeColor"
           :currentColors="currentColors"
@@ -23,9 +23,9 @@
       </div>
       <!-- <<< компонент выбора размера -->
       <div class="layout-constructor__type-size">
-        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample">
+        <BaseCollapseButton dataTarget="#typeSize">
           Выбор размера
-        </button>
+        </BaseCollapseButton>
         <TypeSizes
           class="constructor-left__sizes"
           :allTypeSize="allTypeSize"
@@ -34,9 +34,9 @@
       </div>
       <!-- Компонент выбора текста -->
       <div class="layout-constructor__type-text">
-        <button class="btn btn-info btn-sm btn-block" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample">
-          Добавить текст
-        </button>
+        <BaseCollapseButton dataTarget="#typeText">
+          Выбор текста
+        </BaseCollapseButton>
         <TypeText
           :allOptionsColors="allOptionsColors"
           :allOptionsSize="allOptionsSize"
@@ -108,6 +108,7 @@
 
 <script>
 import { TypeSizes, TypeColors, TypeSubjects, TypeText } from '@/components/constructorPanelWithFunctionality'
+import { BaseCollapseButton } from '@/components/baseBootstrapComponents'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -116,7 +117,8 @@ export default {
     TypeSizes,
     TypeColors,
     TypeSubjects,
-    TypeText
+    TypeText,
+    BaseCollapseButton
   },
   data () {
     return {

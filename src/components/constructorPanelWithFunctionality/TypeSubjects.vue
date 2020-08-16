@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse" id="collapseExample1">
+  <div class="collapse" id="typeSubjects">
     <div class="subjects">
       <div class="subjects-type">
         <BaseRadio

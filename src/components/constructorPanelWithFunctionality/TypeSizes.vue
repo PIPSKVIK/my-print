@@ -1,5 +1,5 @@
 <template>
-  <div class="collapse" id="collapseExample3">
+  <div class="collapse" id="typeSize">
     <div class="type-size">
       <div class="size">
         <ul class="size__list">

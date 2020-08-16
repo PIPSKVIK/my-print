@@ -1,6 +1,6 @@
 <template>
   <div class="type-text">
-    <div class="collapse" id="collapseExample4">
+    <div class="collapse" id="typeText">
       <div class="type-text__content-wrapper">
         <div class="type-text__section-textarea">
         <!-- поле ввода основного текста -->
