@@ -1,128 +1,126 @@
 <template>
   <div class="type-text">
-    <div class="collapse" id="typeText">
-      <div class="type-text__content-wrapper">
-        <div class="type-text__section-textarea">
-        <!-- поле ввода основного текста -->
-          <BaseTextarea
-            name="Text"
-            class="type-text__textarea"
-            placeholder="Введите ваш текст"
-            v-model="chengePrintText"
-          />
-        </div>
+    <div class="type-text__content-wrapper">
+      <div class="type-text__section-textarea">
+      <!-- поле ввода основного текста -->
+        <BaseTextarea
+          name="Text"
+          class="type-text__textarea"
+          placeholder="Введите ваш текст"
+          v-model="chengePrintText"
+        />
+      </div>
 
-        <!-- кнопки управлением Начертиание -->
-        <div class="typeface btn-toolbar" role="toolbar">
-          <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-            <BaseButton
-              theme="secondary"
-              class="typeface-weight"
-              @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
-              :class="{ standartButtonActive: isButtonWeightActive }"
-            >
-              B
-            </BaseButton>
-            <BaseButton
-              theme="secondary"
-              class="typeface-italic"
-              @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
-              :class="{ standartButtonActive: isButtonItalicActive }"
-            >
-              I
-            </BaseButton>
-            <BaseButton
-              theme="secondary"
-              class="typeface-underline"
-              @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
-              :class="{ standartButtonActive: isButtonUnderlineActive }"
-            >
-              K
-            </BaseButton>
-            <BaseButton
-              theme="secondary"
-              class="typeface-uppercase"
-              @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
-              :class="{ standartButtonActive: isButtonUppercaseActive }"
-            >
-              U
-            </BaseButton>
+      <!-- кнопки управлением Начертиание -->
+      <div class="typeface btn-toolbar" role="toolbar">
+        <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+          <BaseButton
+            theme="secondary"
+            class="typeface-weight"
+            @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
+            :class="{ standartButtonActive: isButtonWeightActive }"
+          >
+            B
+          </BaseButton>
+          <BaseButton
+            theme="secondary"
+            class="typeface-italic"
+            @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
+            :class="{ standartButtonActive: isButtonItalicActive }"
+          >
+            I
+          </BaseButton>
+          <BaseButton
+            theme="secondary"
+            class="typeface-underline"
+            @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
+            :class="{ standartButtonActive: isButtonUnderlineActive }"
+          >
+            K
+          </BaseButton>
+          <BaseButton
+            theme="secondary"
+            class="typeface-uppercase"
+            @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
+            :class="{ standartButtonActive: isButtonUppercaseActive }"
+          >
+            U
+          </BaseButton>
+        </div>
+      </div>
+
+      <!-- select выбора цвета -->
+      <div class="type-text__section-select">
+        <BaseSelect
+          @select="optionsColor"
+          :options="allOptionsColors"
+          class="type-text"
+        >
+          <template v-slot:title>
+            <span>Цвет: </span>
+            <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
+            <span class="tepe-text__name"> {{ selectedName }} </span>
+          </template>
+        </BaseSelect>
+        <!-- select - выбор размера шрифта -->
+        <BaseSelect
+          @select="optionsSize"
+          :options="allOptionsSize"
+          class="type-size"
+        >
+          <template v-slot:title>
+            <span>Размер: </span>
+            <span class="type-size__name"> {{ selectedSize }} </span>
+          </template>
+        </BaseSelect>
+      </div>
+
+      <!-- Позиционирование текста -->
+      <div class="type-text__text-posipion">
+        <div class="text-posipion">
+          <div class="text-posipion__position-deg">
+            <BaseInput
+              name="TextRotate"
+              type="text"
+              class="text-posipion__input-rotate"
+              :placeholder="getTextRotate"
+              v-model="changeTextRotate"
+            />
+            <input class="text-posipion__range" type="range" min="-180" max="180" v-model="changeTextRotate">
+          </div>
+          <div class="text-posipion__position-x">
+            <BaseInput
+              name="positioX"
+              type="text"
+              class="text-posipion__input-positioX"
+              :placeholder="getTextPositionX"
+              v-model="changeTextPositionX"
+            />
+            <input class="text-posipion__range" type="range" min="0" max="420" v-model="changeTextPositionX">
+          </div>
+          <div class="text-posipion__position-x">
+            <BaseInput
+              name="positioY"
+              type="text"
+              class="text-posipion__input-positioY"
+              :placeholder="getTextPositionY"
+              v-model="changeTextPositionY"
+            />
+            <input class="text-posipion__range" type="range" min="0" max="300" v-model="changeTextPositionY">
           </div>
         </div>
-
-        <!-- select выбора цвета -->
-        <div class="type-text__section-select">
-          <BaseSelect
-            @select="optionsColor"
-            :options="allOptionsColors"
-            class="type-text"
-          >
-            <template v-slot:title>
-              <span>Цвет: </span>
-              <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
-              <span class="tepe-text__name"> {{ selectedName }} </span>
-            </template>
-          </BaseSelect>
-          <!-- select - выбор размера шрифта -->
-          <BaseSelect
-            @select="optionsSize"
-            :options="allOptionsSize"
-            class="type-size"
-          >
-            <template v-slot:title>
-              <span>Размер: </span>
-              <span class="type-size__name"> {{ selectedSize }} </span>
-            </template>
-          </BaseSelect>
-        </div>
-
-        <!-- Позиционирование текста -->
-        <div class="type-text__text-posipion">
-          <div class="text-posipion">
-            <div class="text-posipion__position-deg">
-              <BaseInput
-                name="TextRotate"
-                type="text"
-                class="text-posipion__input-rotate"
-                :placeholder="getTextRotate"
-                v-model="changeTextRotate"
-              />
-              <input class="text-posipion__range" type="range" min="-180" max="180" v-model="changeTextRotate">
-            </div>
-            <div class="text-posipion__position-x">
-              <BaseInput
-                name="positioX"
-                type="text"
-                class="text-posipion__input-positioX"
-                :placeholder="getTextPositionX"
-                v-model="changeTextPositionX"
-              />
-              <input class="text-posipion__range" type="range" min="0" max="420" v-model="changeTextPositionX">
-            </div>
-            <div class="text-posipion__position-x">
-              <BaseInput
-                name="positioY"
-                type="text"
-                class="text-posipion__input-positioY"
-                :placeholder="getTextPositionY"
-                v-model="changeTextPositionY"
-              />
-              <input class="text-posipion__range" type="range" min="0" max="300" v-model="changeTextPositionY">
-            </div>
-          </div>
-        </div>
-        <!-- Тип шрифта -->
-        <div class="type-text__fonts">
-          <BaseSelect
-            :options="allTypeFontFamily"
-            @select="optionsFont"
-          >
-            <template v-slot:title>
-              <span>Шрифт: </span>
-              <span class="type-text__fonts-name"> {{ selectFonts }} </span>
-            </template>
-          </BaseSelect>
-        </div>
+      </div>
+      <!-- Тип шрифта -->
+      <div class="type-text__fonts">
+        <BaseSelect
+          :options="allTypeFontFamily"
+          @select="optionsFont"
+        >
+          <template v-slot:title>
+            <span>Шрифт: </span>
+            <span class="type-text__fonts-name"> {{ selectFonts }} </span>
+          </template>
+        </BaseSelect>
       </div>
     </div>
   </div>

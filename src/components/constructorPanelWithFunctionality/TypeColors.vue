@@ -1,28 +1,26 @@
 <template>
-  <div class="collapse" id="typeColor">
-    <div class="type-color">
-      <div>
-        <ul class="color-list">
-          <li v-for="(currentColor, index) in currentColors" :key="index">
-            <div class="current-color" :style="{ 'background': currentColor }"></div>
-          </li>
-        </ul>
-        <BaseButton
-          @click="$emit('saveCurrentColor')"
-          size="small"
-          class="type-color__button"
-          v-if="hideAddColorButton"
-        >
-          Добавить
-        </BaseButton>
-      </div>
-      <BaseColor
-        type="color"
-        v-model="changeColor"
-        label="Цвет:"
-        class="type-color__input"
-      />
+  <div class="type-color">
+    <div>
+      <ul class="color-list">
+        <li v-for="(currentColor, index) in currentColors" :key="index">
+          <div class="current-color" :style="{ 'background': currentColor }"></div>
+        </li>
+      </ul>
+      <BaseButton
+        @click="$emit('saveCurrentColor')"
+        size="small"
+        class="type-color__button"
+        v-if="hideAddColorButton"
+      >
+        Добавить
+      </BaseButton>
     </div>
+    <BaseColor
+      type="color"
+      v-model="changeColor"
+      label="Цвет:"
+      class="type-color__input"
+    />
   </div>
 </template>
 

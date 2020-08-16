@@ -1,18 +1,16 @@
 <template>
-  <div class="collapse" id="typeSubjects">
-    <div class="subjects">
-      <div class="subjects-type">
-        <BaseRadio
-          label="М-Майка"
-          value="image-men-t-shirt.jpg"
-          v-model="changeSubjects"
-        />
-        <BaseRadio
-          label="Ж-Майка"
-          value="image-womens-t-shirt.jpg"
-          v-model="changeSubjects"
-        />
-      </div>
+  <div class="subjects">
+    <div class="subjects-type">
+      <BaseRadio
+        label="М-Майка"
+        value="image-men-t-shirt.jpg"
+        v-model="changeSubjects"
+      />
+      <BaseRadio
+        label="Ж-Майка"
+        value="image-womens-t-shirt.jpg"
+        v-model="changeSubjects"
+      />
     </div>
   </div>
 </template>

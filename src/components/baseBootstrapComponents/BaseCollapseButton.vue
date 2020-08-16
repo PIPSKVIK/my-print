@@ -5,7 +5,7 @@
     data-toggle="collapse"
     aria-expanded="true"
     aria-controls="collapseExample"
-    :data-target="dataTarget"
+    :data-target="dataTargetId"
   >
     <slot></slot>
   </button>
@@ -19,6 +19,11 @@ export default {
     dataTarget: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    dataTargetId () {
+      return '#' + this.dataTarget
     }
   }
 }

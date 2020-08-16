@@ -1,22 +1,20 @@
 <template>
-  <div class="collapse" id="typeSize">
-    <div class="type-size">
-      <div class="size">
-        <ul class="size__list">
-          <li
-            v-for="item in allTypeSize"
-            :key="item.id"
-            class="size__item"
-          >
-            <BaseCheckbox
-              :label="item.name"
-              :item="item.name"
-              v-model="selectSizes"
-              @input="selectTypeSize"
-            />
-          </li>
-        </ul>
-      </div>
+  <div class="type-size">
+    <div class="size">
+      <ul class="size__list">
+        <li
+          v-for="item in allTypeSize"
+          :key="item.id"
+          class="size__item"
+        >
+          <BaseCheckbox
+            :label="item.name"
+            :item="item.name"
+            v-model="selectSizes"
+            @input="selectTypeSize"
+          />
+        </li>
+      </ul>
     </div>
   </div>
 </template>

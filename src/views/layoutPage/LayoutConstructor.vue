@@ -2,58 +2,66 @@
   <div class="layout-constructor">
     <section class="constructor-left">
       <!-- <<< компонент выбора типа одежды -->
-      <div class="layout-constructor__type-subjects">
-        <BaseCollapseButton dataTarget="#typeSubjects">
-          <template>Выбор Одежды</template>
-        </BaseCollapseButton>
-        <TypeSubjects
-          v-model="typeSubjects"
-        />
-      </div>
+      <ConstructorItem
+        class="layout-constructor__type-subjects"
+        buttonCollapseName="Выбор одежды"
+        dataTarget="typeSubjects">
+        <template>
+          <TypeSubjects
+            v-model="typeSubjects"
+          />
+        </template>
+      </ConstructorItem>
       <!-- <<< компонент выбор цыетов -->
-      <div class="layout-constructor__type-colors">
-        <BaseCollapseButton dataTarget="#typeColor">
-          Выбор цвета
-        </BaseCollapseButton>
-        <TypeColors
-          v-model="typeColor"
-          :currentColors="currentColors"
-          @saveCurrentColor="saveCurrentColor"
-        />
-      </div>
+      <ConstructorItem
+        class="layout-constructor__type-colors"
+        buttonCollapseName="Выбор цветов"
+        dataTarget="typeColor">
+        <template>
+          <TypeColors
+            v-model="typeColor"
+            :currentColors="currentColors"
+            @saveCurrentColor="saveCurrentColor"
+          />
+        </template>
+      </ConstructorItem>
       <!-- <<< компонент выбора размера -->
-      <div class="layout-constructor__type-size">
-        <BaseCollapseButton dataTarget="#typeSize">
-          Выбор размера
-        </BaseCollapseButton>
-        <TypeSizes
-          class="constructor-left__sizes"
-          :allTypeSize="allTypeSize"
-          @selectTypeSize="selectTypeSize"
-        />
-      </div>
+      <ConstructorItem
+        class="layout-constructor__type-size"
+        buttonCollapseName="Выбор размера"
+        dataTarget="typeSize">
+        <template>
+          <TypeSizes
+            class="constructor-left__sizes"
+            :allTypeSize="allTypeSize"
+            @selectTypeSize="selectTypeSize"
+          />
+        </template>
+      </ConstructorItem>
       <!-- Компонент выбора текста -->
-      <div class="layout-constructor__type-text">
-        <BaseCollapseButton dataTarget="#typeText">
-          Выбор текста
-        </BaseCollapseButton>
-        <TypeText
-          :allOptionsColors="allOptionsColors"
-          :allOptionsSize="allOptionsSize"
-          :allTypeFontFamily="allTypeFontFamily"
-          @optionsColor="optionsColor"
-          @optionsSize="optionsSize"
-          @optionsFont="optionsFont"
-          :selectedName="selectedName"
-          :selectedTextValue="selectedTextValue"
-          :selectedSize="selectedSize"
-          :selectFonts="selectFonts"
-          @chengeTextFontWeight="isTextFontWeightActive = !isTextFontWeightActive"
-          @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
-          @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
-          @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
-        />
-      </div>
+      <ConstructorItem
+        class="layout-constructor__type-text"
+        buttonCollapseName="Выбор текста"
+        dataTarget="typeText">
+        <template>
+          <TypeText
+            :allOptionsColors="allOptionsColors"
+            :allOptionsSize="allOptionsSize"
+            :allTypeFontFamily="allTypeFontFamily"
+            @optionsColor="optionsColor"
+            @optionsSize="optionsSize"
+            @optionsFont="optionsFont"
+            :selectedName="selectedName"
+            :selectedTextValue="selectedTextValue"
+            :selectedSize="selectedSize"
+            :selectFonts="selectFonts"
+            @chengeTextFontWeight="isTextFontWeightActive = !isTextFontWeightActive"
+            @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
+            @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
+            @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
+          />
+        </template>
+      </ConstructorItem>
     </section>
 
     <!-- Правая сторона экрана конструктора -->
@@ -107,8 +115,7 @@
 </template>
 
 <script>
-import { TypeSizes, TypeColors, TypeSubjects, TypeText } from '@/components/constructorPanelWithFunctionality'
-import { BaseCollapseButton } from '@/components/baseBootstrapComponents'
+import { TypeSizes, TypeColors, TypeSubjects, TypeText, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -118,7 +125,7 @@ export default {
     TypeColors,
     TypeSubjects,
     TypeText,
-    BaseCollapseButton
+    ConstructorItem
   },
   data () {
     return {
