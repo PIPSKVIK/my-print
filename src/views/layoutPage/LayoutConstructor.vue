@@ -48,17 +48,14 @@
             :allOptionsColors="allOptionsColors"
             :allOptionsSize="allOptionsSize"
             :allTypeFontFamily="allTypeFontFamily"
-            @optionsColor="optionsColor"
-            @optionsSize="optionsSize"
-            @optionsFont="optionsFont"
-            :selectedName="selectedName"
-            :selectedTextValue="selectedTextValue"
+            @changeOption="changeOption"
+            :selectedColor="selectedColor"
             :selectedSize="selectedSize"
-            :selectFonts="selectFonts"
-            @chengeTextFontWeight="isTextFontWeightActive = !isTextFontWeightActive"
-            @chengeTextFontStyle="isTextFontStyleActive = !isTextFontStyleActive"
-            @chengeTextUnderline="isTextUnderlineActive = !isTextUnderlineActive"
-            @chengeTextTransform="isTextTransformActive = !isTextTransformActive"
+            :selectedFonts="selectedFonts"
+            @change-text-font-weight="isTextFontWeightActive = !isTextFontWeightActive"
+            @change-text-font-style="isTextFontStyleActive = !isTextFontStyleActive"
+            @change-text-underline="isTextUnderlineActive = !isTextUnderlineActive"
+            @change-text-transform="isTextTransformActive = !isTextTransformActive"
           />
         </template>
       </ConstructorItem>
@@ -133,10 +130,9 @@ export default {
       typeSubjects: 'image-men-t-shirt.jpg',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      selectedTextValue: '#000000',
-      selectedName: 'black',
+      selectedColor: '#000000',
       selectedSize: 14,
-      selectFonts: '',
+      selectedFonts: '',
       isTextFontWeightActive: false,
       isTextFontStyleActive: false,
       isTextUnderlineActive: false,
@@ -149,15 +145,8 @@ export default {
         this.currentColors.push(this.typeColor)
       }
     },
-    optionsColor (option) {
-      this.selectedTextValue = option.value
-      this.selectedName = option.name
-    },
-    optionsSize (option) {
-      this.selectedSize = option.value
-    },
-    optionsFont (option) {
-      this.selectFonts = option.value
+    changeOption ({ type, event }) {
+      this[`selected${type}`] = event.value
     },
     selectTypeSize (value) {
       this.typeSizes = value
@@ -184,7 +173,7 @@ export default {
     },
     changeTextValue () {
       return {
-        color: this.selectedTextValue
+        color: this.selectedColor
       }
     },
     changeFotSize () {
@@ -200,7 +189,7 @@ export default {
     },
     changeTextFonts () {
       return {
-        'font-family': this.selectFonts
+        'font-family': this.selectedFonts
       }
     }
   }
@@ -208,7 +197,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 // <компонент выбора типа одежды
   .subjects {
     display: flex;

@@ -17,7 +17,7 @@
           <BaseButton
             theme="secondary"
             class="typeface-weight"
-            @click="$emit('chengeTextFontWeight'), isButtonWeightActive = !isButtonWeightActive"
+            @click="$emit('change-text-font-weight'), isButtonWeightActive = !isButtonWeightActive"
             :class="{ standartButtonActive: isButtonWeightActive }"
           >
             B
@@ -25,7 +25,7 @@
           <BaseButton
             theme="secondary"
             class="typeface-italic"
-            @click="$emit('chengeTextFontStyle'), isButtonItalicActive = !isButtonItalicActive"
+            @click="$emit('change-text-font-style'), isButtonItalicActive = !isButtonItalicActive"
             :class="{ standartButtonActive: isButtonItalicActive }"
           >
             I
@@ -33,7 +33,7 @@
           <BaseButton
             theme="secondary"
             class="typeface-underline"
-            @click="$emit('chengeTextUnderline'), isButtonUnderlineActive = !isButtonUnderlineActive"
+            @click="$emit('change-text-underline'), isButtonUnderlineActive = !isButtonUnderlineActive"
             :class="{ standartButtonActive: isButtonUnderlineActive }"
           >
             K
@@ -41,7 +41,7 @@
           <BaseButton
             theme="secondary"
             class="typeface-uppercase"
-            @click="$emit('chengeTextTransform'), isButtonUppercaseActive = !isButtonUppercaseActive"
+            @click="$emit('change-text-transform'), isButtonUppercaseActive = !isButtonUppercaseActive"
             :class="{ standartButtonActive: isButtonUppercaseActive }"
           >
             U
@@ -52,19 +52,19 @@
       <!-- select выбора цвета -->
       <div class="type-text__section-select">
         <BaseSelect
-          @select="optionsColor"
+          @select="changeOption('Color', $event)"
           :options="allOptionsColors"
           class="type-text"
         >
           <template v-slot:title>
             <span>Цвет: </span>
-            <div class="type-text__color" :style="{ 'background': selectedTextValue }"></div>
-            <span class="tepe-text__name"> {{ selectedName }} </span>
+            <div class="type-text__color" :style="{ 'background': selectedColor }"></div>
+            <span class="tepe-text__name"> {{ selectedColor }} </span>
           </template>
         </BaseSelect>
         <!-- select - выбор размера шрифта -->
         <BaseSelect
-          @select="optionsSize"
+          @select="changeOption('Size', $event)"
           :options="allOptionsSize"
           class="type-size"
         >
@@ -76,37 +76,37 @@
       </div>
 
       <!-- Позиционирование текста -->
-      <div class="type-text__text-posipion">
-        <div class="text-posipion">
-          <div class="text-posipion__position-deg">
+      <div class="type-text__text-position">
+        <div class="text-position">
+          <div class="text-position__position-deg">
             <BaseInput
               name="TextRotate"
               type="text"
-              class="text-posipion__input-rotate"
+              class="text-position__input-rotate"
               :placeholder="getTextRotate"
               v-model="changeTextRotate"
             />
-            <input class="text-posipion__range" type="range" min="-180" max="180" v-model="changeTextRotate">
+            <input class="text-position__range" type="range" min="-180" max="180" v-model="changeTextRotate">
           </div>
-          <div class="text-posipion__position-x">
+          <div class="text-position__position-x">
             <BaseInput
               name="positioX"
               type="text"
-              class="text-posipion__input-positioX"
+              class="text-position__input-positioX"
               :placeholder="getTextPositionX"
               v-model="changeTextPositionX"
             />
-            <input class="text-posipion__range" type="range" min="0" max="420" v-model="changeTextPositionX">
+            <input class="text-position__range" type="range" min="0" max="420" v-model="changeTextPositionX">
           </div>
-          <div class="text-posipion__position-x">
+          <div class="text-position__position-x">
             <BaseInput
               name="positioY"
               type="text"
-              class="text-posipion__input-positioY"
+              class="text-position__input-positioY"
               :placeholder="getTextPositionY"
               v-model="changeTextPositionY"
             />
-            <input class="text-posipion__range" type="range" min="0" max="300" v-model="changeTextPositionY">
+            <input class="text-position__range" type="range" min="0" max="300" v-model="changeTextPositionY">
           </div>
         </div>
       </div>
@@ -114,11 +114,11 @@
       <div class="type-text__fonts">
         <BaseSelect
           :options="allTypeFontFamily"
-          @select="optionsFont"
+          @select="changeOption('Fonts', $event)"
         >
           <template v-slot:title>
             <span>Шрифт: </span>
-            <span class="type-text__fonts-name"> {{ selectFonts }} </span>
+            <span class="type-text__fonts-name"> {{ selectedFonts }} </span>
           </template>
         </BaseSelect>
       </div>
@@ -151,17 +151,13 @@ export default {
     allTypeFontFamily: {
       type: Array
     },
-    selectedName: {
+    selectedColor: {
       type: String
-    },
-    selectedTextValue: {
-      type: String,
-      default: ''
     },
     selectedSize: {
       type: Number
     },
-    selectFonts: {
+    selectedFonts: {
       type: String
     }
   },
@@ -178,14 +174,8 @@ export default {
     }
   },
   methods: {
-    optionsColor (option) {
-      this.$emit('optionsColor', option)
-    },
-    optionsSize (option) {
-      this.$emit('optionsSize', option)
-    },
-    optionsFont (option) {
-      this.$emit('optionsFont', option)
+    changeOption (type, event) {
+      this.$emit('changeOption', { type, event })
     }
   },
   computed: {
@@ -302,19 +292,19 @@ export default {
     margin-bottom: 10px;
   }
 
-  .text-posipion__input-rotate,
-  .text-posipion__input-positioX,
-  .text-posipion__input-positioY {
+  .text-position__input-rotate,
+  .text-position__input-positioX,
+  .text-position__input-positioY {
     width: 80px;
   }
 
-  .text-posipion__position-x,
-  .text-posipion__position-x,
-  .text-posipion__position-deg {
+  .text-position__position-x,
+  .text-position__position-x,
+  .text-position__position-deg {
     display: flex;
   }
 
-  .text-posipion__range {
+  .text-position__range {
     margin: 20px 0 0 10px;
   }
 

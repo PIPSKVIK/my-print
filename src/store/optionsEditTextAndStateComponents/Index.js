@@ -54,6 +54,8 @@ export default {
     allTypeFontFamily (state) {
       return state.typeFontFamily
     },
-    getSubjectsList: state => state.subjectsList
+    getSubjectsList (state) {
+      return state.subjectsList
+    }
   }
 }
