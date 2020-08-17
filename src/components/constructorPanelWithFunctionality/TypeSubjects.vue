@@ -2,13 +2,10 @@
   <div class="subjects">
     <div class="subjects-type">
       <BaseRadio
-        label="М-Майка"
-        value="image-men-t-shirt.jpg"
-        v-model="changeSubjects"
-      />
-      <BaseRadio
-        label="Ж-Майка"
-        value="image-womens-t-shirt.jpg"
+        v-for="item in getSubjectsList"
+        :key="item.id"
+        :label="item.label"
+        :value="item.img"
         v-model="changeSubjects"
       />
     </div>
@@ -17,6 +14,7 @@
 
 <script>
 import { BaseRadio } from '@/components/baseUi'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'TypeSubjects',
@@ -39,7 +37,10 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
-    }
+    },
+    ...mapGetters([
+      'getSubjectsList'
+    ])
   }
 }
 </script>

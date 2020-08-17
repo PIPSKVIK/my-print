@@ -34,7 +34,10 @@ export default {
       { name: 'Oswald', value: 'Oswald' },
       { name: 'Ruslan Display', value: 'Ruslan Display' }
     ],
-    testStateData: 'Test'
+    subjectsList: [
+      { id: 1, label: 'М-Майка', img: 'image-men-t-shirt.jpg' },
+      { id: 2, label: 'Ж-Майка', img: 'image-womens-t-shirt.jpg' }
+    ]
   },
   mutations: {},
   actions: {},
@@ -50,6 +53,7 @@ export default {
     },
     allTypeFontFamily (state) {
       return state.typeFontFamily
-    }
+    },
+    getSubjectsList: state => state.subjectsList
   }
 }
