@@ -17,32 +17,32 @@
           <BaseButton
             theme="secondary"
             class="typeface-weight"
-            @click="$emit('change-text-font-weight'), isButtonWeightActive = !isButtonWeightActive"
-            :class="{ standartButtonActive: isButtonWeightActive }"
+            @click="changeTextStyle('Weight')"
+            :class="{ standartButtonActive: textStyleWeight }"
           >
             B
           </BaseButton>
           <BaseButton
             theme="secondary"
             class="typeface-italic"
-            @click="$emit('change-text-font-style'), isButtonItalicActive = !isButtonItalicActive"
-            :class="{ standartButtonActive: isButtonItalicActive }"
+            @click="changeTextStyle('Italic')"
+            :class="{ standartButtonActive: textStyleItalic }"
           >
             I
           </BaseButton>
           <BaseButton
             theme="secondary"
             class="typeface-underline"
-            @click="$emit('change-text-underline'), isButtonUnderlineActive = !isButtonUnderlineActive"
-            :class="{ standartButtonActive: isButtonUnderlineActive }"
+            @click="changeTextStyle('Underline')"
+            :class="{ standartButtonActive: textStyleUnderline }"
           >
             K
           </BaseButton>
           <BaseButton
             theme="secondary"
             class="typeface-uppercase"
-            @click="$emit('change-text-transform'), isButtonUppercaseActive = !isButtonUppercaseActive"
-            :class="{ standartButtonActive: isButtonUppercaseActive }"
+            @click="changeTextStyle('Uppercase')"
+            :class="{ standartButtonActive: textStyleUppercase }"
           >
             U
           </BaseButton>
@@ -163,10 +163,10 @@ export default {
   },
   data () {
     return {
-      isButtonWeightActive: false,
-      isButtonItalicActive: false,
-      isButtonUnderlineActive: false,
-      isButtonUppercaseActive: false,
+      textStyleWeight: false,
+      textStyleItalic: false,
+      textStyleUnderline: false,
+      textStyleUppercase: false,
       selectColors: '',
       options: [
         { text: 'white', color: '#fff' }
@@ -176,6 +176,13 @@ export default {
   methods: {
     changeOption (type, event) {
       this.$emit('changeOption', { type, event })
+    },
+    changeTextStyle (type) {
+      const prop = this[`textStyle${type}`]
+      const value = !prop
+
+      this[`textStyle${type}`] = value
+      this.$emit('changeTextStyle', { type, value })
     }
   },
   computed: {

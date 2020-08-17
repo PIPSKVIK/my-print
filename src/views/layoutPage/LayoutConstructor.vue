@@ -52,10 +52,7 @@
             :selectedColor="selectedColor"
             :selectedSize="selectedSize"
             :selectedFonts="selectedFonts"
-            @change-text-font-weight="isTextFontWeightActive = !isTextFontWeightActive"
-            @change-text-font-style="isTextFontStyleActive = !isTextFontStyleActive"
-            @change-text-underline="isTextUnderlineActive = !isTextUnderlineActive"
-            @change-text-transform="isTextTransformActive = !isTextTransformActive"
+            @changeTextStyle="changeTextStyle"
           />
         </template>
       </ConstructorItem>
@@ -69,10 +66,10 @@
             <img :src="getImgUrl(typeSubjects)" alt="img" width="500" height="450">
             <p class="constructor-right__text"
               :class="{
-                'font-weight__active': isTextFontWeightActive,
-                'font-style__active': isTextFontStyleActive,
-                'text-underline__active': isTextUnderlineActive,
-                'text-transform__active': isTextTransformActive
+                'font-weight__active': textStyleWeight,
+                'font-style__active': textStyleItalic,
+                'text-underline__active': textStyleUnderline,
+                'text-transform__active': textStyleUppercase
               }"
               :style="[ changeTextValue, changeFotSize, changePosition, changeTextFonts, rotateStyle ]"
               > {{ getPrintText }}
@@ -133,10 +130,10 @@ export default {
       selectedColor: '#000000',
       selectedSize: 14,
       selectedFonts: '',
-      isTextFontWeightActive: false,
-      isTextFontStyleActive: false,
-      isTextUnderlineActive: false,
-      isTextTransformActive: false
+      textStyleWeight: false,
+      textStyleItalic: false,
+      textStyleUnderline: false,
+      textStyleUppercase: false
     }
   },
   methods: {
@@ -147,6 +144,9 @@ export default {
     },
     changeOption ({ type, event }) {
       this[`selected${type}`] = event.value
+    },
+    changeTextStyle ({ type, value }) {
+      this[`textStyle${type}`] = value
     },
     selectTypeSize (value) {
       this.typeSizes = value
