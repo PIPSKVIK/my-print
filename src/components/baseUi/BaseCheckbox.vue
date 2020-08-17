@@ -28,11 +28,6 @@ export default {
       default: 'Label'
     }
   },
-  data () {
-    return {
-      checkedP: false
-    }
-  },
   computed: {
     checked: {
       get () {
@@ -47,20 +42,18 @@ export default {
 </script>
 
 <style lang="scss">
+.base-caheckbox__label {
+  margin: 0;
+  color: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
 
-  .base-caheckbox__label {
-    margin: 0;
-    color: #0a0a0a;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 16px;
-    font-weight: bold;
-  }
-
-  .base-caheckbox__item {
-    width: 30px;
-    height: 30px;
-  }
-
+.base-caheckbox__item {
+  width: 30px;
+  height: 30px;
+}
 </style>

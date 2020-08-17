@@ -11,7 +11,6 @@
             :label="item.name"
             :item="item.name"
             v-model="selectSizes"
-            @input="selectTypeSize"
           />
         </li>
       </ul>
@@ -27,7 +26,6 @@ export default {
   components: {
     BaseCheckbox
   },
-  inheritAttrs: false,
   props: {
     allTypeSize: {
       type: Array,
@@ -39,9 +37,9 @@ export default {
       selectSizes: []
     }
   },
-  methods: {
-    selectTypeSize () {
-      this.$emit('selectTypeSize', this.selectSizes)
+  watch: {
+    selectSizes (val) {
+      this.$emit('selectTypeSize', val)
     }
   }
 }

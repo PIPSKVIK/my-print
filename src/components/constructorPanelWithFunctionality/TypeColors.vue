@@ -1,13 +1,25 @@
 <template>
   <div class="type-color">
-    <div>
-      <ul class="color-list">
-        <li v-for="(currentColor, index) in currentColors" :key="index">
-          <div class="current-color" :style="{ 'background': currentColor }"></div>
-        </li>
-      </ul>
+    <ul class="color-list">
+      <li
+        v-for="(currentColor, index) in currentColors"
+        :key="index"
+      >
+        <div
+          class="current-color"
+          :style="{ 'background': currentColor }">
+        </div>
+      </li>
+    </ul>
+    <div class="color-elements">
+      <BaseColor
+        type="color"
+        v-model="changeColor"
+        label="Цвет:"
+        class="type-color__input"
+      />
       <BaseButton
-        @click="$emit('saveCurrentColor')"
+        @click="$emit('save-current-color')"
         size="small"
         class="type-color__button"
         v-if="hideAddColorButton"
@@ -15,12 +27,6 @@
         Добавить
       </BaseButton>
     </div>
-    <BaseColor
-      type="color"
-      v-model="changeColor"
-      label="Цвет:"
-      class="type-color__input"
-    />
   </div>
 </template>
 
@@ -67,17 +73,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .type-color__button {
+    height: 50px;
+  }
 
   .type-color {
     padding: 10px;
     margin: 10px;
     background: #adccae;
     border-radius: 10px;
-    color: #ffffff;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .type-color__input {
@@ -85,21 +89,12 @@ export default {
     padding: 10px;
   }
 
-  .type-color__button {
-    margin-bottom: 20px;
-    position: absolute;
-    left: 10px;
-    bottom: 4px;
-  }
-
   .color-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 0 20px 0;
     padding: 0;
     list-style: none;
-    width: 250px;
   }
 
   .color-btn {
@@ -114,4 +109,9 @@ export default {
     margin: 3px 3px 0 0;
   }
 
+  .color-elements {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 </style>

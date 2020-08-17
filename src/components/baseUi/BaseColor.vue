@@ -5,12 +5,11 @@
     </label>
     <input
       v-bind="$attrs"
-      :type="type"
+      type="color"
       :name="name"
       :id="name"
       class="form-control"
       @input="$emit('input', $event.target.value)"
-      @blur="$emit('blur', $event.target.value)"
     >
   </div>
 </template>
@@ -31,11 +30,6 @@ export default {
     value: {
       required: false,
       type: String
-    },
-    type: {
-      required: true,
-      type: String,
-      default: 'color'
     }
   }
 }

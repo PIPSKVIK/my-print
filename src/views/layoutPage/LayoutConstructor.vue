@@ -21,7 +21,7 @@
           <TypeColors
             v-model="typeColor"
             :currentColors="currentColors"
-            @saveCurrentColor="saveCurrentColor"
+            @save-current-color="saveCurrentColor"
           />
         </template>
       </ConstructorItem>
