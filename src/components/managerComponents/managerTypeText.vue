@@ -4,7 +4,6 @@
       :allOptionsColors="allOptionsColors"
       :allOptionsSize="allOptionsSize"
       :allTypeFontFamily="allTypeFontFamily"
-      @changeTextStyle="changeTextStyle"
     />
   </div>
 </template>
@@ -17,11 +16,6 @@ export default {
   name: 'managerTypeText',
   components: {
     TypeText
-  },
-  methods: {
-    changeTextStyle ({ type, value }) {
-      this[`textStyle${type}`] = value
-    }
   },
   computed: {
     ...mapGetters([

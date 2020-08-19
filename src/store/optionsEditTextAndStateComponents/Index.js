@@ -40,21 +40,37 @@ export default {
     ],
     selectedColor: '#000000',
     selectedSize: 14,
-    selectedFonts: ''
+    selectedFonts: '',
+    textStyleWeight: false,
+    textStyleItalic: false,
+    textStyleUnderline: false,
+    textStyleUppercase: false
   },
   mutations: {
-    changeSelectedSize (state, val) {
-      state.selectedSize = val
+    changeTextStyle (state, type) {
+      const prop = state[`textStyle${type}`]
+      const value = !prop
+
+      state[`textStyle${type}`] = value
     },
-    changeSelectedColor (state, val) {
-      state.selectedColor = val
-    },
-    changeSelectedFonts (state, val) {
-      state.selectedFonts = val
+    changeSelectedOptions (state, { type, event }) {
+      state[`selected${type}`] = event.value
     }
   },
   actions: {},
   getters: {
+    getTextStyleWeight (state) {
+      return state.textStyleWeight
+    },
+    getTextStyleItalic (state) {
+      return state.textStyleItalic
+    },
+    getTextStyleUnderline (state) {
+      return state.textStyleUnderline
+    },
+    getTextStyleUppercase (state) {
+      return state.textStyleUppercase
+    },
     getSelectedColor (state) {
       return state.selectedColor
     },

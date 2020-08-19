@@ -12,47 +12,12 @@
       </div>
 
       <!-- кнопки управлением Начертиание -->
-      <div class="typeface btn-toolbar" role="toolbar">
-        <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-          <BaseButton
-            theme="secondary"
-            class="typeface-weight"
-            @click="changeTextStyle('Weight')"
-            :class="{ standartButtonActive: textStyleWeight }"
-          >
-            B
-          </BaseButton>
-          <BaseButton
-            theme="secondary"
-            class="typeface-italic"
-            @click="changeTextStyle('Italic')"
-            :class="{ standartButtonActive: textStyleItalic }"
-          >
-            I
-          </BaseButton>
-          <BaseButton
-            theme="secondary"
-            class="typeface-underline"
-            @click="changeTextStyle('Underline')"
-            :class="{ standartButtonActive: textStyleUnderline }"
-          >
-            K
-          </BaseButton>
-          <BaseButton
-            theme="secondary"
-            class="typeface-uppercase"
-            @click="changeTextStyle('Uppercase')"
-            :class="{ standartButtonActive: textStyleUppercase }"
-          >
-            U
-          </BaseButton>
-        </div>
-      </div>
+      <BaseFontStyleOptionsButton/>
 
-      <!-- select выбора цвета -->
+      <!-- select выбора цвета и Шрифтов -->
       <div class="type-text__section-select">
         <BaseSelect
-          @select="$store.commit('changeSelectedColor', $event.value)"
+          @select="changeSelectedOptions('Color', $event)"
           :options="allOptionsColors"
           class="type-text"
         >
@@ -62,9 +27,9 @@
             <span class="tepe-text__name"> {{ getSelectedColor }} </span>
           </template>
         </BaseSelect>
-        <!-- select - выбор размера шрифта -->
+
         <BaseSelect
-          @select="$store.commit('changeSelectedSize', $event.value)"
+          @select="changeSelectedOptions('Size', $event)"
           :options="allOptionsSize"
           class="type-size"
         >
@@ -114,7 +79,7 @@
       <div class="type-text__fonts">
         <BaseSelect
           :options="allTypeFontFamily"
-          @select="$store.commit('changeSelectedFonts', $event.value)"
+          @select="changeSelectedOptions('Fonts', $event)"
         >
           <template v-slot:title>
             <span>Шрифт: </span>
@@ -127,7 +92,8 @@
 </template>
 
 <script>
-import { BaseTextarea, BaseSelect, BaseButton, BaseInput } from '@/components/baseUi'
+import { BaseTextarea, BaseSelect, BaseInput } from '@/components/baseUi'
+import { BaseFontStyleOptionsButton } from '@/components/baseBootstrapComponents'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -135,8 +101,8 @@ export default {
   components: {
     BaseTextarea,
     BaseSelect,
-    BaseButton,
-    BaseInput
+    BaseInput,
+    BaseFontStyleOptionsButton
   },
   props: {
     allOptionsColors: {
@@ -151,20 +117,12 @@ export default {
   },
   data () {
     return {
-      textStyleWeight: false,
-      textStyleItalic: false,
-      textStyleUnderline: false,
-      textStyleUppercase: false,
       selectColors: ''
     }
   },
   methods: {
-    changeTextStyle (type) {
-      const prop = this[`textStyle${type}`]
-      const value = !prop
-
-      this[`textStyle${type}`] = value
-      this.$emit('changeTextStyle', { type, value })
+    changeSelectedOptions (type, event) {
+      this.$store.commit('changeSelectedOptions', { type, event })
     }
   },
   computed: {
@@ -251,22 +209,6 @@ export default {
 
   .type-size__name {
     margin-left: 10px;
-  }
-
-  .typeface-weight {
-    font-weight: bold;
-  }
-
-  .typeface-italic {
-    font-style: italic;
-  }
-
-  .typeface-underline {
-    text-decoration: underline;
-  }
-
-  .typeface-uppercase {
-    text-transform: uppercase;
   }
 
   .standartButtonActive {

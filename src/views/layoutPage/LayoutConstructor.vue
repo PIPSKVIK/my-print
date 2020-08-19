@@ -57,10 +57,10 @@
             <img :src="getImgUrl(typeSubjects)" alt="img" width="500" height="450">
             <p class="constructor-right__text"
               :class="{
-                'font-weight__active': textStyleWeight,
-                'font-style__active': textStyleItalic,
-                'text-underline__active': textStyleUnderline,
-                'text-transform__active': textStyleUppercase
+                'font-weight__active': getTextStyleWeight,
+                'font-style__active': getTextStyleItalic,
+                'text-underline__active': getTextStyleUnderline,
+                'text-transform__active': getTextStyleUppercase
               }"
               :style="[ changeTextColor, changeFontSize, changePosition, changeTextFonts, rotateStyle ]"
               > {{ getPrintText }}
@@ -118,11 +118,7 @@ export default {
       typeColor: '#000000',
       typeSubjects: 'image-men-t-shirt.jpg',
       typeSizes: '',
-      currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      textStyleWeight: false,
-      textStyleItalic: false,
-      textStyleUnderline: false,
-      textStyleUppercase: false
+      currentColors: ['#000000', '#aa55aa', '#ffffff']
     }
   },
   methods: {
@@ -147,7 +143,11 @@ export default {
       'getTextRotate',
       'getSelectedSize',
       'getSelectedColor',
-      'getSelectedFonts'
+      'getSelectedFonts',
+      'getTextStyleWeight',
+      'getTextStyleItalic',
+      'getTextStyleUnderline',
+      'getTextStyleUppercase'
     ]),
     rotateStyle () {
       return {
