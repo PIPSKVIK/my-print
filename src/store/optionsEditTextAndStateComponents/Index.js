@@ -37,11 +37,33 @@ export default {
     subjectsList: [
       { id: 1, label: 'М-Майка', img: 'image-men-t-shirt.jpg' },
       { id: 2, label: 'Ж-Майка', img: 'image-womens-t-shirt.jpg' }
-    ]
+    ],
+    selectedColor: '#000000',
+    selectedSize: 14,
+    selectedFonts: ''
   },
-  mutations: {},
+  mutations: {
+    changeSelectedSize (state, val) {
+      state.selectedSize = val
+    },
+    changeSelectedColor (state, val) {
+      state.selectedColor = val
+    },
+    changeSelectedFonts (state, val) {
+      state.selectedFonts = val
+    }
+  },
   actions: {},
   getters: {
+    getSelectedColor (state) {
+      return state.selectedColor
+    },
+    getSelectedSize (state) {
+      return state.selectedSize
+    },
+    getSelectedFonts (state) {
+      return state.selectedFonts
+    },
     allOptionsColors (state) {
       return state.optionsColors
     },

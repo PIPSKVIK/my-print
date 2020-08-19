@@ -50,7 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   .base-options {
     position: relative;
   }

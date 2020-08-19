@@ -44,21 +44,12 @@
         buttonCollapseName="Выбор текста"
         dataTarget="typeText">
         <template>
-          <TypeText
-            :allOptionsColors="allOptionsColors"
-            :allOptionsSize="allOptionsSize"
-            :allTypeFontFamily="allTypeFontFamily"
-            @changeOption="changeOption"
-            :selectedColor="selectedColor"
-            :selectedSize="selectedSize"
-            :selectedFonts="selectedFonts"
-            @changeTextStyle="changeTextStyle"
-          />
+          <managerTypeText></managerTypeText>
         </template>
       </ConstructorItem>
     </section>
 
-    <!-- Правая сторона экрана конструктора -->
+    <!-- ПРАВАЯ СТОРОНА ЭКРАНА КОНСТРУКТОРА -->
     <section class="constructor-right">
       <div class="constructor-right__first-block">
         <div class="constructor-right__text-block">
@@ -71,7 +62,7 @@
                 'text-underline__active': textStyleUnderline,
                 'text-transform__active': textStyleUppercase
               }"
-              :style="[ changeTextValue, changeFotSize, changePosition, changeTextFonts, rotateStyle ]"
+              :style="[ changeTextColor, changeFontSize, changePosition, changeTextFonts, rotateStyle ]"
               > {{ getPrintText }}
             </p>
           </div>
@@ -109,7 +100,8 @@
 </template>
 
 <script>
-import { TypeSizes, TypeColors, TypeSubjects, TypeText, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
+import { TypeSizes, TypeColors, TypeSubjects, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
+import managerTypeText from '@/components/managerComponents/managerTypeText'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -118,8 +110,8 @@ export default {
     TypeSizes,
     TypeColors,
     TypeSubjects,
-    TypeText,
-    ConstructorItem
+    ConstructorItem,
+    managerTypeText
   },
   data () {
     return {
@@ -127,9 +119,6 @@ export default {
       typeSubjects: 'image-men-t-shirt.jpg',
       typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff'],
-      selectedColor: '#000000',
-      selectedSize: 14,
-      selectedFonts: '',
       textStyleWeight: false,
       textStyleItalic: false,
       textStyleUnderline: false,
@@ -142,12 +131,6 @@ export default {
         this.currentColors.push(this.typeColor)
       }
     },
-    changeOption ({ type, event }) {
-      this[`selected${type}`] = event.value
-    },
-    changeTextStyle ({ type, value }) {
-      this[`textStyle${type}`] = value
-    },
     selectTypeSize (value) {
       this.typeSizes = value
     },
@@ -157,28 +140,28 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'allOptionsColors',
-      'allOptionsSize',
       'allTypeSize',
-      'allTypeFontFamily',
       'getPrintText',
       'getTextPositionX',
       'getTextPositionY',
-      'getTextRotate'
+      'getTextRotate',
+      'getSelectedSize',
+      'getSelectedColor',
+      'getSelectedFonts'
     ]),
     rotateStyle () {
       return {
         transform: 'rotate(' + this.getTextRotate + 'deg)'
       }
     },
-    changeTextValue () {
+    changeTextColor () {
       return {
-        color: this.selectedColor
+        color: this.getSelectedColor
       }
     },
-    changeFotSize () {
+    changeFontSize () {
       return {
-        'font-size': this.selectedSize + 'px'
+        'font-size': this.getSelectedSize + 'px'
       }
     },
     changePosition () {
@@ -189,7 +172,7 @@ export default {
     },
     changeTextFonts () {
       return {
-        'font-family': this.selectedFonts
+        'font-family': this.getSelectedFonts
       }
     }
   }

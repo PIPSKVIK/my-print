@@ -52,25 +52,25 @@
       <!-- select выбора цвета -->
       <div class="type-text__section-select">
         <BaseSelect
-          @select="changeOption('Color', $event)"
+          @select="$store.commit('changeSelectedColor', $event.value)"
           :options="allOptionsColors"
           class="type-text"
         >
           <template v-slot:title>
             <span>Цвет: </span>
-            <div class="type-text__color" :style="{ 'background': selectedColor }"></div>
-            <span class="tepe-text__name"> {{ selectedColor }} </span>
+            <div class="type-text__color" :style="{ 'background': getSelectedColor }"></div>
+            <span class="tepe-text__name"> {{ getSelectedColor }} </span>
           </template>
         </BaseSelect>
         <!-- select - выбор размера шрифта -->
         <BaseSelect
-          @select="changeOption('Size', $event)"
+          @select="$store.commit('changeSelectedSize', $event.value)"
           :options="allOptionsSize"
           class="type-size"
         >
           <template v-slot:title>
             <span>Размер: </span>
-            <span class="type-size__name"> {{ selectedSize }} </span>
+            <span class="type-size__name"> {{ getSelectedSize }} </span>
           </template>
         </BaseSelect>
       </div>
@@ -114,11 +114,11 @@
       <div class="type-text__fonts">
         <BaseSelect
           :options="allTypeFontFamily"
-          @select="changeOption('Fonts', $event)"
+          @select="$store.commit('changeSelectedFonts', $event.value)"
         >
           <template v-slot:title>
             <span>Шрифт: </span>
-            <span class="type-text__fonts-name"> {{ selectedFonts }} </span>
+            <span class="type-text__fonts-name"> {{ getSelectedFonts }} </span>
           </template>
         </BaseSelect>
       </div>
@@ -139,9 +139,6 @@ export default {
     BaseInput
   },
   props: {
-    optionsColors: {
-      type: Array
-    },
     allOptionsColors: {
       type: Array
     },
@@ -150,15 +147,6 @@ export default {
     },
     allTypeFontFamily: {
       type: Array
-    },
-    selectedColor: {
-      type: String
-    },
-    selectedSize: {
-      type: Number
-    },
-    selectedFonts: {
-      type: String
     }
   },
   data () {
@@ -167,16 +155,10 @@ export default {
       textStyleItalic: false,
       textStyleUnderline: false,
       textStyleUppercase: false,
-      selectColors: '',
-      options: [
-        { text: 'white', color: '#fff' }
-      ]
+      selectColors: ''
     }
   },
   methods: {
-    changeOption (type, event) {
-      this.$emit('changeOption', { type, event })
-    },
     changeTextStyle (type) {
       const prop = this[`textStyle${type}`]
       const value = !prop
@@ -221,14 +203,16 @@ export default {
     ...mapGetters([
       'getTextRotate',
       'getTextPositionX',
-      'getTextPositionY'
+      'getTextPositionY',
+      'getSelectedSize',
+      'getSelectedColor',
+      'getSelectedFonts'
     ])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
   .type-text__content-wrapper {
     padding: 10px;
     background: #adccae;
