@@ -11,43 +11,10 @@
         />
       </div>
       <!-- кнопки управлением Начертиание -->
-      <BaseFontStyleOptionsButton/>
+      <BaseFontStyleOptionsButton />
 
       <!-- Позиционирование текста -->
-      <div class="type-text__text-position">
-        <div class="text-position">
-          <div class="text-position__position-deg">
-            <BaseInput
-              name="TextRotate"
-              type="text"
-              class="text-position__input-rotate"
-              :placeholder="getTextRotate"
-              v-model="changeTextRotate"
-            />
-            <input class="text-position__range" type="range" min="-180" max="180" v-model="changeTextRotate">
-          </div>
-          <div class="text-position__position-x">
-            <BaseInput
-              name="positioX"
-              type="text"
-              class="text-position__input-positioX"
-              :placeholder="getTextPositionX"
-              v-model="changeTextPositionX"
-            />
-            <input class="text-position__range" type="range" min="0" max="420" v-model="changeTextPositionX">
-          </div>
-          <div class="text-position__position-x">
-            <BaseInput
-              name="positioY"
-              type="text"
-              class="text-position__input-positioY"
-              :placeholder="getTextPositionY"
-              v-model="changeTextPositionY"
-            />
-            <input class="text-position__range" type="range" min="0" max="300" v-model="changeTextPositionY">
-          </div>
-        </div>
-      </div>
+      <managetTextPositionAndRotate class="type-text__text-position"/>
 
       <!-- select выбора Цветов, Размеров, Шрифтов -->
       <managerBaseSelectTextOptions class="type-text__section-select"/>
@@ -56,23 +23,18 @@
 </template>
 
 <script>
-import { BaseTextarea, BaseInput } from '@/components/baseUi'
+import { BaseTextarea } from '@/components/baseUi'
 import { BaseFontStyleOptionsButton } from '@/components/baseBootstrapComponents'
 import managerBaseSelectTextOptions from '@/components/managerComponents/managerBaseSelectTextOptions'
-import { mapGetters } from 'vuex'
+import managetTextPositionAndRotate from '@/components/managerComponents/managetTextPositionAndRotate'
 
 export default {
   name: 'TypeText',
   components: {
     BaseTextarea,
-    BaseInput,
     BaseFontStyleOptionsButton,
-    managerBaseSelectTextOptions
-  },
-  data () {
-    return {
-      selectColors: ''
-    }
+    managerBaseSelectTextOptions,
+    managetTextPositionAndRotate
   },
   computed: {
     chengePrintText: {
@@ -82,36 +44,7 @@ export default {
       set (val) {
         this.$store.commit('upgradePrintText', val)
       }
-    },
-    changeTextPositionX: {
-      get () {
-        return this.$store.state.textPositionX
-      },
-      set (val) {
-        this.$store.commit('updateTextPositionX', val)
-      }
-    },
-    changeTextPositionY: {
-      get () {
-        return this.$store.state.textPositionY
-      },
-      set (val) {
-        this.$store.commit('updateTextPositionY', val)
-      }
-    },
-    changeTextRotate: {
-      get () {
-        return this.$store.state.textRotate
-      },
-      set (val) {
-        this.$store.commit('updateTextRotate', val)
-      }
-    },
-    ...mapGetters([
-      'getTextRotate',
-      'getTextPositionX',
-      'getTextPositionY'
-    ])
+    }
   }
 }
 </script>
@@ -159,22 +92,6 @@ export default {
 
   .type-text__section-textarea {
     margin-bottom: 10px;
-  }
-
-  .text-position__input-rotate,
-  .text-position__input-positioX,
-  .text-position__input-positioY {
-    width: 80px;
-  }
-
-  .text-position__position-x,
-  .text-position__position-x,
-  .text-position__position-deg {
-    display: flex;
-  }
-
-  .text-position__range {
-    margin: 20px 0 0 10px;
   }
 
 </style>
