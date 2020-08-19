@@ -10,35 +10,8 @@
           v-model="chengePrintText"
         />
       </div>
-
       <!-- кнопки управлением Начертиание -->
       <BaseFontStyleOptionsButton/>
-
-      <!-- select выбора цвета и Шрифтов -->
-      <div class="type-text__section-select">
-        <BaseSelect
-          @select="changeSelectedOptions('Color', $event)"
-          :options="allOptionsColors"
-          class="type-text"
-        >
-          <template v-slot:title>
-            <span>Цвет: </span>
-            <div class="type-text__color" :style="{ 'background': getSelectedColor }"></div>
-            <span class="tepe-text__name"> {{ getSelectedColor }} </span>
-          </template>
-        </BaseSelect>
-
-        <BaseSelect
-          @select="changeSelectedOptions('Size', $event)"
-          :options="allOptionsSize"
-          class="type-size"
-        >
-          <template v-slot:title>
-            <span>Размер: </span>
-            <span class="type-size__name"> {{ getSelectedSize }} </span>
-          </template>
-        </BaseSelect>
-      </div>
 
       <!-- Позиционирование текста -->
       <div class="type-text__text-position">
@@ -75,54 +48,30 @@
           </div>
         </div>
       </div>
-      <!-- Тип шрифта -->
-      <div class="type-text__fonts">
-        <BaseSelect
-          :options="allTypeFontFamily"
-          @select="changeSelectedOptions('Fonts', $event)"
-        >
-          <template v-slot:title>
-            <span>Шрифт: </span>
-            <span class="type-text__fonts-name"> {{ getSelectedFonts }} </span>
-          </template>
-        </BaseSelect>
-      </div>
+
+      <!-- select выбора Цветов, Размеров, Шрифтов -->
+      <managerBaseSelectTextOptions class="type-text__section-select"/>
     </div>
   </div>
 </template>
 
 <script>
-import { BaseTextarea, BaseSelect, BaseInput } from '@/components/baseUi'
+import { BaseTextarea, BaseInput } from '@/components/baseUi'
 import { BaseFontStyleOptionsButton } from '@/components/baseBootstrapComponents'
+import managerBaseSelectTextOptions from '@/components/managerComponents/managerBaseSelectTextOptions'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'TypeText',
   components: {
     BaseTextarea,
-    BaseSelect,
     BaseInput,
-    BaseFontStyleOptionsButton
-  },
-  props: {
-    allOptionsColors: {
-      type: Array
-    },
-    allOptionsSize: {
-      type: Array
-    },
-    allTypeFontFamily: {
-      type: Array
-    }
+    BaseFontStyleOptionsButton,
+    managerBaseSelectTextOptions
   },
   data () {
     return {
       selectColors: ''
-    }
-  },
-  methods: {
-    changeSelectedOptions (type, event) {
-      this.$store.commit('changeSelectedOptions', { type, event })
     }
   },
   computed: {
@@ -161,10 +110,7 @@ export default {
     ...mapGetters([
       'getTextRotate',
       'getTextPositionX',
-      'getTextPositionY',
-      'getSelectedSize',
-      'getSelectedColor',
-      'getSelectedFonts'
+      'getTextPositionY'
     ])
   }
 }
@@ -177,12 +123,6 @@ export default {
     min-height: 530px;
     margin: 10px;
     border-radius: 10px;
-  }
-
-  .type-text__section-select {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
   }
 
   .rotate {
@@ -204,10 +144,6 @@ export default {
   }
 
   .tepe-text__name {
-    margin-left: 10px;
-  }
-
-  .type-size__name {
     margin-left: 10px;
   }
 
@@ -239,14 +175,6 @@ export default {
 
   .text-position__range {
     margin: 20px 0 0 10px;
-  }
-
-  .type-text__fonts {
-    margin-top: 40px;
-  }
-
-  .type-text__fonts-name {
-    margin-left: 10px;
   }
 
 </style>
