@@ -13,7 +13,7 @@ import { mapGetters } from 'vuex'
 import { TypeText } from '@/components/constructorPanelWithFunctionality'
 
 export default {
-  name: 'managerTypeText',
+  name: 'TypeTextManager',
   components: {
     TypeText
   },

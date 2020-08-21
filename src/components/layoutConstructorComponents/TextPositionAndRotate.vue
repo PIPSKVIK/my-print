@@ -35,7 +35,7 @@ import { BaseInput } from '@/components/baseUi'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'managetTextPositionAndRotate',
+  name: 'TextPositionAndRotate',
   components: {
     BaseInput
   },

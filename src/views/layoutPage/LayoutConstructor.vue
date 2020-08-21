@@ -44,7 +44,7 @@
         buttonCollapseName="Выбор текста"
         dataTarget="typeText">
         <template>
-          <managerTypeText></managerTypeText>
+          <TypeTextManager />
         </template>
       </ConstructorItem>
     </section>
@@ -101,7 +101,7 @@
 
 <script>
 import { TypeSizes, TypeColors, TypeSubjects, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
-import managerTypeText from '@/components/managerComponents/managerTypeText'
+import TypeTextManager from '@/components/managerComponents/TypeTextManager'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -111,7 +111,7 @@ export default {
     TypeColors,
     TypeSubjects,
     ConstructorItem,
-    managerTypeText
+    TypeTextManager
   },
   data () {
     return {

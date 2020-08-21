@@ -42,7 +42,7 @@ import { BaseButton } from '@/components/baseUi'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'BaseFontStyleOptionsButton',
+  name: 'FontStyleOptionsButton',
   components: {
     BaseButton
   },

@@ -38,7 +38,7 @@ import { BaseSelect } from '@/components/baseUi'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'managerBaseSelectTextOptions',
+  name: 'SelectTextOptionsColorFontSize',
   components: {
     BaseSelect
   },
