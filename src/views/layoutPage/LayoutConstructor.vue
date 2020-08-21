@@ -20,8 +20,8 @@
         <template>
           <TypeColors
             v-model="changeTypeColor"
-            :currentColors="currentColors"
-            @save-current-color="saveCurrentColor"
+            :getCurrentColors="getCurrentColors"
+            @save-current-color="$store.commit('saveCurrentColor')"
           />
         </template>
       </ConstructorItem>
@@ -83,7 +83,7 @@
             <ul class="constructor-right__colot-list">
               <li
                 class="constructor-right__color-item"
-                v-for="(color, id) in currentColors"
+                v-for="(color, id) in getCurrentColors"
                 :key="id"
               >
                 <div
@@ -113,17 +113,7 @@ export default {
     ConstructorItem,
     TypeTextManager
   },
-  data () {
-    return {
-      currentColors: ['#000000', '#aa55aa', '#ffffff']
-    }
-  },
   methods: {
-    saveCurrentColor () {
-      if (!this.currentColors.includes(this.getTypeColor)) {
-        this.currentColors.push(this.getTypeColor)
-      }
-    },
     getImgUrl (img) {
       return require(`@/assets/image/constructor/${img}`)
     },
@@ -147,7 +137,8 @@ export default {
       'getTextStyleUppercase',
       'getTypeSubjects',
       'getTypeColor',
-      'getTypeSubjectsSizes'
+      'getTypeSubjectsSizes',
+      'getCurrentColors'
     ]),
     rotateStyle () {
       return {

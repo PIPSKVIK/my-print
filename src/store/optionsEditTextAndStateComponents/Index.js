@@ -47,7 +47,8 @@ export default {
     textStyleUppercase: false,
     typeSubjects: 'image-men-t-shirt.jpg',
     typeColor: '#000000',
-    typeSubjectsSizes: ''
+    typeSubjectsSizes: '',
+    currentColors: ['#000000', '#aa55aa', '#ffffff']
   },
   mutations: {
     changeTextStyle (state, type) {
@@ -67,6 +68,11 @@ export default {
     },
     changeTypeSubjectSize (state, value) {
       state.typeSubjectsSizes = value
+    },
+    saveCurrentColor (state) {
+      if (!state.currentColors.includes(state.typeColor)) {
+        state.currentColors.push(state.typeColor)
+      }
     }
   },
   actions: {},
@@ -115,6 +121,9 @@ export default {
     },
     getTypeSubjectsSizes (state) {
       return state.typeSubjectsSizes
+    },
+    getCurrentColors (state) {
+      return state.currentColors
     }
   }
 }

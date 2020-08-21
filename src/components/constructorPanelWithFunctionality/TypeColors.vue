@@ -2,7 +2,7 @@
   <div class="type-color">
     <ul class="color-list">
       <li
-        v-for="(currentColor, index) in currentColors"
+        v-for="(currentColor, index) in getCurrentColors"
         :key="index"
       >
         <div
@@ -52,7 +52,7 @@ export default {
       type: String,
       default: '#000000'
     },
-    currentColors: {
+    getCurrentColors: {
       type: Array
     }
   },
@@ -66,7 +66,7 @@ export default {
       }
     },
     hideAddColorButton () {
-      return !this.currentColors.includes(this.color)
+      return !this.getCurrentColors.includes(this.color)
     }
   }
 }
