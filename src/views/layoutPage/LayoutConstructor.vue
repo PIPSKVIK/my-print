@@ -8,7 +8,7 @@
         dataTarget="typeSubjects">
         <template>
           <TypeSubjects
-            v-model="typeSubjects"
+            v-model="changeTypeSubjects"
           />
         </template>
       </ConstructorItem>
@@ -19,7 +19,7 @@
         dataTarget="typeColor">
         <template>
           <TypeColors
-            v-model="typeColor"
+            v-model="changeTypeColor"
             :currentColors="currentColors"
             @save-current-color="saveCurrentColor"
           />
@@ -38,7 +38,7 @@
           />
         </template>
       </ConstructorItem>
-      <!-- Компонент выбора текста -->
+      <!-- <<< Компонент выбора текста -->
       <ConstructorItem
         class="layout-constructor__type-text"
         buttonCollapseName="Выбор текста"
@@ -54,7 +54,7 @@
       <div class="constructor-right__first-block">
         <div class="constructor-right__text-block">
           <div class="constructor-right__subjects-selected">
-            <img :src="getImgUrl(typeSubjects)" alt="img" width="500" height="450">
+            <img :src="getImgUrl(getTypeSubjects)" alt="img" width="500" height="450">
             <p class="constructor-right__text"
               :class="{
                 'font-weight__active': getTextStyleWeight,
@@ -72,7 +72,7 @@
             <h5 class="constructor-right__size-title">Тип размера:</h5>
             <ul class="constructor-right__size-list">
               <li
-                v-for="size in typeSizes"
+                v-for="size in getTypeSubjectsSizes"
                 :key="size.id"
                 class="constructor-right__size-item"
               > {{ size }} </li>
@@ -115,23 +115,20 @@ export default {
   },
   data () {
     return {
-      typeColor: '#000000',
-      typeSubjects: 'image-men-t-shirt.jpg',
-      typeSizes: '',
       currentColors: ['#000000', '#aa55aa', '#ffffff']
     }
   },
   methods: {
     saveCurrentColor () {
-      if (!this.currentColors.includes(this.typeColor)) {
-        this.currentColors.push(this.typeColor)
+      if (!this.currentColors.includes(this.getTypeColor)) {
+        this.currentColors.push(this.getTypeColor)
       }
-    },
-    selectTypeSize (value) {
-      this.typeSizes = value
     },
     getImgUrl (img) {
       return require(`@/assets/image/constructor/${img}`)
+    },
+    selectTypeSize (value) {
+      this.$store.commit('changeTypeSubjectSize', value)
     }
   },
   computed: {
@@ -147,7 +144,10 @@ export default {
       'getTextStyleWeight',
       'getTextStyleItalic',
       'getTextStyleUnderline',
-      'getTextStyleUppercase'
+      'getTextStyleUppercase',
+      'getTypeSubjects',
+      'getTypeColor',
+      'getTypeSubjectsSizes'
     ]),
     rotateStyle () {
       return {
@@ -174,6 +174,22 @@ export default {
       return {
         'font-family': this.getSelectedFonts
       }
+    },
+    changeTypeSubjects: {
+      get () {
+        return this.getTypeSubjects
+      },
+      set (val) {
+        this.$store.commit('updateTypeSubjects', val)
+      }
+    },
+    changeTypeColor: {
+      get () {
+        return this.getTypeColor
+      },
+      set (val) {
+        this.$store.commit('updateTypeColor', val)
+      }
     }
   }
 }
@@ -191,12 +207,6 @@ export default {
 
   .layout-constructor {
     display: flex;
-  }
-
-  .constructor-left {
-    width: 30%;
-    background: #c6cccf;
-    height: 800px;
   }
 
   .constructor-right {
@@ -268,16 +278,6 @@ export default {
 
   .text-transform__active {
     text-transform: uppercase;
-  }
-
-  .layout-constructor__type-text,
-  .layout-constructor__type-subjects,
-  .layout-constructor__type-colors,
-  .layout-constructor__type-size {
-    border: 2px solid #17a2b8;
-    border-radius: 10px;
-    margin: 10px;
-    background: #17a2b8;
   }
 
   // лист размеров одежды

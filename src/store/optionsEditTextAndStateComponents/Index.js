@@ -44,7 +44,10 @@ export default {
     textStyleWeight: false,
     textStyleItalic: false,
     textStyleUnderline: false,
-    textStyleUppercase: false
+    textStyleUppercase: false,
+    typeSubjects: 'image-men-t-shirt.jpg',
+    typeColor: '#000000',
+    typeSubjectsSizes: ''
   },
   mutations: {
     changeTextStyle (state, type) {
@@ -55,6 +58,15 @@ export default {
     },
     changeSelectedOptions (state, { type, event }) {
       state[`selected${type}`] = event.value
+    },
+    updateTypeSubjects (state, getTypeSubjects) {
+      state.typeSubjects = getTypeSubjects
+    },
+    updateTypeColor (state, getTypeColor) {
+      state.typeColor = getTypeColor
+    },
+    changeTypeSubjectSize (state, value) {
+      state.typeSubjectsSizes = value
     }
   },
   actions: {},
@@ -94,6 +106,15 @@ export default {
     },
     getSubjectsList (state) {
       return state.subjectsList
+    },
+    getTypeSubjects (state) {
+      return state.typeSubjects
+    },
+    getTypeColor (state) {
+      return state.typeColor
+    },
+    getTypeSubjectsSizes (state) {
+      return state.typeSubjectsSizes
     }
   }
 }
