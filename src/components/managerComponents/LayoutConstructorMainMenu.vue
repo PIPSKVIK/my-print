@@ -1,5 +1,5 @@
 <template>
-  <div class="constructor-left">
+  <div>
       <!-- <<< компонент выбора типа одежды -->
       <ConstructorItem
         class="layout-constructor__type-subjects"
@@ -52,6 +52,7 @@
 <script>
 import { TypeSizes, TypeColors, TypeSubjects, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
 import TypeTextManager from '@/components/managerComponents/TypeTextManager'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'LayoutConstructorMainMenu',
@@ -61,6 +62,35 @@ export default {
     TypeSubjects,
     ConstructorItem,
     TypeTextManager
+  },
+  methods: {
+    selectTypeSize (value) {
+      this.$store.commit('changeTypeSubjectSize', value)
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'getTypeSubjects',
+      'getTypeColor',
+      'getCurrentColors',
+      'allTypeSize'
+    ]),
+    changeTypeSubjects: {
+      get () {
+        return this.getTypeSubjects
+      },
+      set (val) {
+        this.$store.commit('updateTypeSubjects', val)
+      }
+    },
+    changeTypeColor: {
+      get () {
+        return this.getTypeColor
+      },
+      set (val) {
+        this.$store.commit('updateTypeColor', val)
+      }
+    }
   }
 }
 </script>

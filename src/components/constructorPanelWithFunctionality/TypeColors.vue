@@ -1,16 +1,6 @@
 <template>
   <div class="type-color">
-    <ul class="color-list">
-      <li
-        v-for="(currentColor, index) in getCurrentColors"
-        :key="index"
-      >
-        <div
-          class="current-color"
-          :style="{ 'background': currentColor }">
-        </div>
-      </li>
-    </ul>
+    <BlockWithInfoClothingColor class="color-list" />
     <div class="color-elements">
       <BaseColor
         type="color"
@@ -32,20 +22,17 @@
 
 <script>
 import { BaseButton, BaseColor } from '@/components/baseUi'
+import BlockWithInfoClothingColor from '@/components/layoutConstructorComponents/BlockWithInfoClothingColor'
 
 export default {
   name: 'TypeColors',
   components: {
     BaseButton,
-    BaseColor
+    BaseColor,
+    BlockWithInfoClothingColor
   },
   model: {
     prop: 'color'
-  },
-  data () {
-    return {
-      text: []
-    }
   },
   props: {
     color: {
