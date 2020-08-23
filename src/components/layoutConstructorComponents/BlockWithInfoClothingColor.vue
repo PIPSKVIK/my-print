@@ -1,13 +1,14 @@
 <template>
-  <div class="constructor-right__color">
-    <ul class="constructor-right__colot-list">
+  <div class="constructor-color">
+    <h5 class="constructor-color__title">Выбранные цвета:</h5>
+    <ul class="constructor-colot__list">
       <li
-        class="constructor-right__color-item"
+        class="constructor-color__item"
         v-for="(color, id) in getCurrentColors"
         :key="id"
       >
         <div
-          class="constructor-right__color-style"
+          class="constructor-color__style"
           :style="{ backgroundColor: color }"
         ></div>
       </li>
@@ -29,17 +30,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .constructor-right__color {
+  .constructor-color {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .constructor-right__color-title {
-    color: #ffffff;
-  }
-
-  .constructor-right__colot-list {
+  .constructor-colot__list {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -47,10 +44,17 @@ export default {
     margin: 0;
   }
 
-  .constructor-right__color-style {
+  .constructor-color__style {
     width: 20px;
     height: 20px;
     border: 2px solid #000000;
     margin: 5px 5px 0 0;
+  }
+
+  .constructor-color__title {
+    font-size: 18px;
+    line-height: 1;
+    color: #ffffff;
+    margin: 0;
   }
 </style>

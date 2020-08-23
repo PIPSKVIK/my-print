@@ -6,7 +6,7 @@
       min="-180"
       max="180"
       :value.sync="changeTextRotate"
-      :textPlaceholder="getTextRotate"
+      :textPlaceholder="'Угол: ' + getTextRotate"
     />
     <TextRotateAndCoordinateComponent
       nameText="positionX"
@@ -14,7 +14,7 @@
       min="0"
       max="420"
       :value.sync="changeTextPositionX"
-      :textPlaceholder="getTextPositionX"
+      :textPlaceholder="'X: ' + getTextPositionX"
     />
     <TextRotateAndCoordinateComponent
       nameText="positionY"
@@ -22,7 +22,7 @@
       min="0"
       max="300"
       :value.sync="changeTextPositionY"
-      :textPlaceholder="getTextPositionY"
+      :textPlaceholder="'Y: ' + getTextPositionY"
     />
   </div>
 </template>

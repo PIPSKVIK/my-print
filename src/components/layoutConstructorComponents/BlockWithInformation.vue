@@ -1,30 +1,40 @@
 <template>
-  <div class="constructor-right__block-info">
-    <BlockWithInfoClothingSize />
-    <BlockWithInfoClothingColor />
+  <div class="block-info">
+    <BlockWithTextOptionsGenerated class="block-info__left" />
+    <div class="block-info__right">
+      <BlockWithInfoClothingSize />
+      <BlockWithInfoClothingColor />
+    </div>
   </div>
 </template>
 
 <script>
 import BlockWithInfoClothingColor from '@/components/layoutConstructorComponents/BlockWithInfoClothingColor'
 import BlockWithInfoClothingSize from '@/components/layoutConstructorComponents/BlockWithInfoClothingSize'
+import BlockWithTextOptionsGenerated from '@/components/layoutConstructorComponents/BlockWithTextOptionsGenerated'
 
 export default {
   name: 'BlockWithInformation',
   components: {
     BlockWithInfoClothingSize,
-    BlockWithInfoClothingColor
+    BlockWithInfoClothingColor,
+    BlockWithTextOptionsGenerated
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .constructor-right__block-info {
+  .block-info {
     min-height: 80px;
     background: #7e7d7d;
     margin-top: 20px;
+    padding: 40px;
     text-align: center;
     display: flex;
-    justify-content: space-around;
+  }
+
+  .block-info__right {
+    margin-left: 150px;
+    width: 250px;
   }
 </style>

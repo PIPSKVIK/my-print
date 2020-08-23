@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="text-position">
     <BaseInput
       :name="nameText"
       type="text"
       :class="classInputText"
+      class="text-position__text"
       :placeholder="textPlaceholder"
       v-model="watchValue"
     />
     <BaseInputRange
+      class="text-position__range"
       :class="classRange"
       :name="nameRange"
       :min="min"
@@ -69,5 +71,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .text-position {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
+  .text-position__range {
+    margin-top: 20px;
+  }
+
+  .text-position__text {
+    width: 100px;
+  }
 </style>

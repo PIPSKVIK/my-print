@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="options">
     <BaseSelect
       class="type-font"
       @select="changeSelectedOptions('Fonts', $event)"
       :options="allTypeFontFamily">
       <template v-slot:title>
-        <span>Шрифт: </span>
-        <span class="type-text__fonts-name"> {{ getSelectedFonts }} </span>
+        <span>Шрифт</span>
       </template>
     </BaseSelect>
 
@@ -15,9 +14,7 @@
       @select="changeSelectedOptions('Color', $event)"
       :options="allOptionsColors">
       <template v-slot:title>
-        <span>Цвет: </span>
-        <div class="type-text__color" :style="{ 'background': getSelectedColor }"></div>
-        <span class="tepe-text__name"> {{ getSelectedColor }} </span>
+        <span>Цвет</span>
       </template>
     </BaseSelect>
 
@@ -26,8 +23,7 @@
       @select="changeSelectedOptions('Size', $event)"
       :options="allOptionsSize">
       <template v-slot:title>
-        <span>Размер: </span>
-        <span class="type-size__name"> {{ getSelectedSize }} </span>
+        <span>Размер</span>
       </template>
     </BaseSelect>
   </div>
@@ -61,5 +57,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .options {
+    margin-top: 20px;
+    display: flex;
+  }
 </style>

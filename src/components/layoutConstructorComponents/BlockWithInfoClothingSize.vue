@@ -1,11 +1,12 @@
 <template>
-  <div class="constructor-right__size">
-    <h5 class="constructor-right__size-title">Тип размера:</h5>
-    <ul class="constructor-right__size-list">
+  <div class="constructor-size">
+    <h5 class="constructor-size__title">Тип размера:</h5>
+    <p class="constructor-size__default-text" v-if="getTypeSubjectsSizes === ''">Размер не выбран</p>
+    <ul v-else class="constructor-size__list">
       <li
         v-for="size in getTypeSubjectsSizes"
         :key="size.id"
-        class="constructor-right__size-item"
+        class="constructor-size__item"
       > {{ size }} </li>
     </ul>
   </div>
@@ -25,15 +26,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-   .constructor-right__size {
-    width: 50%;
-  }
-
-  .constructor-right__size-title {
+  .constructor-size__title {
     color: #ffffff;
+    font-size: 18px;
+    line-height: 1;
   }
 
-  .constructor-right__size-list {
+  .constructor-size__list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -41,13 +40,18 @@ export default {
     justify-content: center;
   }
 
-  .constructor-right__size-item {
+  .constructor-size__item {
     background: #ffffff;
     border-radius: 3px;
     padding: 5px 0;
     width: 30px;
     color: #000000;
     margin: 0 5px;
+    font-weight: bold;
+  }
+
+  .constructor-size__default-text {
+    margin: 0;
     font-weight: bold;
   }
 </style>

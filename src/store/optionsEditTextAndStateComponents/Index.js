@@ -8,17 +8,14 @@ export default {
       { name: 'grey', value: '#808080' }
     ],
     optionsSize: [
-      { name: '6', value: 6 },
-      { name: '7', value: 7 },
-      { name: '8', value: 8 },
-      { name: '9', value: 9 },
-      { name: '10', value: 10 },
-      { name: '11', value: 11 },
-      { name: '12', value: 12 },
       { name: '14', value: 14 },
       { name: '18', value: 18 },
+      { name: '20', value: 20 },
       { name: '24', value: 24 },
-      { name: '36', value: 36 }
+      { name: '28', value: 28 },
+      { name: '32', value: 32 },
+      { name: '36', value: 36 },
+      { name: '40', value: 40 }
     ],
     typeSize: [
       { id: 1, name: 'XS' },
