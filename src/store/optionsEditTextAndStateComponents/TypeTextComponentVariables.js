@@ -3,7 +3,7 @@ export default {
     printText: 'Ваш Текст',
     textPositionX: '203',
     textPositionY: '192',
-    textRotate: '0'
+    textRotate: '15'
   },
   mutations: {
     upgradePrintText (state, getPrintText) {

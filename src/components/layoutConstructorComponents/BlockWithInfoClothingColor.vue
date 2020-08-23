@@ -1,6 +1,5 @@
 <template>
   <div class="constructor-right__color">
-    <h5 class="constructor-right__color-title">Выбранные цвета:</h5>
     <ul class="constructor-right__colot-list">
       <li
         class="constructor-right__color-item"
@@ -34,7 +33,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
   }
 
   .constructor-right__color-title {
@@ -45,13 +43,14 @@ export default {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
   }
 
   .constructor-right__color-style {
     width: 20px;
     height: 20px;
     border: 2px solid #000000;
-    border-radius: 50%;
-    margin: 3px 3px 0 0;
+    margin: 5px 5px 0 0;
   }
 </style>

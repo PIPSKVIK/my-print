@@ -99,6 +99,6 @@ export default {
   .color-elements {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
   }
 </style>

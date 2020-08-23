@@ -1,11 +1,9 @@
 <template>
   <div class="main-canvas">
-    <section class="constructor-right">
-      <div class="constructor-right__first-block">
-        <MainTextDisplayArea />
-        <BlockWithInformation />
-      </div>
-    </section>
+    <div class="constructor-right__first-block">
+      <MainTextDisplayArea />
+      <BlockWithInformation />
+    </div>
   </div>
 </template>
 

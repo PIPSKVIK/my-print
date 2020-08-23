@@ -1,43 +1,40 @@
 <template>
   <div class="text-position">
-    <div class="text-position__position-deg">
-      <BaseInput
-        name="TextRotate"
-        type="text"
-        class="text-position__input-rotate"
-        v-model="changeTextRotate"
-      />
-      <input class="text-position__range" type="range" min="-180" max="180" v-model="changeTextRotate">
-    </div>
-    <div class="text-position__position-x">
-      <BaseInput
-        name="positioX"
-        type="text"
-        class="text-position__input-positioX"
-        v-model="changeTextPositionX"
-      />
-      <input class="text-position__range" type="range" min="0" max="420" v-model="changeTextPositionX">
-    </div>
-    <div class="text-position__position-x">
-      <BaseInput
-        name="positioY"
-        type="text"
-        class="text-position__input-positioY"
-        v-model="changeTextPositionY"
-      />
-      <input class="text-position__range" type="range" min="0" max="300" v-model="changeTextPositionY">
-    </div>
+    <TextRotateAndCoordinateComponent
+      nameText="textRotate"
+      classInputText="text-position__input-rotate"
+      min="-180"
+      max="180"
+      :value.sync="changeTextRotate"
+      :textPlaceholder="getTextRotate"
+    />
+    <TextRotateAndCoordinateComponent
+      nameText="positionX"
+      classInputText="text-position__input-positioX"
+      min="0"
+      max="420"
+      :value.sync="changeTextPositionX"
+      :textPlaceholder="getTextPositionX"
+    />
+    <TextRotateAndCoordinateComponent
+      nameText="positionY"
+      classInputText="text-position__input-positioY"
+      min="0"
+      max="300"
+      :value.sync="changeTextPositionY"
+      :textPlaceholder="getTextPositionY"
+    />
   </div>
 </template>
 
 <script>
-import { BaseInput } from '@/components/baseUi'
+import TextRotateAndCoordinateComponent from '@/components/layoutConstructorComponents/TextRotateAndCoordinateComponent'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'TextPositionAndRotate',
   components: {
-    BaseInput
+    TextRotateAndCoordinateComponent
   },
   computed: {
     changeTextPositionX: {
