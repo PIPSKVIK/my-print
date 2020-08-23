@@ -1,8 +1,8 @@
 <template>
   <div class="block-info">
-    <BlockWithTextOptionsGenerated class="block-info__left" />
-    <div class="block-info__right">
-      <BlockWithInfoClothingSize />
+    <BlockWithTextOptionsGenerated class="block-left" />
+    <div class="block-right">
+      <BlockWithInfoClothingSize  class="block-right__size"/>
       <BlockWithInfoClothingColor />
     </div>
   </div>
@@ -33,8 +33,12 @@ export default {
     display: flex;
   }
 
-  .block-info__right {
+  .block-right {
     margin-left: 150px;
     width: 250px;
+  }
+
+  .block-right__size {
+    margin-bottom: 15px;
   }
 </style>

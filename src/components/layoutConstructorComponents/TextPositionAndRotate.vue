@@ -11,18 +11,18 @@
     <TextRotateAndCoordinateComponent
       nameText="positionX"
       classInputText="text-position__input-positioX"
-      min="0"
-      max="420"
-      :value.sync="changeTextPositionX"
-      :textPlaceholder="'X: ' + getTextPositionX"
+      min="153"
+      max="500"
+      :value.sync="changeTextPositionY"
+      :textPlaceholder="'X: ' + getTextPositionY"
     />
     <TextRotateAndCoordinateComponent
       nameText="positionY"
       classInputText="text-position__input-positioY"
       min="0"
-      max="300"
-      :value.sync="changeTextPositionY"
-      :textPlaceholder="'Y: ' + getTextPositionY"
+      max="470"
+      :value.sync="changeTextPositionX"
+      :textPlaceholder="'Y: ' + getTextPositionX"
     />
   </div>
 </template>

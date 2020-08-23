@@ -1,6 +1,6 @@
 <template>
   <div class="constructor-color">
-    <h5 class="constructor-color__title">Выбранные цвета:</h5>
+    <h5 class="constructor-color__title">Цвет одежды:</h5>
     <ul class="constructor-colot__list">
       <li
         class="constructor-color__item"

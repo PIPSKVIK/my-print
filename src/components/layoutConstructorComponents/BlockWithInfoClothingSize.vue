@@ -1,7 +1,7 @@
 <template>
   <div class="constructor-size">
-    <h5 class="constructor-size__title">Тип размера:</h5>
-    <p class="constructor-size__default-text" v-if="getTypeSubjectsSizes === ''">Размер не выбран</p>
+    <h5 class="constructor-size__title">Размер одежды:</h5>
+    <p class="constructor-size__default-text" v-if="getTypeSubjectsSizes === ''">Выберите размер</p>
     <ul v-else class="constructor-size__list">
       <li
         v-for="size in getTypeSubjectsSizes"

@@ -1,7 +1,8 @@
 <template>
   <div class="constructor-right__subjects-selected">
     <img :src="getImgUrl(getTypeSubjects)" alt="img" width="500" height="450">
-    <p class="constructor-right__text"
+    <p
+      class="constructor-right__text"
       :class="{
         'font-weight__active': getTextStyleWeight,
         'font-style__active': getTextStyleItalic,
@@ -71,7 +72,6 @@ export default {
 
 <style lang="scss" scoped>
   .constructor-right__subjects-selected {
-    width: 450px;
     text-align: center;
     position: relative;
   }
