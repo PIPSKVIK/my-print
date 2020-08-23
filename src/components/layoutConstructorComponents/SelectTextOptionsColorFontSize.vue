@@ -60,5 +60,6 @@ export default {
   .options {
     margin-top: 20px;
     display: flex;
+    justify-content: space-around;
   }
 </style>

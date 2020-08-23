@@ -9,16 +9,16 @@
       :textPlaceholder="'Угол: ' + getTextRotate"
     />
     <TextRotateAndCoordinateComponent
-      nameText="positionX"
-      classInputText="text-position__input-positioX"
+      nameText="positionY"
+      classInputText="text-position__input-positioY"
       min="153"
       max="500"
       :value.sync="changeTextPositionY"
       :textPlaceholder="'X: ' + getTextPositionY"
     />
     <TextRotateAndCoordinateComponent
-      nameText="positionY"
-      classInputText="text-position__input-positioY"
+      nameText="positionX"
+      classInputText="text-position__input-positioX"
       min="0"
       max="470"
       :value.sync="changeTextPositionX"

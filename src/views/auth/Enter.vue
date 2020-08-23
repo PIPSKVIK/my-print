@@ -17,7 +17,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   .enter {
     margin-top: 40px;
   }
@@ -29,5 +28,4 @@ export default {
   .enter-login {
     margin-top: 40px;
   }
-
 </style>

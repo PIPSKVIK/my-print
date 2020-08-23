@@ -1,15 +1,19 @@
 <template>
   <div class="login container col-xl-6 shadow">
     <form @submit.prevent="onSubmit">
-      <div class="login-email">
-        <BaseInput
-          label="email"
-          type="email"
-          name="email"
-          placeholder="Email"
-          v-model="email"
-        />
-      </div>
+      <!-- логин Email -->
+      <ValidationInputEmailComponents
+        label="email"
+        name="email"
+        placeholder="Email"
+        :value.sync="email">
+        <template v-slot:email>
+          <div class="invalid-feedback" v-if="!$v.email.email">Введите корректный Email</div>
+        </template>
+        <template v-slot:required>
+          <div class="invalid-feedback" v-if="!$v.email.required">Обязательно для заполнения</div>
+        </template>
+      </ValidationInputEmailComponents>
       <div class="login-password">
         <BaseInput
           label="password"
@@ -31,13 +35,16 @@
 </template>
 
 <script>
-import { BaseButton, BaseInput } from '../baseUi'
+import ValidationInputEmailComponents from '@/components/validationComponents/ValidationInputEmailComponents'
+import { BaseButton, BaseInput } from '@/components/baseUi'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   name: 'FormLogin',
   components: {
     BaseInput,
-    BaseButton
+    BaseButton,
+    ValidationInputEmailComponents
   },
   data () {
     return {
@@ -45,17 +52,21 @@ export default {
       password: ''
     }
   },
+  validations: {
+    email: {
+      required,
+      email
+    }
+  },
   methods: {
     onSubmit () {
-      console.log('Email', this.email)
-      console.log('Password', this.password)
+      console.log('Email: ' + this.email + ' > ' + 'Password: ' + this.password)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
   .login {
     padding: 40px;
   }
@@ -63,5 +74,4 @@ export default {
   .login-button {
     margin-top: 10px;
   }
-
 </style>
