@@ -1,25 +1,24 @@
 <template>
   <div class="validation">
     <BaseInput
-      type="email"
+      :type="type"
       :label="label"
       :name="name"
       :placeholder="placeholder"
-      v-model="watchValue"
-      @input="$v.email.$touch()"
-      :class="{'is-invalid': $v.email.$error}"
+      v-model.trim="watchValue"
+      :сlassBaseInput="validationClass"
     />
-    <slot name="required"></slot>
-    <slot name="email"></slot>
+    <slot name="first"></slot>
+    <slot name="second"></slot>
+    <slot name="third"></slot>
   </div>
 </template>
 
 <script>
 import { BaseInput } from '@/components/baseUi'
-import { required, email } from 'vuelidate/lib/validators'
 
 export default {
-  name: 'ValidationInputEmailComponents',
+  name: 'BaseValidationInputComponent',
   inheritAttrs: false,
   components: {
     BaseInput
@@ -38,6 +37,13 @@ export default {
     placeholder: {
       type: String,
       required: true
+    },
+    type: {
+      type: String,
+      required: true
+    },
+    validationClass: {
+      type: [Object, String]
     }
   },
   computed: {
@@ -48,12 +54,6 @@ export default {
       set (val) {
         this.$emit('update:value', val)
       }
-    }
-  },
-  validations: {
-    email: {
-      required,
-      email
     }
   }
 }
