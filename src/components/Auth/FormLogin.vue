@@ -59,8 +59,7 @@
       </div>
       <BaseLink
         class="login-link"
-        to="/registration"
-      >
+        to="/registration">
         <template v-slot:title>
           <p class="login-link__notification">Еще нет аккаунта?</p>
         </template>
@@ -95,14 +94,20 @@ export default {
     },
     password: {
       required,
-      minLength: minLength(12)
+      minLength: minLength(6)
     }
   },
   methods: {
     onSubmit () {
       if (!this.$v.$invalid) {
-        console.log(this.email + '|' + this.password)
+        const formDataLogin = {
+          emai: this.email,
+          password: this.password
+        }
+
+        console.log(formDataLogin)
       }
+      this.$router.push('/')
     }
   },
   computed: {

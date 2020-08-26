@@ -5,7 +5,6 @@
     </label>
     <input
       class="form-control"
-      :class="сlassBaseInput"
       v-bind="$attrs"
       :type="passwordRevealed ? 'text' : inputType"
       :name="name"
@@ -42,9 +41,6 @@ export default {
       required: true,
       type: String,
       default: 'text'
-    },
-    сlassBaseInput: {
-      type: [Object, String]
     }
   },
   data () {

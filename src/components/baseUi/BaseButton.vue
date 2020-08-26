@@ -32,7 +32,7 @@ export default {
       default: 'normal'
     },
     disabled: {
-      type: String
+      type: Boolean
     }
   },
   data () {
