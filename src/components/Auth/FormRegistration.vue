@@ -136,7 +136,6 @@ export default {
           }
           console.log(userData)
         }, 3000)
-        this.email = ''
       }
     }
   },
