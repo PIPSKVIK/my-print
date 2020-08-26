@@ -9,6 +9,7 @@
       :type="passwordRevealed ? 'text' : inputType"
       :name="name"
       :id="name"
+      :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
     >
     <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
@@ -21,7 +22,7 @@
 
 export default {
   name: 'BaseInput',
-  inheritAttrs: false,
+  inheritAttrs: true,
   props: {
     name: {
       required: false,
@@ -41,6 +42,9 @@ export default {
       required: true,
       type: String,
       default: 'text'
+    },
+    placeholder: {
+      type: String
     }
   },
   data () {
