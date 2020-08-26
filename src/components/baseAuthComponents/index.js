@@ -1,3 +1,4 @@
 import BaseLink from './BaseLink'
+import BaseStatusMessage from './BaseStatusMessage'
 
-export { BaseLink }
+export { BaseLink, BaseStatusMessage }

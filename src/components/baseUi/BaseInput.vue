@@ -22,7 +22,7 @@
 
 export default {
   name: 'BaseInput',
-  inheritAttrs: true,
+  inheritAttrs: false,
   props: {
     name: {
       required: false,

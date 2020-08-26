@@ -3,13 +3,12 @@
     <form @submit.prevent="onSubmit">
       <div class="login-email">
         <BaseInput
-          label="email"
+          label="Ваш Email"
           type="email"
           name="email"
-          placeholder="Email"
-          v-model.trim="email"
+          placeholder="Введите Email"
+          v-model.trim="$v.email.$model"
           :class="{'is-invalid': $v.email.$error}"
-          @input="$v.email.$touch()"
         />
         <small
           class="invalid-feedback"
@@ -30,8 +29,7 @@
           type="password"
           name="password"
           placeholder="Password"
-          v-model.trim="password"
-          @input="$v.password.$touch()"
+          v-model.trim="$v.password.$model"
           :class="{'is-invalid': $v.password.$error}"
         />
         <small
@@ -52,25 +50,32 @@
           type="submit"
           size="block"
           theme="success"
-          :disabled="$v.$invalid"
+          :disabled="submitStatus === 'PENDING'"
         >
           Вход
         </BaseButton>
       </div>
-      <BaseLink
-        class="login-link"
-        to="/registration">
-        <template v-slot:title>
-          <p class="login-link__notification">Еще нет аккаунта?</p>
-        </template>
-        Зарегистрироваться
-      </BaseLink>
+      <div class="login-status">
+        <BaseStatusMessage :submitStatus="submitStatus">
+          <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
+          <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:pending>Отправка...</template>
+        </BaseStatusMessage>
+        <BaseLink
+          class="login-link"
+          to="/registration">
+          <template v-slot:title>
+            <p class="login-link__notification">Еще нет аккаунта?</p>
+          </template>
+          Зарегистрироваться
+        </BaseLink>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import { BaseLink } from '@/components/baseAuthComponents'
+import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput } from '@/components/baseUi'
 import { email, required, minLength } from 'vuelidate/lib/validators'
 
@@ -79,12 +84,15 @@ export default {
   components: {
     BaseButton,
     BaseLink,
-    BaseInput
+    BaseInput,
+    BaseStatusMessage
+
   },
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      submitStatus: null
     }
   },
   validations: {
@@ -99,15 +107,20 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (!this.$v.$invalid) {
-        const formDataLogin = {
-          emai: this.email,
-          password: this.password
-        }
-
-        console.log(formDataLogin)
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+          const userData = {
+            email: this.email,
+            password: this.password
+          }
+          console.log(userData)
+        }, 3000)
       }
-      this.$router.push('/')
     }
   },
   computed: {
@@ -119,6 +132,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .message-email {
+    color: #202027;
+    font-style: italic;
+    border-bottom: 1px solid #000000;
+  }
+
+  .login-status {
+    margin-top: 10px;
+    text-align: center;
+  }
+
   .login {
     padding: 40px;
   }

@@ -1,15 +1,14 @@
 <template>
   <div class="form-registation container col-xl-6 shadow">
     <form @submit.prevent="onSubmit">
-      <div class="form-registration__email">
+      <div class="registration-email">
         <BaseInput
           label="Ваш Email"
           type="email"
           name="email"
-          placeholder="Email"
-          v-model.trim="email"
+          placeholder="Введите Email"
+          v-model.trim="$v.email.$model"
           :class="{'is-invalid': $v.email.$error}"
-          @input="$v.email.$touch()"
         />
         <small
           class="invalid-feedback"
@@ -30,8 +29,7 @@
           type="password"
           name="password"
           placeholder="Password"
-          v-model.trim="password"
-          @input="$v.password.$touch()"
+          v-model.trim="$v.password.$model"
           :class="{'is-invalid': $v.password.$error}"
         />
         <small
@@ -53,9 +51,8 @@
           type="password"
           name="confirm-password"
           placeholder="Подтвердите пароль"
-          v-model.trim="confirmPassword"
+          v-model.trim="$v.confirmPassword.$model"
           :class="{'is-invalid': $v.confirmPassword.$error}"
-          @input="$v.confirmPassword.$touch()"
         />
         <small class="invalid-feedback" v-if="!$v.confirmPassword.sameAs">
           Ваш пароль не совпадает
@@ -66,25 +63,32 @@
           type="submit"
           size="block"
           theme="success"
-          :disabled="$v.$invalid"
+          :disabled="submitStatus === 'PENDING'"
         >
           Зарегистрироваться
         </BaseButton>
       </div>
-      <BaseLink
-        class="registration-link"
-        to="/enter">
-        <template v-slot:title>
-          <p class="registration-link__notification">Есть аккаунт?</p>
-        </template>
-        Войти
-      </BaseLink>
+      <div class="registration-status">
+        <BaseStatusMessage :submitStatus="submitStatus">
+          <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
+          <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:pending>Отправка...</template>
+        </BaseStatusMessage>
+        <BaseLink
+          class="registration-link"
+          to="/enter">
+          <template v-slot:title>
+            <p class="registration-link__notification">Есть аккаунт?</p>
+          </template>
+          Войти
+        </BaseLink>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import { BaseLink } from '@/components/baseAuthComponents'
+import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput } from '@/components/baseUi'
 import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
 
@@ -93,13 +97,15 @@ export default {
   components: {
     BaseInput,
     BaseButton,
-    BaseLink
+    BaseLink,
+    BaseStatusMessage
   },
   data () {
     return {
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      submitStatus: null
     }
   },
   validations: {
@@ -117,15 +123,21 @@ export default {
   },
   methods: {
     onSubmit () {
-      if (!this.$v.$invalid) {
-        const formDataRegistration = {
-          emai: this.email,
-          password: this.password
-        }
-
-        console.log(formDataRegistration)
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        this.submitStatus = 'PENDING'
+        setTimeout(() => {
+          this.submitStatus = 'OK'
+          const userData = {
+            email: this.email,
+            password: this.password
+          }
+          console.log(userData)
+        }, 3000)
+        this.email = ''
       }
-      this.$router.push('/enter')
     }
   },
   computed: {
@@ -153,11 +165,12 @@ export default {
     margin-top: 20px;
   }
 
-  .registration-link {
-    margin-top: 10px;
-  }
-
   .registration-link__notification {
     margin: 0 10px 0 0;
+  }
+
+  .registration-status {
+    margin-top: 10px;
+    text-align: center;
   }
 </style>
