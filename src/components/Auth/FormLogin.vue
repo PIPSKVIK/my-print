@@ -8,17 +8,18 @@
           name="email"
           placeholder="Email"
           v-model.trim="email"
-          :class="{'is-invalid': ($v.email.$dirty && !$v.email.required) || ($v.email.$dirty && !$v.email.email)}"
+          :class="{'is-invalid': $v.email.$error}"
+          @input="$v.email.$touch()"
         />
         <small
           class="invalid-feedback"
-          v-if="$v.email.$dirty && !$v.email.required"
+          v-if="!$v.email.required"
         >
           Заполните поле Email
         </small>
         <small
           class="invalid-feedback"
-          v-else-if="$v.email.$dirty && !$v.email.email"
+          v-else-if="!$v.email.email"
         >
           Введите корректный Email
         </small>
@@ -30,29 +31,41 @@
           name="password"
           placeholder="Password"
           v-model.trim="password"
-          :class="{'is-invalid': ($v.password.$dirty && !$v.password.required) || ($v.password.$dirty && !$v.password.minLength)}"
+          @input="$v.password.$touch()"
+          :class="{'is-invalid': $v.password.$error}"
         />
         <small
           class="invalid-feedback"
-          v-if="$v.password.$dirty && !$v.password.required"
+          v-if="!$v.password.required"
         >
           Введите пароль
         </small>
         <small
           class="invalid-feedback"
-          v-else-if="$v.password.$dirty && !$v.password.minLength"
+          v-else-if="!$v.password.minLength"
         >
-          Пароль должен быть {{ $v.password.$params.minLength.min }} символов. Сейчас он {{ password.length }}
+          Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
         </small>
       </div>
       <div class="login-button">
         <BaseButton
           type="submit"
+          size="block"
+          theme="success"
+          :disabled="$v.$invalid"
         >
           Вход
         </BaseButton>
       </div>
-      <BaseLink class="login-link" to="/registration">Зарегистрироваться</BaseLink>
+      <BaseLink
+        class="login-link"
+        to="/registration"
+      >
+        <template v-slot:title>
+          <p class="login-link__notification">Еще нет аккаунта?</p>
+        </template>
+        Зарегистрироваться
+      </BaseLink>
     </form>
   </div>
 </template>
@@ -82,14 +95,19 @@ export default {
     },
     password: {
       required,
-      minLength: minLength(6)
+      minLength: minLength(12)
     }
   },
   methods: {
     onSubmit () {
-      if (this.$v.$invalid) {
-        this.$v.$touch()
+      if (!this.$v.$invalid) {
+        console.log(this.email + '|' + this.password)
       }
+    }
+  },
+  computed: {
+    passwordMinLength () {
+      return this.$v.password.$params.minLength.min
     }
   }
 }
@@ -106,5 +124,9 @@ export default {
 
   .login-link {
     margin-top: 10px;
+  }
+
+  .login-link__notification {
+    margin: 0 10px 0 0;
   }
 </style>

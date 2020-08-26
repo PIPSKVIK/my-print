@@ -7,6 +7,7 @@
     ]"
     :type="type"
     v-on="$listeners"
+    :disabled="disabled"
   >
     <slot></slot>
   </button>
@@ -29,6 +30,9 @@ export default {
     size: {
       type: String,
       default: 'normal'
+    },
+    disabled: {
+      type: String
     }
   },
   data () {
@@ -48,7 +52,8 @@ export default {
         normail: '',
         large: 'btn-lg',
         small: 'btn-sm',
-        standart: 'standart-size'
+        standart: 'standart-size',
+        block: 'btn-block'
       }
     }
   }
