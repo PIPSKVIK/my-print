@@ -50,7 +50,7 @@
           type="submit"
           size="block"
           theme="success"
-          :disabled="submitStatus === 'PENDING'"
+          :disabled="submitStatus === 'pending'"
         >
           Вход
         </BaseButton>
@@ -109,11 +109,11 @@ export default {
     onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        this.submitStatus = 'error'
       } else {
-        this.submitStatus = 'PENDING'
+        this.submitStatus = 'pending'
         setTimeout(() => {
-          this.submitStatus = 'OK'
+          this.submitStatus = 'ok'
           const userData = {
             email: this.email,
             password: this.password
