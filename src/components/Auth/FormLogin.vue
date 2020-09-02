@@ -8,7 +8,7 @@
           name="email"
           placeholder="Введите Email"
           v-model.trim="$v.email.$model"
-          :class="{'is-invalid': $v.email.$error}"
+          :invalid="$v.email.$error"
         />
         <small
           class="invalid-feedback"
@@ -30,7 +30,7 @@
           name="password"
           placeholder="Password"
           v-model.trim="$v.password.$model"
-          :class="{'is-invalid': $v.password.$error}"
+          :invalid="$v.password.$error"
         />
         <small
           class="invalid-feedback"

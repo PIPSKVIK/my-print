@@ -5,6 +5,7 @@
     </label>
     <input
       class="form-control"
+      :class="{'is-invalid': invalid}"
       v-bind="$attrs"
       :type="passwordRevealed ? 'text' : inputType"
       :name="name"
@@ -45,6 +46,10 @@ export default {
     },
     placeholder: {
       type: String
+    },
+    invalid: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
