@@ -9,19 +9,20 @@
           placeholder="Введите Email"
           v-model.trim="$v.email.$model"
           :invalid="$v.email.$error"
-        />
-        <small
-          class="invalid-feedback"
-          v-if="!$v.email.required"
         >
-          Заполните поле Email
-        </small>
-        <small
-          class="invalid-feedback"
-          v-else-if="!$v.email.email"
-        >
-          Введите корректный Email
-        </small>
+          <small
+            class="invalid-feedback"
+            v-if="!$v.email.required"
+          >
+            Заполните поле Email
+          </small>
+          <small
+            class="invalid-feedback"
+            v-else-if="!$v.email.email"
+          >
+            Введите корректный Email
+          </small>
+        </BaseInput>
       </div>
       <div class="login-password">
         <BaseInput
@@ -31,19 +32,20 @@
           placeholder="Password"
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
-        />
-        <small
-          class="invalid-feedback"
-          v-if="!$v.password.required"
         >
-          Введите пароль
-        </small>
-        <small
-          class="invalid-feedback"
-          v-else-if="!$v.password.minLength"
-        >
-          Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
-        </small>
+          <small
+            class="invalid-feedback"
+            v-if="!$v.password.required"
+          >
+            Введите пароль
+          </small>
+          <small
+            class="invalid-feedback"
+            v-else-if="!$v.password.minLength"
+          >
+            Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
+          </small>
+        </BaseInput>
       </div>
       <div class="login-button">
         <BaseButton

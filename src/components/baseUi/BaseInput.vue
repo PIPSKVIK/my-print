@@ -16,6 +16,7 @@
     <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
       {{ passwordRevealed ? 'Скрыть' : 'Показать' }} пароль
     </a>
+    <slot />
   </div>
 </template>
 
