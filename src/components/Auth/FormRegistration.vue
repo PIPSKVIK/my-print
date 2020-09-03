@@ -93,7 +93,8 @@
 <script>
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput } from '@/components/baseUi'
-import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
+// import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
+import { EMAIL, PASSWORD, CONFIRM_PASSWORD } from '@/components/validations'
 
 export default {
   name: 'FormRegistratin',
@@ -112,18 +113,23 @@ export default {
     }
   },
   validations: {
-    email: {
-      email,
-      required
-    },
-    password: {
-      required,
-      minLength: minLength(6)
-    },
-    confirmPassword: {
-      sameAs: sameAs('password')
-    }
+    email: EMAIL,
+    password: PASSWORD,
+    ConfirmPassword: CONFIRM_PASSWORD
   },
+  // validations: {
+  //   email: {
+  //     email,
+  //     required
+  //   },
+  //   password: {
+  //     required,
+  //     minLength: minLength(6)
+  //   },
+  //   confirmPassword: {
+  //     sameAs: sameAs('password')
+  //   }
+  // },
   methods: {
     onSubmit () {
       this.$v.$touch()
