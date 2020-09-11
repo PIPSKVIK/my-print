@@ -2,7 +2,7 @@
   <div class="options">
     <BaseSelect
       class="type-font"
-      @select="changeSelectedOptions('Fonts', $event)"
+      @select="updateSelectedOptions('Fonts', $event)"
       :options="allTypeFontFamily">
       <template v-slot:title>
         <span>Шрифт</span>
@@ -11,7 +11,7 @@
 
     <BaseSelect
       class="type-color"
-      @select="changeSelectedOptions('Color', $event)"
+      @select="updateSelectedOptions('Color', $event)"
       :options="allOptionsColors">
       <template v-slot:title>
         <span>Цвет</span>
@@ -20,7 +20,7 @@
 
     <BaseSelect
       class="type-size"
-      @select="changeSelectedOptions('Size', $event)"
+      @select="updateSelectedOptions('Size', $event)"
       :options="allOptionsSize">
       <template v-slot:title>
         <span>Размер</span>
@@ -31,27 +31,34 @@
 
 <script>
 import { BaseSelect } from '@/components/baseUi'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'SelectTextOptionsColorFontSize',
   components: {
     BaseSelect
   },
-  methods: {
-    changeSelectedOptions (type, event) {
-      this.$store.commit('changeSelectedOptions', { type, event })
+  props: {
+    allTypeFontFamily: {
+      type: Array,
+      required: true
+    },
+    allOptionsColors: {
+      type: Array,
+      required: true
+    },
+    allOptionsSize: {
+      type: Array,
+      required: true
+    },
+    changeSelectedOptions: {
+      type: Function,
+      required: true
     }
   },
-  computed: {
-    ...mapGetters([
-      'getSelectedSize',
-      'getSelectedColor',
-      'getSelectedFonts',
-      'allTypeFontFamily',
-      'allOptionsColors',
-      'allOptionsSize'
-    ])
+  methods: {
+    updateSelectedOptions (type, event) {
+      this.changeSelectedOptions({ type, event })
+    }
   }
 }
 </script>

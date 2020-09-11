@@ -27,7 +27,13 @@
         :updateTextPositionY="updateTextPositionY"
       />
       <!-- select выбора Цветов, Размеров, Шрифтов -->
-      <SelectTextOptionsColorFontSize class="type-text__section-select"/>
+      <SelectTextOptionsColorFontSize
+        class="type-text__section-select"
+        :allTypeFontFamily="allTypeFontFamily"
+        :allOptionsColors="allOptionsColors"
+        :allOptionsSize="allOptionsSize"
+        :changeSelectedOptions="changeSelectedOptions"
+      />
     </div>
   </div>
 </template>
@@ -50,7 +56,8 @@ export default {
       'changeTextStyle',
       'updateTextRotate',
       'updateTextPositionX',
-      'updateTextPositionY'
+      'updateTextPositionY',
+      'changeSelectedOptions'
     ])
   },
   computed: {
@@ -62,7 +69,10 @@ export default {
       'getTextStyleUppercase',
       'getTextRotate',
       'getTextPositionX',
-      'getTextPositionY'
+      'getTextPositionY',
+      'allTypeFontFamily',
+      'allOptionsColors',
+      'allOptionsSize'
     ])
   }
 }
