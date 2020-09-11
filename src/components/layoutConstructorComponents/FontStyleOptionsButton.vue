@@ -39,25 +39,33 @@
 
 <script>
 import { BaseButton } from '@/components/baseUi'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'FontStyleOptionsButton',
   components: {
     BaseButton
   },
-  methods: {
-    changeTextStyle (type) {
-      this.$store.commit('changeTextStyle', type)
+  props: {
+    getTextStyleWeight: {
+      type: Boolean,
+      required: true
+    },
+    getTextStyleItalic: {
+      type: Boolean,
+      required: true
+    },
+    getTextStyleUnderline: {
+      type: Boolean,
+      required: true
+    },
+    getTextStyleUppercase: {
+      type: Boolean,
+      required: true
+    },
+    changeTextStyle: {
+      type: Function,
+      required: true
     }
-  },
-  computed: {
-    ...mapGetters([
-      'getTextStyleWeight',
-      'getTextStyleItalic',
-      'getTextStyleUnderline',
-      'getTextStyleUppercase'
-    ])
   }
 }
 </script>

@@ -22,7 +22,7 @@ export default {
       type: String,
       required: true
     },
-    upgradePrintText: {
+    updatePrintText: {
       type: Function,
       required: true
     }
@@ -33,7 +33,7 @@ export default {
         return this.getPrintText
       },
       set (val) {
-        this.upgradePrintText(val)
+        this.updatePrintText(val)
       }
     }
   }

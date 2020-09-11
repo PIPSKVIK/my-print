@@ -5,12 +5,27 @@
       <MainTextField
         class="type-text__section-textarea"
         :getPrintText="getPrintText"
-        :upgradePrintText="upgradePrintText"
+        :updatePrintText="updatePrintText"
       />
       <!-- кнопки управлением Начертиание -->
-      <FontStyleOptionsButton class="type-text__font-options" />
+      <FontStyleOptionsButton
+        class="type-text__font-options"
+        :getTextStyleWeight="getTextStyleWeight"
+        :getTextStyleItalic="getTextStyleItalic"
+        :getTextStyleUnderline="getTextStyleUnderline"
+        :getTextStyleUppercase="getTextStyleUppercase"
+        :changeTextStyle="changeTextStyle"
+      />
       <!-- Позиционирование текста -->
-      <TextPositionAndRotate class="type-text__text-position"/>
+      <TextPositionAndRotate
+        class="type-text__text-position"
+        :getTextRotate="getTextRotate"
+        :getTextPositionX="getTextPositionX"
+        :getTextPositionY="getTextPositionY"
+        :updateTextRotate="updateTextRotate"
+        :updateTextPositionX="updateTextPositionX"
+        :updateTextPositionY="updateTextPositionY"
+      />
       <!-- select выбора Цветов, Размеров, Шрифтов -->
       <SelectTextOptionsColorFontSize class="type-text__section-select"/>
     </div>
@@ -31,12 +46,23 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'upgradePrintText'
+      'updatePrintText',
+      'changeTextStyle',
+      'updateTextRotate',
+      'updateTextPositionX',
+      'updateTextPositionY'
     ])
   },
   computed: {
     ...mapGetters([
-      'getPrintText'
+      'getPrintText',
+      'getTextStyleWeight',
+      'getTextStyleItalic',
+      'getTextStyleUnderline',
+      'getTextStyleUppercase',
+      'getTextRotate',
+      'getTextPositionX',
+      'getTextPositionY'
     ])
   }
 }

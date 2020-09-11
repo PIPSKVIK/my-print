@@ -6,7 +6,7 @@ export default {
     textRotate: '0'
   },
   mutations: {
-    upgradePrintText (state, getPrintText) {
+    updatePrintText (state, getPrintText) {
       state.printText = getPrintText
     },
     updateTextPositionX (state, getTextPositionX) {

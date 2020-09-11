@@ -29,43 +29,63 @@
 
 <script>
 import TextRotateAndCoordinateComponent from '@/components/layoutConstructorComponents/TextRotateAndCoordinateComponent'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'TextPositionAndRotate',
   components: {
     TextRotateAndCoordinateComponent
   },
+  props: {
+    getTextRotate: {
+      type: String,
+      required: true
+    },
+    getTextPositionX: {
+      type: String,
+      required: true
+    },
+    getTextPositionY: {
+      type: String,
+      required: true
+    },
+    updateTextRotate: {
+      type: Function,
+      required: true
+    },
+    updateTextPositionX: {
+      type: Function,
+      required: true
+    },
+    updateTextPositionY: {
+      type: Function,
+      required: true
+    }
+  },
   computed: {
-    changeTextPositionX: {
+    changeTextRotate: {
       get () {
-        return this.$store.state.textPositionX
+        return this.getTextRotate
       },
       set (val) {
-        this.$store.commit('updateTextPositionX', val)
+        this.updateTextRotate(val)
+      }
+    },
+    changeTextPositionX: {
+      get () {
+        return this.getTextPositionX
+      },
+      set (val) {
+        this.updateTextPositionX(val)
       }
     },
     changeTextPositionY: {
       get () {
-        return this.$store.state.textPositionY
+        return this.getTextPositionY
       },
       set (val) {
-        this.$store.commit('updateTextPositionY', val)
+        this.updateTextPositionY(val)
       }
-    },
-    changeTextRotate: {
-      get () {
-        return this.$store.state.textRotate
-      },
-      set (val) {
-        this.$store.commit('updateTextRotate', val)
-      }
-    },
-    ...mapGetters([
-      'getTextRotate',
-      'getTextPositionX',
-      'getTextPositionY'
-    ])
+    }
   }
 }
 </script>
