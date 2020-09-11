@@ -61,7 +61,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   .btn-link-constructor {
     background: #32343b;
     padding: 15px 3px;
@@ -85,5 +84,4 @@ export default {
     width: 40px;
     height: 40px;
   }
-
 </style>
