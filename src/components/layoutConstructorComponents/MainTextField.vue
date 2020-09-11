@@ -17,13 +17,23 @@ export default {
   components: {
     BaseTextarea
   },
+  props: {
+    getPrintText: {
+      type: String,
+      required: true
+    },
+    upgradePrintText: {
+      type: Function,
+      required: true
+    }
+  },
   computed: {
     chengePrintText: {
       get () {
-        return this.$store.state.printText
+        return this.getPrintText
       },
       set (val) {
-        this.$store.commit('upgradePrintText', val)
+        this.upgradePrintText(val)
       }
     }
   }

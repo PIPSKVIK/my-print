@@ -2,7 +2,11 @@
   <div class="manager">
     <div class="type-text__content-wrapper">
       <!-- поле ввода основного текста -->
-      <MainTextField class="type-text__section-textarea" />
+      <MainTextField
+        class="type-text__section-textarea"
+        :getPrintText="getPrintText"
+        :upgradePrintText="upgradePrintText"
+      />
       <!-- кнопки управлением Начертиание -->
       <FontStyleOptionsButton class="type-text__font-options" />
       <!-- Позиционирование текста -->
@@ -14,8 +18,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { MainTextField, FontStyleOptionsButton, TextPositionAndRotate, SelectTextOptionsColorFontSize } from '@/components/layoutConstructorComponents'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'TypeTextManager',
@@ -25,11 +29,14 @@ export default {
     TextPositionAndRotate,
     MainTextField
   },
+  methods: {
+    ...mapMutations([
+      'upgradePrintText'
+    ])
+  },
   computed: {
     ...mapGetters([
-      'allOptionsColors',
-      'allOptionsSize',
-      'allTypeFontFamily'
+      'getPrintText'
     ])
   }
 }

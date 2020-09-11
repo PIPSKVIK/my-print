@@ -1,6 +1,6 @@
 export default {
   state: {
-    printText: 'Ваш Текст',
+    printText: 'Ваш текст',
     textPositionX: '230',
     textPositionY: '350',
     textRotate: '0'
