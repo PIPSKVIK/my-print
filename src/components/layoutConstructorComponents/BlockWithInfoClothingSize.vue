@@ -13,14 +13,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'BlockWithInfoClothingSize',
-  computed: {
-    ...mapGetters([
-      'getTypeSubjectsSizes'
-    ])
+  props: {
+    getTypeSubjectsSizes: {
+      type: [Array, String],
+      required: true
+    }
   }
 }
 </script>

@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'BlockWithInfoClothingColor',
-  computed: {
-    ...mapGetters([
-      'getCurrentColors'
-    ])
+  props: {
+    getCurrentColors: {
+      type: [String, Array],
+      required: true
+    }
   }
 }
 </script>

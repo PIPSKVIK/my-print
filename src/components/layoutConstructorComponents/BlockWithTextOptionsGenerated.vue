@@ -35,20 +35,38 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'BlockWithTextOptionsGenerated',
-  computed: {
-    ...mapGetters([
-      'getPrintText',
-      'getTextRotate',
-      'getTextPositionX',
-      'getTextPositionY',
-      'getSelectedFonts',
-      'getSelectedColor',
-      'getSelectedSize'
-    ])
+  props: {
+    getPrintText: {
+      type: String,
+      required: true
+    },
+    getTextRotate: {
+      type: String,
+      required: true
+    },
+    getTextPositionX: {
+      type: String,
+      required: true
+    },
+    getTextPositionY: {
+      type: String,
+      required: true
+    },
+    getSelectedFonts: {
+      type: String,
+      required: true
+    },
+    getSelectedColor: {
+      type: String,
+      required: true
+    },
+    getSelectedSize: {
+      type: [String, Number],
+      required: true
+    }
   }
 }
 </script>

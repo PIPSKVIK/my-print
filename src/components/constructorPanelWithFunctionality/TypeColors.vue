@@ -1,6 +1,9 @@
 <template>
   <div class="type-color">
-    <BlockWithInfoClothingColor class="color-list" />
+    <BlockWithInfoClothingColor
+      class="color-list"
+      :getCurrentColors="getCurrentColors"
+    />
     <div class="color-elements">
       <BaseColor
         type="color"

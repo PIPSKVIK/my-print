@@ -10,7 +10,7 @@
     />
     <TextRotateAndCoordinateComponent
       nameText="positionY"
-      classInputText="text-position__input-positioY"
+      classInputText="text-position__input-positionY"
       min="153"
       max="500"
       :value.sync="changeTextPositionY"
@@ -18,7 +18,7 @@
     />
     <TextRotateAndCoordinateComponent
       nameText="positionX"
-      classInputText="text-position__input-positioX"
+      classInputText="text-position__input-positionX"
       min="0"
       max="470"
       :value.sync="changeTextPositionX"
