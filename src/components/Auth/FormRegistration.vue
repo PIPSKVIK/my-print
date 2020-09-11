@@ -72,10 +72,10 @@
         </BaseButton>
       </div>
       <div class="registration-status">
-        <BaseStatusMessage :submitStatus="submitStatus">
+        <BaseStatusMessage :submitStatus="submitStatus" :isLoading="isLoading">
           <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
           <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
-          <template v-slot:pending>Отправка...</template>
+          <template v-slot:pending />
         </BaseStatusMessage>
         <BaseLink
           class="registration-link"
@@ -108,7 +108,8 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
-      submitStatus: null
+      submitStatus: null,
+      isLoading: false
     }
   },
   validations: {
@@ -131,7 +132,9 @@ export default {
         this.submitStatus = 'error'
       } else {
         this.submitStatus = 'pending'
+        this.isLoading = true
         setTimeout(() => {
+          this.isLoading = false
           this.submitStatus = 'ok'
           const userData = {
             email: this.email,

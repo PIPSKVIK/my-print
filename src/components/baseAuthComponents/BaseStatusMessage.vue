@@ -5,16 +5,27 @@
       v-if="submitStatus"
     >
       <slot :name="submitStatus"></slot>
+      <slot name="pending">
+        <BaseLoader v-if="isLoading"/>
+      </slot>
     </p>
   </div>
 </template>
 
 <script>
+import BaseLoader from '../../components/loader/BaseLoader'
+
 export default {
   name: 'BaseStatusMessage',
+  components: {
+    BaseLoader
+  },
   props: {
     submitStatus: {
       type: null
+    },
+    isLoading: {
+      type: Boolean
     }
   }
 }
