@@ -6,7 +6,10 @@
       buttonCollapseName="Выбор одежды"
       dataTarget="typeSubjects"
     >
-      <TypeSubjects v-model="changeTypeSubjects"/>
+      <TypeSubjects
+        v-model="changeTypeSubjects"
+        :getSubjectsList="getSubjectsList"
+      />
     </ConstructorItem>
     <!-- <<< компонент выбор цыетов -->
     <ConstructorItem
@@ -70,7 +73,8 @@ export default {
       'getTypeSubjects',
       'getTypeColor',
       'getCurrentColors',
-      'allTypeSize'
+      'allTypeSize',
+      'getSubjectsList'
     ]),
     changeTypeSubjects: {
       get () {

@@ -14,7 +14,6 @@
 
 <script>
 import { BaseRadio } from '@/components/baseUi'
-import { mapGetters } from 'vuex'
 
 export default {
   name: 'TypeSubjects',
@@ -27,6 +26,10 @@ export default {
   props: {
     radio: {
       type: String
+    },
+    getSubjectsList: {
+      type: Array,
+      required: true
     }
   },
   computed: {
@@ -37,16 +40,12 @@ export default {
       set (value) {
         this.$emit('input', value)
       }
-    },
-    ...mapGetters([
-      'getSubjectsList'
-    ])
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
   .subjects {
     display: flex;
     padding: 10px;
@@ -54,5 +53,4 @@ export default {
     margin: 10px;
     border-radius: 10px;
   }
-
 </style>

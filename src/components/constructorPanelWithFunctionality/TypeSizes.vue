@@ -46,7 +46,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
   .size__list {
     margin: 0;
     padding: 10px;
@@ -62,5 +61,4 @@ export default {
   .size__item:not(:last-child) {
     margin-right: 15px;
   }
-
 </style>>
