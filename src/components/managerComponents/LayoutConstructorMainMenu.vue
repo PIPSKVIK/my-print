@@ -1,58 +1,52 @@
 <template>
   <div>
-      <!-- <<< компонент выбора типа одежды -->
-      <ConstructorItem
-        class="layout-constructor__type-subjects"
-        buttonCollapseName="Выбор одежды"
-        dataTarget="typeSubjects">
-        <template>
-          <TypeSubjects
-            v-model="changeTypeSubjects"
-          />
-        </template>
-      </ConstructorItem>
-      <!-- <<< компонент выбор цыетов -->
-      <ConstructorItem
-        class="layout-constructor__type-colors"
-        buttonCollapseName="Выбор цветов"
-        dataTarget="typeColor">
-        <template>
-          <TypeColors
-            v-model="changeTypeColor"
-            :getCurrentColors="getCurrentColors"
-            @save-current-color="$store.commit('saveCurrentColor')"
-          />
-        </template>
-      </ConstructorItem>
-      <!-- <<< компонент выбора размера -->
-      <ConstructorItem
-        class="layout-constructor__type-size"
-        buttonCollapseName="Выбор размера"
-        dataTarget="typeSize">
-        <template>
-          <TypeSizes
-            class="constructor-left__sizes"
-            :allTypeSize="allTypeSize"
-            @selectTypeSize="selectTypeSize"
-          />
-        </template>
-      </ConstructorItem>
-      <!-- <<< Компонент выбора текста -->
-      <ConstructorItem
-        class="layout-constructor__type-text"
-        buttonCollapseName="Выбор текста"
-        dataTarget="typeText">
-        <template>
-          <TypeTextManager />
-        </template>
-      </ConstructorItem>
+    <!-- <<< компонент выбора типа одежды -->
+    <ConstructorItem
+      class="layout-constructor__type-subjects"
+      buttonCollapseName="Выбор одежды"
+      dataTarget="typeSubjects"
+    >
+      <TypeSubjects v-model="changeTypeSubjects"/>
+    </ConstructorItem>
+    <!-- <<< компонент выбор цыетов -->
+    <ConstructorItem
+      class="layout-constructor__type-colors"
+      buttonCollapseName="Выбор цветов"
+      dataTarget="typeColor"
+    >
+      <TypeColors
+        v-model="changeTypeColor"
+        :getCurrentColors="getCurrentColors"
+        @save-current-color="saveCurrentColor"
+      />
+    </ConstructorItem>
+    <!-- <<< компонент выбора размера -->
+    <ConstructorItem
+      class="layout-constructor__type-size"
+      buttonCollapseName="Выбор размера"
+      dataTarget="typeSize"
+    >
+      <TypeSizes
+        class="constructor-left__sizes"
+        :allTypeSize="allTypeSize"
+        @selectTypeSize="changeTypeSubjectSize"
+      />
+    </ConstructorItem>
+    <!-- <<< Компонент выбора текста -->
+    <ConstructorItem
+      class="layout-constructor__type-text"
+      buttonCollapseName="Выбор текста"
+      dataTarget="typeText"
+    >
+      <TypeTextManager />
+    </ConstructorItem>
   </div>
 </template>
 
 <script>
 import { TypeSizes, TypeColors, TypeSubjects, ConstructorItem } from '@/components/constructorPanelWithFunctionality'
 import TypeTextManager from '@/components/managerComponents/TypeTextManager'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'LayoutConstructorMainMenu',
@@ -64,9 +58,12 @@ export default {
     TypeTextManager
   },
   methods: {
-    selectTypeSize (value) {
-      this.$store.commit('changeTypeSubjectSize', value)
-    }
+    ...mapMutations([
+      'saveCurrentColor',
+      'updateTypeSubjects',
+      'updateTypeColor',
+      'changeTypeSubjectSize'
+    ])
   },
   computed: {
     ...mapGetters([
@@ -80,7 +77,7 @@ export default {
         return this.getTypeSubjects
       },
       set (val) {
-        this.$store.commit('updateTypeSubjects', val)
+        this.updateTypeSubjects(val)
       }
     },
     changeTypeColor: {
@@ -88,7 +85,7 @@ export default {
         return this.getTypeColor
       },
       set (val) {
-        this.$store.commit('updateTypeColor', val)
+        this.updateTypeColor(val)
       }
     }
   }

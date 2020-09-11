@@ -3,8 +3,7 @@ export default {
     enterEmail: '',
     enterPassword: ''
   },
-  mutattion: {
-  },
+  mutattion: {},
   actions: {},
   getters: {
     getEnterEmail (state) {
