@@ -13,10 +13,10 @@
       :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
     >
+    <slot />
     <a href="#" v-if="type == 'password'" @click.prevent="passwordRevealed = !passwordRevealed">
       {{ passwordRevealed ? 'Скрыть' : 'Показать' }} пароль
     </a>
-    <slot />
   </div>
 </template>
 
