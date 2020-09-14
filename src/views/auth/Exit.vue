@@ -8,25 +8,23 @@
         placeholder="Password"
         class="exit-password"
         v-model="password"
+        :passwordData="password"
       >
-        <ComplexityPassword
-          class="exit_complexity-password"
-          :password="password"
-        />
       </BaseInput>
+      <BaseInput
+        type="text"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import BaseInput from '@/components/baseUi/BaseInput'
-import ComplexityPassword from '../../components/loader/ComplexityPassword'
 
 export default {
   name: 'Exit',
   components: {
-    BaseInput,
-    ComplexityPassword
+    BaseInput
   },
   data () {
     return {
@@ -40,10 +38,5 @@ export default {
   .exit {
     text-align: center;
     margin-top: 40px;
-  }
-
-  .exit-password {
-    position: relative;
-    z-index: 10;
   }
 </style>

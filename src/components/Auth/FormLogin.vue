@@ -32,19 +32,20 @@
           placeholder="Password"
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
+          :passwordData="password"
         >
-          <small
-            class="invalid-feedback"
-            v-if="!$v.password.required"
-          >
-            Введите пароль
-          </small>
-          <small
-            class="invalid-feedback"
-            v-else-if="!$v.password.minLength"
-          >
-            Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
-          </small>
+        <small
+          class="invalid-feedback"
+          v-if="!$v.password.required"
+        >
+          Введите пароль
+        </small>
+        <small
+          class="invalid-feedback"
+          v-else-if="!$v.password.minLength"
+        >
+          Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
+        </small>
         </BaseInput>
       </div>
       <div class="login-button">

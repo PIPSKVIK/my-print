@@ -7,26 +7,26 @@
 export default {
   name: 'ComplexityPassword',
   props: {
-    password: {
+    passwordData: {
       type: [String, Number]
     }
   },
   computed: {
     scorePassword () {
       let score = 0
-      if (this.password === '') return score
+      if (this.passwordData === '') return score
 
       var letters = {}
-      for (let i = 0; i < this.password.length; i++) {
-        letters[this.password[i]] = (letters[this.password[i]] || 0) + 1
-        score += 5.0 / letters[this.password[i]]
+      for (let i = 0; i < this.passwordData.length; i++) {
+        letters[this.passwordData[i]] = (letters[this.passwordData[i]] || 0) + 1
+        score += 5.0 / letters[this.passwordData[i]]
       }
 
       var variations = {
-        digits: /\d/.test(this.password),
-        lower: /[a-z]/.test(this.password),
-        upper: /[A-Z]/.test(this.password),
-        special: /\W/.test(this.password)
+        digits: /\d/.test(this.passwordData),
+        lower: /[a-z]/.test(this.passwordData),
+        upper: /[A-Z]/.test(this.passwordData),
+        special: /\W/.test(this.passwordData)
       }
 
       let variationsCount = 0
@@ -57,7 +57,7 @@ export default {
     bottom: 10px;
     left: 0;
     display: block;
-    height: 10px;
+    height: 5px;
     width: 25%;
     background-color: #a5bf41;
     border-radius: 5px;
@@ -73,7 +73,7 @@ export default {
   }
 
   .level_0 {
-    @include level(10px, 25%, #BB4440)
+    @include level(10px, 0, #BB4440)
   }
 
   .level_1 {

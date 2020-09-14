@@ -32,6 +32,7 @@
           placeholder="Password"
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
+          :passwordData="password"
         >
           <small
             class="invalid-feedback"
@@ -55,6 +56,7 @@
           placeholder="Подтвердите пароль"
           v-model.trim="$v.confirmPassword.$model"
           :invalid="$v.confirmPassword.$error"
+          :passwordData="password"
         >
           <small class="invalid-feedback" v-if="!$v.confirmPassword.sameAs">
             Ваш пароль не совпадает
