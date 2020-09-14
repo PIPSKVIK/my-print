@@ -9,6 +9,7 @@
       :getSelectedFonts="getSelectedFonts"
       :getSelectedColor="getSelectedColor"
       :getSelectedSize="getSelectedSize"
+      :getTypeSubjects="getTypeSubjects"
     />
     <div class="block-right">
       <BlockWithInfoClothingSize
@@ -46,7 +47,8 @@ export default {
       'getSelectedColor',
       'getSelectedSize',
       'getTypeSubjectsSizes',
-      'getCurrentColors'
+      'getCurrentColors',
+      'getTypeSubjects'
     ])
   }
 }
@@ -57,7 +59,7 @@ export default {
     min-height: 80px;
     background: #7e7d7d;
     margin-top: 20px;
-    padding: 40px;
+    padding: 20px;
     text-align: center;
     display: flex;
   }

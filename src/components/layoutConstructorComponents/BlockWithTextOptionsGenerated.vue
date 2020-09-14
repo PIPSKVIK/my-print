@@ -30,6 +30,11 @@
         <p class="block-options__title">Размер текста: </p>
         <span class="block-options__info"> {{ getSelectedSize }} </span>
       </li>
+      <li class="block-options__item">
+        <p class="block-options__title">Тип: </p>
+        <span class="block-options__info" v-if="getTypeSubjects === 'image-men-t-shirt.jpg'">Men</span>
+        <span class="block-options__info" v-else-if="getTypeSubjects === 'image-womens-t-shirt.jpg'">Women</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -65,6 +70,10 @@ export default {
     },
     getSelectedSize: {
       type: [String, Number],
+      required: true
+    },
+    getTypeSubjects: {
+      type: String,
       required: true
     }
   }
