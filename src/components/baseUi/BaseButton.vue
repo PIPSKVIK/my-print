@@ -9,7 +9,7 @@
     v-on="$listeners"
     :disabled="disabled"
   >
-    <slot></slot>
+    <slot />
   </button>
 </template>
 

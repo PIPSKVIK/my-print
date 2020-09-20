@@ -16,11 +16,10 @@
 <script>
 export default {
   name: 'BaseRouterLink',
-  inheritAttrs: false,
   props: {
     to: {
-      required: false,
       type: Object,
+      required: false,
       default () {
         return {
           name: 'Home'

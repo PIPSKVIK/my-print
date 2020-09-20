@@ -38,7 +38,7 @@ export default {
 
       return parseInt(score)
     },
-    // eslint-disable-next-line vue/return-in-computed-property
+    // eslint-disable-next-line
     strengthLevel () {
       const pass = this.scorePassword
       if (pass === 0) return 0
