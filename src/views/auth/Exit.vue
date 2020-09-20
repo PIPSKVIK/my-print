@@ -1,7 +1,6 @@
 <template>
   <div class="exit">
     <h2>Exit</h2>
-    <button>Button</button>
   </div>
 </template>
 
