@@ -56,16 +56,16 @@ export default {
 
 <style lang="scss" scoped>
   .block-info {
-    min-height: 80px;
     background: #7e7d7d;
     margin-top: 20px;
     padding: 20px;
     text-align: center;
     display: flex;
+    justify-content: space-between;
+    width: 100%;
   }
 
   .block-right {
-    margin-left: 150px;
     width: 250px;
   }
 

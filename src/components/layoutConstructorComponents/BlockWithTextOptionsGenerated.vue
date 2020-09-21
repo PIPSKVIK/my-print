@@ -1,39 +1,16 @@
 <template>
   <div class="block-options">
     <ul class="block-options__list">
-      <li class="block-options__item">
-        <p class="block-options__title">Текст: </p>
-        <span class="block-options__info"> {{ getPrintText }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Угол: </p>
-        <span class="block-options__info"> {{ getTextRotate }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Координата X: </p>
-        <span class="block-options__info"> {{ getTextPositionX }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Координата Y:</p>
-        <span class="block-options__info"> {{ getTextPositionY }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Шрифт: </p>
-        <span v-if="getSelectedFonts === ''" class="block-options__info"> Шрифт не выбран </span>
-        <span v-else class="block-options__info"> {{ getSelectedFonts }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Цвет текста: </p>
-        <span class="block-options__info"> {{ getSelectedColor }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Размер текста: </p>
-        <span class="block-options__info"> {{ getSelectedSize }} </span>
-      </li>
-      <li class="block-options__item">
-        <p class="block-options__title">Тип: </p>
-        <span class="block-options__info" v-if="getTypeSubjects === 'image-men-t-shirt.jpg'">Men</span>
-        <span class="block-options__info" v-else-if="getTypeSubjects === 'image-womens-t-shirt.jpg'">Women</span>
+      <li
+        class="block-options__item"
+        v-for="item in items"
+        :key="item.title"
+      >
+        <p class="block-options__title">{{ item.title }}</p>
+        <span class="block-options__info">
+          {{ item.value === '' ? item.defaultValue : item.value }}
+          {{ item.valueSubjects === 'image-men-t-shirt.jpg' ? item.men : item.women }}
+        </span>
       </li>
     </ul>
   </div>
@@ -76,14 +53,25 @@ export default {
       type: String,
       required: true
     }
+  },
+  computed: {
+    items () {
+      return [
+        { title: 'Текст: ', value: this.getPrintText },
+        { title: 'Угол: ', value: this.getTextRotate },
+        { title: 'Координата X: ', value: this.getTextPositionX },
+        { title: 'Координата Y: ', value: this.getTextPositionY },
+        { title: 'Шрифт: ', value: this.getSelectedFonts, defaultValue: 'Шрифт не выбран' },
+        { title: 'Цвет текста: ', value: this.getSelectedColor },
+        { title: 'Размер текста: ', value: this.getSelectedSize },
+        { title: 'Тип: ', valueSubjects: this.getTypeSubjects, men: 'Men', women: 'Women' }
+      ]
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .block-options {
-    width: 200px;
-  }
   .block-options__list {
     list-style: none;
     margin: 0;

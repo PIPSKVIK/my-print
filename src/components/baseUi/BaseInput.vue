@@ -70,6 +70,6 @@ export default {
   }
 
   .base-inut {
-    padding-right: 72px;
+    padding-right: 15%;
   }
 </style>
