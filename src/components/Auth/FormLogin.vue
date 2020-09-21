@@ -23,12 +23,12 @@
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
           :passwordData="password"
-          :show="show"
+          :show="getShow"
         >
           <BaseInputPassword
             :passwordData="password"
-            :show="show"
-            @change-view="changeView"
+            :show="getShow"
+            :changeShow="changeShow"
           />
           <BaseInputError v-if="!$v.password.required">Введите пароль</BaseInputError>
           <BaseInputError v-else-if="!$v.password.minLength">Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}</BaseInputError>
@@ -67,6 +67,7 @@
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'FormLogin',
@@ -84,8 +85,7 @@ export default {
       email: '',
       password: '',
       submitStatus: null,
-      isLoading: false,
-      show: false
+      isLoading: false
     }
   },
   validations: {
@@ -117,14 +117,17 @@ export default {
         }, 5000)
       }
     },
-    changeView () {
-      this.show = !this.show
-    }
+    ...mapMutations([
+      'changeShow'
+    ])
   },
   computed: {
     passwordMinLength () {
       return this.$v.password.$params.minLength.min
-    }
+    },
+    ...mapGetters([
+      'getShow'
+    ])
   }
 }
 </script>

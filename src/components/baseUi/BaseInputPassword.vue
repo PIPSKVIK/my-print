@@ -11,7 +11,7 @@
           iconName="view"
           iconColor="#3fb984"
           v-if="show"
-          @click="$emit('change-view')"
+          @click="changeShow"
           class="icon-eye"
         >
           <EyeView />
@@ -22,7 +22,7 @@
           iconName="hide"
           iconColor="#a10000"
           v-else
-          @click="$emit('change-view')"
+          @click="changeShow"
           class="icon-eye"
         >
           <EyeHide/>
@@ -50,6 +50,10 @@ export default {
     },
     show: {
       type: Boolean,
+      required: true
+    },
+    changeShow: {
+      type: Function,
       required: true
     }
   },

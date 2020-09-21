@@ -23,7 +23,13 @@
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
           :passwordData="password"
+          :show="getShow"
         >
+          <BaseInputPassword
+            :passwordData="password"
+            :show="getShow"
+            :changeShow="changeShow"
+          />
           <BaseInputError v-if="!$v.password.required">Введите пароль</BaseInputError>
           <BaseInputError v-else-if="!$v.password.minLength">Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}</BaseInputError>
         </BaseInput>
@@ -37,6 +43,7 @@
           v-model.trim="$v.confirmPassword.$model"
           :invalid="$v.confirmPassword.$error"
           :passwordData="password"
+          :show="getShow"
         >
           <BaseInputError v-if="!$v.confirmPassword.sameAs">Ваш пароль не совпадает</BaseInputError>
         </BaseInput>
@@ -72,8 +79,9 @@
 
 <script>
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
-import { BaseButton, BaseInput, BaseInputError } from '@/components/baseUi'
+import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'FormRegistratin',
@@ -82,7 +90,8 @@ export default {
     BaseButton,
     BaseLink,
     BaseStatusMessage,
-    BaseInputError
+    BaseInputError,
+    BaseInputPassword
   },
   data () {
     return {
@@ -124,12 +133,18 @@ export default {
           console.log(userData)
         }, 3000)
       }
-    }
+    },
+    ...mapMutations([
+      'changeShow'
+    ])
   },
   computed: {
     passwordMinLength () {
       return this.$v.password.$params.minLength.min
-    }
+    },
+    ...mapGetters([
+      'getShow'
+    ])
   }
 }
 </script>

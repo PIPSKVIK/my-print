@@ -45,7 +45,8 @@ export default {
     typeSubjects: 'image-men-t-shirt.jpg',
     typeColor: '#000000',
     typeSubjectsSizes: '',
-    currentColors: ['#000000', '#aa55aa', '#ffffff']
+    currentColors: ['#000000', '#aa55aa', '#ffffff'],
+    show: false
   },
   mutations: {
     changeTextStyle (state, type) {
@@ -70,6 +71,9 @@ export default {
       if (!state.currentColors.includes(state.typeColor)) {
         state.currentColors.push(state.typeColor)
       }
+    },
+    changeShow (state) {
+      state.show = !state.show
     }
   },
   actions: {},
@@ -121,6 +125,9 @@ export default {
     },
     getCurrentColors (state) {
       return state.currentColors
+    },
+    getShow (state) {
+      return state.show
     }
   }
 }
