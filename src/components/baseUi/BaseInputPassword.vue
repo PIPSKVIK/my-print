@@ -1,16 +1,56 @@
-/* eslint-disable no-unreachable */
 <template>
-  <div class="complexity" :class="'level_' + strengthLevel">
+  <div>
+    <ComplexityPassword
+      :passwordData="passwordData"
+      class="complexity-password"
+    />
+    <div class="icon">
+        <BaseIcon
+          width="30"
+          height="30"
+          iconName="view"
+          iconColor="#3fb984"
+          v-if="show"
+          @click="$emit('change-view')"
+          class="icon-eye"
+        >
+          <EyeView />
+        </BaseIcon>
+        <BaseIcon
+          width="30"
+          height="30"
+          iconName="hide"
+          iconColor="#a10000"
+          v-else
+          @click="$emit('change-view')"
+          class="icon-eye"
+        >
+          <EyeHide/>
+        </BaseIcon>
+      </div>
   </div>
 </template>
 
 <script>
+import ComplexityPassword from '@/components/loader/ComplexityPassword'
+import { EyeHide, EyeView } from '@/components/icon'
+import BaseIcon from '@/components/baseUi/BaseIcon'
 
 export default {
-  name: 'ComplexityPassword',
+  name: 'BaseInputPassword',
+  components: {
+    ComplexityPassword,
+    EyeHide,
+    EyeView,
+    BaseIcon
+  },
   props: {
     passwordData: {
       type: [String, Number]
+    },
+    show: {
+      type: Boolean,
+      required: true
     }
   },
   computed: {
@@ -92,5 +132,22 @@ export default {
 
   .level_4 {
     @include level(10px, 100%, #a5bf41)
+  }
+
+  .complexity-password {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    opacity: 0.8;
+  }
+
+  .icon-eye {
+    cursor: pointer;
+  }
+
+  .icon {
+    position: absolute;
+    top: 5px;
+    right: 40px;
   }
 </style>

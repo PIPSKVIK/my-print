@@ -23,7 +23,13 @@
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
           :passwordData="password"
+          :show="show"
         >
+          <BaseInputPassword
+            :passwordData="password"
+            :show="show"
+            @change-view="changeView"
+          />
           <BaseInputError v-if="!$v.password.required">Введите пароль</BaseInputError>
           <BaseInputError v-else-if="!$v.password.minLength">Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}</BaseInputError>
         </BaseInput>
@@ -59,7 +65,7 @@
 
 <script>
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
-import { BaseButton, BaseInput, BaseInputError } from '@/components/baseUi'
+import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength } from 'vuelidate/lib/validators'
 
 export default {
@@ -69,7 +75,8 @@ export default {
     BaseLink,
     BaseInput,
     BaseStatusMessage,
-    BaseInputError
+    BaseInputError,
+    BaseInputPassword
 
   },
   data () {
@@ -77,7 +84,8 @@ export default {
       email: '',
       password: '',
       submitStatus: null,
-      isLoading: false
+      isLoading: false,
+      show: false
     }
   },
   validations: {
@@ -108,6 +116,9 @@ export default {
           console.log(userData)
         }, 5000)
       }
+    },
+    changeView () {
+      this.show = !this.show
     }
   },
   computed: {
