@@ -123,4 +123,8 @@ export default {
     left: 0;
     opacity: 0.8;
   }
+
+  .base-inut {
+    padding-right: 72px;
+  }
 </style>

@@ -10,18 +10,8 @@
           v-model.trim="$v.email.$model"
           :invalid="$v.email.$error"
         >
-          <small
-            class="invalid-feedback"
-            v-if="!$v.email.required"
-          >
-            Заполните поле Email
-          </small>
-          <small
-            class="invalid-feedback"
-            v-else-if="!$v.email.email"
-          >
-            Введите корректный Email
-          </small>
+          <BaseInputError v-if="!$v.email.required">Заполните поле Email</BaseInputError>
+          <BaseInputError v-else-if="!$v.email.email">Введите корректный Email</BaseInputError>
         </BaseInput>
       </div>
       <div class="form-registration__password">
@@ -34,18 +24,8 @@
           :invalid="$v.password.$error"
           :passwordData="password"
         >
-          <small
-            class="invalid-feedback"
-            v-if="!$v.password.required"
-          >
-            Введите пароль
-          </small>
-          <small
-            class="invalid-feedback"
-            v-else-if="!$v.password.minLength"
-          >
-            Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
-          </small>
+          <BaseInputError v-if="!$v.password.required">Введите пароль</BaseInputError>
+          <BaseInputError v-else-if="!$v.password.minLength">Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}</BaseInputError>
         </BaseInput>
       </div>
       <div class="form-registration__confirm-password">
@@ -58,9 +38,7 @@
           :invalid="$v.confirmPassword.$error"
           :passwordData="password"
         >
-          <small class="invalid-feedback" v-if="!$v.confirmPassword.sameAs">
-            Ваш пароль не совпадает
-          </small>
+          <BaseInputError v-if="!$v.confirmPassword.sameAs">Ваш пароль не совпадает</BaseInputError>
         </BaseInput>
       </div>
       <div class="form-registration__button">
@@ -94,7 +72,7 @@
 
 <script>
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
-import { BaseButton, BaseInput } from '@/components/baseUi'
+import { BaseButton, BaseInput, BaseInputError } from '@/components/baseUi'
 import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
 
 export default {
@@ -103,7 +81,8 @@ export default {
     BaseInput,
     BaseButton,
     BaseLink,
-    BaseStatusMessage
+    BaseStatusMessage,
+    BaseInputError
   },
   data () {
     return {
