@@ -3,7 +3,7 @@
     <BaseSelect
       v-for="item in items"
       :key="item.name"
-      :class="item.class"
+      :class="`type-${item.prop.toLowerCase()}`"
       @select="updateSelectedOptions(item.prop, $event)"
       :options="item.option"
     >
@@ -48,8 +48,8 @@ export default {
   computed: {
     items () {
       return [
-        { name: 'Шрифт', class: 'type-font', prop: 'Fonts', option: this.allTypeFontFamily },
-        { name: 'Цвет', class: 'type-color', prop: 'Color', option: this.allOptionsColors },
+        { name: 'Шрифт', prop: 'Fonts', option: this.allTypeFontFamily },
+        { name: 'Цвет', prop: 'Color', option: this.allOptionsColors },
         { name: 'Размер', class: 'type-size', prop: 'Size', option: this.allOptionsSize }
       ]
     }
@@ -62,5 +62,17 @@ export default {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
+  }
+
+  .type-fonts {
+    color: #0000ff;
+  }
+
+  .type-color {
+    color: #008000;
+  }
+
+  .type-size {
+    color: #ff0000;
   }
 </style>

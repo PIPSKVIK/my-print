@@ -7,9 +7,8 @@
         theme="secondary"
         :class="[
           { standartButtonActive: item.prop },
-          item.class
+          `typeface-${item.value.toLowerCase()}`
         ]"
-        :style="{}"
         @click="changeTextStyle(item.value)"
       >
         {{ item.name }}
@@ -51,10 +50,10 @@ export default {
   computed: {
     items () {
       return [
-        { name: 'B', value: 'Weight', prop: this.getTextStyleWeight, class: 'typeface-weight' },
-        { name: 'I', value: 'Italic', prop: this.getTextStyleItalic, class: 'typeface-italic' },
-        { name: 'K', value: 'Underline', prop: this.getTextStyleUnderline, class: 'typeface-underline' },
-        { name: 'U', value: 'Uppercase', prop: this.getTextStyleUppercase, class: 'typeface-uppercase' }
+        { name: 'B', value: 'Weight', prop: this.getTextStyleWeight },
+        { name: 'I', value: 'Italic', prop: this.getTextStyleItalic },
+        { name: 'K', value: 'Underline', prop: this.getTextStyleUnderline },
+        { name: 'U', value: 'Uppercase', prop: this.getTextStyleUppercase }
       ]
     }
   }

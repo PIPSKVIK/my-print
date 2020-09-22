@@ -8,24 +8,10 @@
         <BaseIcon
           width="30"
           height="30"
-          iconName="view"
           iconColor="#3fb984"
-          v-if="show"
           @click="changeShow"
-          class="icon-eye"
         >
-          <EyeView />
-        </BaseIcon>
-        <BaseIcon
-          width="30"
-          height="30"
-          iconName="hide"
-          iconColor="#a10000"
-          v-else
-          @click="changeShow"
-          class="icon-eye"
-        >
-          <EyeHide/>
+          <component :is="changeIcon"></component>
         </BaseIcon>
       </div>
   </div>
@@ -58,6 +44,9 @@ export default {
     }
   },
   computed: {
+    changeIcon () {
+      return this.show ? EyeView : EyeHide
+    },
     scorePassword () {
       let score = 0
       if (this.passwordData === '') return score

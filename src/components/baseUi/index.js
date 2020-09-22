@@ -11,4 +11,17 @@ import BaseIcon from './BaseIcon'
 import BaseInputError from './BaseInputError'
 import BaseInputPassword from './BaseInputPassword'
 
-export { BaseButton, BaseInput, BaseRouterLink, BaseRadio, BaseColor, BaseCheckbox, BaseTextarea, BaseSelect, BaseInputRange, BaseIcon, BaseInputError, BaseInputPassword }
+export {
+  BaseButton,
+  BaseInput,
+  BaseRouterLink,
+  BaseRadio,
+  BaseColor,
+  BaseCheckbox,
+  BaseTextarea,
+  BaseSelect,
+  BaseInputRange,
+  BaseIcon,
+  BaseInputError,
+  BaseInputPassword
+}

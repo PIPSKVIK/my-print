@@ -5,7 +5,7 @@
     </label>
     <div class="wrapper">
       <input
-        class="form-control base-inut"
+        class="form-control base-input"
         :class="{'is-invalid': invalid}"
         :type="show ? 'text' : inputType"
         v-bind="$attrs"
@@ -69,7 +69,7 @@ export default {
     position: relative;
   }
 
-  .base-inut {
+  .base-input {
     padding-right: 15%;
   }
 </style>
