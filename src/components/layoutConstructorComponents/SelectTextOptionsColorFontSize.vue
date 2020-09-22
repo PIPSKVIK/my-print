@@ -1,29 +1,14 @@
 <template>
   <div class="options">
     <BaseSelect
-      class="type-font"
-      @select="updateSelectedOptions('Fonts', $event)"
-      :options="allTypeFontFamily">
-      <template v-slot:title>
-        <span>Шрифт</span>
-      </template>
-    </BaseSelect>
-
-    <BaseSelect
-      class="type-color"
-      @select="updateSelectedOptions('Color', $event)"
-      :options="allOptionsColors">
-      <template v-slot:title>
-        <span>Цвет</span>
-      </template>
-    </BaseSelect>
-
-    <BaseSelect
-      class="type-size"
-      @select="updateSelectedOptions('Size', $event)"
-      :options="allOptionsSize">
-      <template v-slot:title>
-        <span>Размер</span>
+      v-for="item in items"
+      :key="item.name"
+      :class="`type-${item.prop.toLowerCase()}`"
+      @select="updateSelectedOptions(item.prop, $event)"
+      :options="item.option"
+    >
+      <template #title>
+        <span>{{ item.name }}</span>
       </template>
     </BaseSelect>
   </div>
@@ -59,6 +44,15 @@ export default {
     updateSelectedOptions (type, event) {
       this.changeSelectedOptions({ type, event })
     }
+  },
+  computed: {
+    items () {
+      return [
+        { name: 'Шрифт', prop: 'Fonts', option: this.allTypeFontFamily },
+        { name: 'Цвет', prop: 'Color', option: this.allOptionsColors },
+        { name: 'Размер', class: 'type-size', prop: 'Size', option: this.allOptionsSize }
+      ]
+    }
   }
 }
 </script>
@@ -68,5 +62,17 @@ export default {
     margin-top: 20px;
     display: flex;
     justify-content: space-around;
+  }
+
+  .type-fonts {
+    color: #0000ff;
+  }
+
+  .type-color {
+    color: #008000;
+  }
+
+  .type-size {
+    color: #ff0000;
   }
 </style>

@@ -10,18 +10,8 @@
           v-model.trim="$v.email.$model"
           :invalid="$v.email.$error"
         >
-          <small
-            class="invalid-feedback"
-            v-if="!$v.email.required"
-          >
-            Заполните поле Email
-          </small>
-          <small
-            class="invalid-feedback"
-            v-else-if="!$v.email.email"
-          >
-            Введите корректный Email
-          </small>
+          <BaseInputError v-if="!$v.email.required">Заполните поле Email</BaseInputError>
+          <BaseInputError v-else-if="!$v.email.email">Введите корректный Email</BaseInputError>
         </BaseInput>
       </div>
       <div class="login-password">
@@ -33,19 +23,15 @@
           v-model.trim="$v.password.$model"
           :invalid="$v.password.$error"
           :passwordData="password"
+          :show="getShow"
         >
-        <small
-          class="invalid-feedback"
-          v-if="!$v.password.required"
-        >
-          Введите пароль
-        </small>
-        <small
-          class="invalid-feedback"
-          v-else-if="!$v.password.minLength"
-        >
-          Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}
-        </small>
+          <BaseInputPassword
+            :passwordData="password"
+            :show="getShow"
+            :changeShow="changeShow"
+          />
+          <BaseInputError v-if="!$v.password.required">Введите пароль</BaseInputError>
+          <BaseInputError v-else-if="!$v.password.minLength">Пароль должен быть {{ passwordMinLength }} символов. Сейчас он {{ password.length }}</BaseInputError>
         </BaseInput>
       </div>
       <div class="login-button">
@@ -79,8 +65,9 @@
 
 <script>
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
-import { BaseButton, BaseInput } from '@/components/baseUi'
+import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength } from 'vuelidate/lib/validators'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'FormLogin',
@@ -88,7 +75,9 @@ export default {
     BaseButton,
     BaseLink,
     BaseInput,
-    BaseStatusMessage
+    BaseStatusMessage,
+    BaseInputError,
+    BaseInputPassword
 
   },
   data () {
@@ -127,12 +116,18 @@ export default {
           console.log(userData)
         }, 5000)
       }
-    }
+    },
+    ...mapMutations([
+      'changeShow'
+    ])
   },
   computed: {
     passwordMinLength () {
       return this.$v.password.$params.minLength.min
-    }
+    },
+    ...mapGetters([
+      'getShow'
+    ])
   }
 }
 </script>

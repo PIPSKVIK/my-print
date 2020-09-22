@@ -2,36 +2,16 @@
   <div class="typeface btn-toolbar" role="toolbar">
     <div class="btn-group btn-group-sm" role="group" aria-label="First group">
       <BaseButton
+        v-for="item in items"
+        :key="item.name"
         theme="secondary"
-        class="typeface-weight"
-        @click="changeTextStyle('Weight')"
-        :class="{ standartButtonActive: getTextStyleWeight }"
+        :class="[
+          { standartButtonActive: item.prop },
+          `typeface-${item.value.toLowerCase()}`
+        ]"
+        @click="changeTextStyle(item.value)"
       >
-        B
-      </BaseButton>
-      <BaseButton
-        theme="secondary"
-        class="typeface-italic"
-        @click="changeTextStyle('Italic')"
-        :class="{ standartButtonActive: getTextStyleItalic }"
-      >
-        I
-      </BaseButton>
-      <BaseButton
-        theme="secondary"
-        class="typeface-underline"
-        @click="changeTextStyle('Underline')"
-        :class="{ standartButtonActive: getTextStyleUnderline }"
-      >
-        K
-      </BaseButton>
-      <BaseButton
-        theme="secondary"
-        class="typeface-uppercase"
-        @click="changeTextStyle('Uppercase')"
-        :class="{ standartButtonActive: getTextStyleUppercase }"
-      >
-        U
+        {{ item.name }}
       </BaseButton>
     </div>
   </div>
@@ -65,6 +45,16 @@ export default {
     changeTextStyle: {
       type: Function,
       required: true
+    }
+  },
+  computed: {
+    items () {
+      return [
+        { name: 'B', value: 'Weight', prop: this.getTextStyleWeight },
+        { name: 'I', value: 'Italic', prop: this.getTextStyleItalic },
+        { name: 'K', value: 'Underline', prop: this.getTextStyleUnderline },
+        { name: 'U', value: 'Uppercase', prop: this.getTextStyleUppercase }
+      ]
     }
   }
 }

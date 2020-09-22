@@ -5,7 +5,7 @@
     </label>
     <div class="wrapper">
       <input
-        class="form-control base-inut"
+        class="form-control base-input"
         :class="{'is-invalid': invalid}"
         :type="show ? 'text' : inputType"
         v-bind="$attrs"
@@ -14,53 +14,16 @@
         :placeholder="placeholder"
         @input="$emit('input', $event.target.value)"
       >
-      <ComplexityPassword
-        :passwordData="passwordData"
-        class="complexity-password"
-        v-if="type === 'password'"
-      />
       <slot />
-      <div v-if="type === 'password'" class="icon">
-        <BaseIcon
-          width="30"
-          height="30"
-          iconName="view"
-          iconColor="#3fb984"
-          v-if="show"
-          @click="show = !show"
-          class="icon-eye"
-        >
-          <EyeView />
-        </BaseIcon>
-        <BaseIcon
-          width="30"
-          height="30"
-          iconName="hide"
-          iconColor="#a10000"
-          v-else
-          @click="show = !show"
-          class="icon-eye"
-        >
-          <EyeHide/>
-        </BaseIcon>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import BaseIcon from '@/components/baseUi/BaseIcon'
-import { EyeHide, EyeView } from '@/components/icon'
-import ComplexityPassword from '@/components/loader/ComplexityPassword'
 
 export default {
   name: 'BaseInput',
-  components: {
-    BaseIcon,
-    EyeHide,
-    EyeView,
-    ComplexityPassword
-  },
+  components: {},
   inheritAttrs: false,
   props: {
     name: {
@@ -89,13 +52,12 @@ export default {
       type: Boolean,
       default: false
     },
-    passwordData: {
-      type: [String, Number]
+    show: {
+      type: Boolean
     }
   },
   data () {
     return {
-      show: false,
       inputType: this.type
     }
   }
@@ -103,24 +65,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .icon-eye {
-    cursor: pointer;
-  }
-
   .wrapper {
     position: relative;
   }
 
-  .icon {
-    position: absolute;
-    top: 5px;
-    right: 40px;
-  }
-
-  .complexity-password {
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    opacity: 0.8;
+  .base-input {
+    padding-right: 15%;
   }
 </style>
