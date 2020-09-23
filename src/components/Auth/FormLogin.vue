@@ -47,8 +47,8 @@
       <div class="login-status">
         <BaseStatusMessage :submitStatus="submitStatus" :isLoading="isLoading">
           <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
-          <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
-          <template v-slot:error-login>Такой пользователь не ЗАРЕГИСТРИРОВАН!</template>
+          <template v-slot:error>&#9940; Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:error-login>&#9660; Данный пользователь не ЗАРЕГИСТРИРОВАН!</template>
           <template v-slot:pending />
         </BaseStatusMessage>
         <BaseLink
