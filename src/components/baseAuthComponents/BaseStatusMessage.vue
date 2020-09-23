@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BaseLoader from '../../components/loader/BaseLoader'
+import BaseLoader from '@/components/loader/BaseLoader'
 
 export default {
   name: 'BaseStatusMessage',
@@ -47,5 +47,9 @@ export default {
 
   .message-ok {
     color: #008000;
+  }
+
+  .message-error-login {
+    color: #015eb6;
   }
 </style>

@@ -48,6 +48,7 @@
         <BaseStatusMessage :submitStatus="submitStatus" :isLoading="isLoading">
           <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
           <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:error-login>Такой пользователь не ЗАРЕГИСТРИРОВАН!</template>
           <template v-slot:pending />
         </BaseStatusMessage>
         <BaseLink
@@ -67,7 +68,7 @@
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength } from 'vuelidate/lib/validators'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'FormLogin',
@@ -104,22 +105,27 @@ export default {
       if (this.$v.$invalid) {
         this.submitStatus = 'error'
       } else {
-        this.submitStatus = 'pending'
-        this.isLoading = true
-        this.isLoading = false
-        this.submitStatus = 'ok'
         const userData = {
           email: this.email,
           password: this.password
         }
         try {
-          await this.$store.dispatch('login', userData)
-          this.$router.push('/')
-        } catch (e) {}
+          await this.login(userData)
+          this.submitStatus = 'pending'
+          this.isLoading = true
+          setTimeout(() => {
+            this.$router.push('/')
+          }, 2000)
+        } catch (e) {
+          this.submitStatus = 'error-login'
+        }
       }
     },
     ...mapMutations([
       'changeShow'
+    ]),
+    ...mapActions([
+      'login'
     ])
   },
   computed: {
