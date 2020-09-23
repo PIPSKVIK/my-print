@@ -1,16 +1,17 @@
+import firebase from 'firebase/app'
+
 export default {
-  state: {
-    enterEmail: '',
-    enterPassword: ''
-  },
+  state: {},
   mutattion: {},
-  actions: {},
-  getters: {
-    getEnterEmail (state) {
-      return state.enterEmail
-    },
-    getEnterPassword (state) {
-      return state.enterPassword
+  actions: {
+    async login ({ dispatch, commit }, { email, password }) {
+      // eslint-disable-next-line no-useless-catch
+      try {
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+      } catch (e) {
+        throw e
+      }
     }
-  }
+  },
+  getters: {}
 }

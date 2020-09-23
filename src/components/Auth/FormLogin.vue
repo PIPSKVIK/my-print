@@ -99,22 +99,23 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'error'
       } else {
         this.submitStatus = 'pending'
         this.isLoading = true
-        setTimeout(() => {
-          this.isLoading = false
-          this.submitStatus = 'ok'
-          const userData = {
-            email: this.email,
-            password: this.password
-          }
-          console.log(userData)
-        }, 5000)
+        this.isLoading = false
+        this.submitStatus = 'ok'
+        const userData = {
+          email: this.email,
+          password: this.password
+        }
+        try {
+          await this.$store.dispatch('login', userData)
+          this.$router.push('/')
+        } catch (e) {}
       }
     },
     ...mapMutations([
