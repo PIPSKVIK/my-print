@@ -110,12 +110,9 @@ export default {
           password: this.password
         }
         try {
-          await this.login(userData)
+          await this.$store.dispatch('login', userData)
+          this.$router.push('/')
           this.submitStatus = 'pending'
-          this.isLoading = true
-          setTimeout(() => {
-            this.$router.push('/')
-          }, 2000)
         } catch (e) {
           this.submitStatus = 'error-login'
         }

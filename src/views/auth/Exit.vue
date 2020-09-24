@@ -1,13 +1,30 @@
 <template>
   <div class="exit">
     <h2>Exit</h2>
+    <BaseButton
+      theme="info"
+      sizes="large"
+      @click="logout"
+    >
+      Выход из системы
+    </BaseButton>
   </div>
 </template>
 
 <script>
+import { BaseButton } from '@/components/baseUi'
 
 export default {
-  name: 'Exit'
+  name: 'Exit',
+  components: {
+    BaseButton
+  },
+  methods: {
+    async logout () {
+      await this.$store.dispatch('loguot')
+      this.$router.push('/enter?message=logout')
+    }
+  }
 }
 </script>
 

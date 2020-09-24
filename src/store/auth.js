@@ -1,12 +1,6 @@
 /* eslint-disable no-useless-catch */
 import firebase from 'firebase/app'
 
-class User {
-  constructor (id) {
-    this.id = id
-  }
-}
-
 export default {
   state: {
     user: null
@@ -24,18 +18,24 @@ export default {
         throw e
       }
     },
-    async registerUser ({ dispatch, commit }, { email, password }) {
+    async register ({ dispatch, commit }, { email, password }) {
       try {
-        const user = await firebase.auth().createUserWithEmailAndPassword(email, password)
-        commit('setUser', new User(user.uid))
+        await firebase.auth().createUserWithEmailAndPassword(email, password)
+        const uid = await dispatch('getUid')
+        await firebase.database().ref(`/users/${uid}`).set({
+          email: email,
+          name: 'Any name'
+        })
       } catch (e) {
         throw e
       }
-    }
-  },
-  getters: {
-    user (state) {
-      return state.user
+    },
+    getUid () {
+      const user = firebase.auth().currentUser
+      return user ? user.uid : null
+    },
+    async loguot () {
+      await firebase.auth().signOut()
     }
   }
 }

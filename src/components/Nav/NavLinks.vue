@@ -1,21 +1,51 @@
 <template>
   <ul class="nav-links">
-    <BaseRouterLink tag="li" :to="{ name: 'Home' }" >Главная</BaseRouterLink>
-    <BaseRouterLink tag="li" :to="{ name: 'Enter' }">Вход</BaseRouterLink>
-    <BaseRouterLink tag="li" :to="{ name: 'Exit' }" >Выход</BaseRouterLink>
-    <BaseRouterLink tag="li" :to="{ name: 'Registration' }" >Регистрация</BaseRouterLink>
-    <BaseRouterLink tag="li" :to="{ name: 'LayoutList' }" >Список макетов</BaseRouterLink>
-    <BaseRouterLink tag="li" :to="{ name: 'CreateLayout' }" >Создать макет</BaseRouterLink>
+    <BaseRouterLink
+      v-for="link in links"
+      :key="link.name"
+      :to="{ name: link.name }"
+      tag="li"
+    >
+      {{ link.title }}
+    </BaseRouterLink>
   </ul>
 </template>
 
 <script>
-import BaseRouterLink from '../../components/baseUi/BaseRouterLink'
+import BaseRouterLink from '@/components/baseUi/BaseRouterLink'
 
 export default {
   name: 'NavLinks',
   components: {
     BaseRouterLink
+  },
+  data () {
+    return {
+      links: [
+        { title: 'Главная', name: 'Home' },
+        { title: 'Вход', name: 'Enter' },
+        { title: 'Выход', name: 'Exit' },
+        { title: 'Регистрация', name: 'Registration' },
+        { title: 'Список макетов', name: 'LayoutList' },
+        { title: 'Создать макет', name: 'CreateLayout' }
+      ]
+    }
+  },
+  computed: {
+    // links () {
+    //   if (this.isUserLoggIn) {
+    //     return [
+    //       { title: 'Главная', name: 'Home' },
+    //       { title: 'Список макетов', name: 'LayoutList' },
+    //       { title: 'Создать макет', name: 'CreateLayout' },
+    //       { title: 'Выход', name: 'Exit' }
+    //     ]
+    //   }
+    //   return [
+    //     { title: 'Вход', name: 'Enter' },
+    //     { title: 'Регистрация', name: 'Registration' }
+    //   ]
+    // }
   }
 }
 </script>
