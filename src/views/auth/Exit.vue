@@ -1,6 +1,7 @@
 <template>
   <div class="exit">
     <h2>Exit</h2>
+    <p>Вы действительно хотите выйти из системы?</p>
     <BaseButton
       theme="info"
       sizes="large"

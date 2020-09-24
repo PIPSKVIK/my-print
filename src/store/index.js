@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import TypeText from './optionsEditTextAndStateComponents/Index'
 import TypeTextVariables from './optionsEditTextAndStateComponents/TypeTextComponentVariables.js'
+import Info from './Info.js'
 import Auth from './Auth'
 import Vuex from 'vuex'
 
@@ -10,6 +11,7 @@ export default new Vuex.Store({
   modules: {
     TypeText,
     TypeTextVariables,
-    Auth
+    Auth,
+    Info
   }
 })

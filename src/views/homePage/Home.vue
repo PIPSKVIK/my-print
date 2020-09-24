@@ -79,12 +79,16 @@ export default {
         }
       ]
     }
+  },
+  async mounted () {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
   .home {
     text-align: center;
     margin-top: 40px;
@@ -101,5 +105,4 @@ export default {
   .home-cards__item {
     margin: 20px;
   }
-
 </style>
