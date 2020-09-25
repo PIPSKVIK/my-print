@@ -48,6 +48,14 @@
           <BaseInputError v-if="!$v.confirmPassword.sameAs">Ваш пароль не совпадает</BaseInputError>
         </BaseInput>
       </div>
+      <BaseInput
+        type="text"
+        label="Имя"
+        placeholder="Имя"
+        name="name"
+        v-model.trim="name"
+        :show="getShow"
+      />
       <div class="form-registration__button">
         <BaseButton
           type="submit"
@@ -99,6 +107,7 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
+      name: '',
       submitStatus: null,
       isLoading: false
     }
@@ -124,7 +133,8 @@ export default {
       } else {
         const userData = {
           email: this.email,
-          password: this.password
+          password: this.password,
+          name: this.name
         }
         try {
           await this.$store.dispatch('register', userData)

@@ -8,7 +8,6 @@
     >
       {{ link.title }}
     </BaseRouterLink>
-    <p class="nav-links__user">Email пользователя: {{ name }} </p>
   </ul>
 </template>
 
@@ -33,9 +32,6 @@ export default {
     }
   },
   computed: {
-    name () {
-      return this.$store.getters.info.email
-    }
     // links () {
     //   if (this.isUserLoggIn) {
     //     return [
