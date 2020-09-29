@@ -1,24 +1,39 @@
 <template>
   <div class="exit">
     <h2>Exit</h2>
-    <p>Вы действительно хотите выйти из системы?</p>
     <BaseButton
       theme="info"
       sizes="large"
-      @click="logout"
+      @click="modalShow = true"
     >
       Выход из системы
     </BaseButton>
+    <BaseModal
+      :modalShow="modalShow"
+      @modal-close="modalShow = false"
+      @logout="logout"
+      buttonName="Да, хочу!"
+    >
+      <template #header>
+        Вы точно хотите выйти?
+      </template>
+    </BaseModal>
   </div>
 </template>
 
 <script>
-import { BaseButton } from '@/components/baseUi'
+import { BaseButton, BaseModal } from '@/components/baseUi'
 
 export default {
   name: 'Exit',
   components: {
-    BaseButton
+    BaseButton,
+    BaseModal
+  },
+  data () {
+    return {
+      modalShow: false
+    }
   },
   methods: {
     async logout () {

@@ -10,6 +10,7 @@ import BaseInputRange from './BaseInputRange'
 import BaseIcon from './BaseIcon'
 import BaseInputError from './BaseInputError'
 import BaseInputPassword from './BaseInputPassword'
+import BaseModal from './BaseModal'
 
 export {
   BaseButton,
@@ -23,5 +24,6 @@ export {
   BaseInputRange,
   BaseIcon,
   BaseInputError,
-  BaseInputPassword
+  BaseInputPassword,
+  BaseModal
 }

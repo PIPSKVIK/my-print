@@ -27,6 +27,7 @@ export default {
     background-color: #e7e7e7;
     padding: 5px 10px;
     border-radius: 10px;
+    font-weight: bold;
   }
   .user-title {
     margin: 0;
