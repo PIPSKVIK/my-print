@@ -48,6 +48,14 @@
           <BaseInputError v-if="!$v.confirmPassword.sameAs">Ваш пароль не совпадает</BaseInputError>
         </BaseInput>
       </div>
+      <BaseInput
+        type="text"
+        label="Имя"
+        placeholder="Имя"
+        name="name"
+        v-model.trim="name"
+        :show="getShow"
+      />
       <div class="form-registration__button">
         <BaseButton
           type="submit"
@@ -61,7 +69,8 @@
       <div class="registration-status">
         <BaseStatusMessage :submitStatus="submitStatus" :isLoading="isLoading">
           <template v-slot:ok>Добро пожаловать<span> {{ email }} </span></template>
-          <template v-slot:error>Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:error>&#9940; Пожалуйста, заполните форму правильно.</template>
+          <template v-slot:error-login>&#9940; Такой пользователь уже СУЩЕСТВУЕТ!</template>
           <template v-slot:pending />
         </BaseStatusMessage>
         <BaseLink
@@ -81,7 +90,7 @@
 import { BaseLink, BaseStatusMessage } from '@/components/baseAuthComponents'
 import { BaseButton, BaseInput, BaseInputError, BaseInputPassword } from '@/components/baseUi'
 import { email, required, minLength, sameAs } from 'vuelidate/lib/validators'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'FormRegistratin',
@@ -98,6 +107,7 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
+      name: '',
       submitStatus: null,
       isLoading: false
     }
@@ -116,26 +126,30 @@ export default {
     }
   },
   methods: {
-    onSubmit () {
+    async onSubmit () {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'error'
       } else {
-        this.submitStatus = 'pending'
-        this.isLoading = true
-        setTimeout(() => {
-          this.isLoading = false
-          this.submitStatus = 'ok'
-          const userData = {
-            email: this.email,
-            password: this.password
-          }
-          console.log(userData)
-        }, 3000)
+        const userData = {
+          email: this.email,
+          password: this.password,
+          name: this.name
+        }
+        try {
+          await this.$store.dispatch('register', userData)
+          this.$router.push('/')
+          this.submitStatus = 'pending'
+        } catch (e) {
+          this.submitStatus = 'error-login'
+        }
       }
     },
     ...mapMutations([
       'changeShow'
+    ]),
+    ...mapActions([
+      'registerUser'
     ])
   },
   computed: {
