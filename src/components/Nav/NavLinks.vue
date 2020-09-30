@@ -19,33 +19,24 @@ export default {
   components: {
     BaseRouterLink
   },
-  data () {
-    return {
-      links: [
-        { title: 'Главная', name: 'Home' },
-        { title: 'Вход', name: 'Enter' },
-        { title: 'Выход', name: 'Exit' },
-        { title: 'Регистрация', name: 'Registration' },
-        { title: 'Список макетов', name: 'LayoutList' },
-        { title: 'Создать макет', name: 'CreateLayout' }
-      ]
-    }
-  },
   computed: {
-    // links () {
-    //   if (this.isUserLoggIn) {
-    //     return [
-    //       { title: 'Главная', name: 'Home' },
-    //       { title: 'Список макетов', name: 'LayoutList' },
-    //       { title: 'Создать макет', name: 'CreateLayout' },
-    //       { title: 'Выход', name: 'Exit' }
-    //     ]
-    //   }
-    //   return [
-    //     { title: 'Вход', name: 'Enter' },
-    //     { title: 'Регистрация', name: 'Registration' }
-    //   ]
-    // }
+    links () {
+      if (this.isUserLoggIn) {
+        return [
+          { title: 'Главная', name: 'Home' },
+          { title: 'Список макетов', name: 'LayoutList' },
+          { title: 'Создать макет', name: 'CreateLayout' },
+          { title: 'Выход', name: 'Exit' }
+        ]
+      }
+      return [
+        { title: 'Вход', name: 'Enter' },
+        { title: 'Регистрация', name: 'Registration' }
+      ]
+    },
+    isUserLoggIn () {
+      return this.$store.getters.info.name
+    }
   }
 }
 </script>

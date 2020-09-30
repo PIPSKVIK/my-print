@@ -2,23 +2,17 @@
 import firebase from 'firebase/app'
 
 export default {
-  state: {
-    user: null
-  },
-  mutattion: {
-    setUser (state, payload) {
-      state.user = payload
-    }
-  },
+  state: {},
+  mutattion: {},
   actions: {
-    async login ({ dispatch, commit }, { email, password }) {
+    async login ({ email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password)
       } catch (e) {
         throw e
       }
     },
-    async register ({ dispatch, commit }, { email, password, name }) {
+    async register ({ dispatch }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
         const uid = await dispatch('getUid')
