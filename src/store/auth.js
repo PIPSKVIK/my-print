@@ -5,14 +5,14 @@ export default {
   state: {},
   mutattion: {},
   actions: {
-    async login ({ email, password }) {
+    async login ({ dispatch, commit }, { email, password }) {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password)
       } catch (e) {
         throw e
       }
     },
-    async register ({ dispatch }, { email, password, name }) {
+    async register ({ dispatch, commit }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
         const uid = await dispatch('getUid')
