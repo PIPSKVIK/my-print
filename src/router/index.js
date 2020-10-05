@@ -27,7 +27,10 @@ const routes = [
   {
     path: '/layout-list',
     name: 'LayoutList',
-    component: () => import('../views/layoutPage/LayoutList')
+    component: () => import('../views/layoutPage/LayoutList'),
+    beforeEnter: (to, from, next) => {
+      console.log('beforeEnter')
+    }
   },
   {
     path: '/creat-layout',
